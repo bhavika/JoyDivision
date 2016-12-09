@@ -1,0 +1,68 @@
+/home/bhavika/anaconda2/bin/python /home/bhavika/PycharmProjects/JoyDivision/src/gridsearch_extratrees.py
+<class 'pandas.core.frame.DataFrame'>
+Int64Index: 688 entries, 2 to 1136
+Columns: 126 entries, File to pitchcomp_7
+dtypes: float64(108), int64(5), object(13)
+memory usage: 682.6+ KB
+None
+Extra Trees grid search:
+CV results {'rank_test_score': array([ 7,  2,  7,  6, 12,  4,  1,  3, 11, 10,  7,  5], dtype=int32), 'std_score_time': array([ 0.00046299,  0.00457291,  0.01107718,  0.03014926,  0.0001478 ,
+        0.0011368 ,  0.01825508,  0.06989737,  0.00075488,  0.00203755,
+        0.03164351,  0.07337417]), 'split2_test_score': array([ 0.58695652,  0.62318841,  0.5942029 ,  0.60869565,  0.52173913,
+        0.5942029 ,  0.61594203,  0.63043478,  0.51449275,  0.56521739,
+        0.60869565,  0.63768116]), 'mean_fit_time': array([ 0.05231485,  0.21026659,  0.33682785,  2.00273986,  0.04322791,
+        0.20047674,  0.52254024,  2.57196622,  0.04459038,  0.26952653,
+        0.60524516,  2.39852719]), 'split3_train_score': array([ 0.80545455,  0.85636364,  0.86727273,  0.86363636,  0.94909091,
+        0.96363636,  0.97272727,  0.97090909,  0.99090909,  1.        ,
+        1.        ,  1.        ]), 'std_test_score': array([ 0.03821524,  0.04293365,  0.05967172,  0.0418327 ,  0.03978428,
+        0.0320721 ,  0.04326201,  0.03355314,  0.05870185,  0.03841476,
+        0.04612164,  0.03365377]), 'params': ({'n_estimators': 10, 'max_depth': 7}, {'n_estimators': 50, 'max_depth': 7}, {'n_estimators': 100, 'max_depth': 7}, {'n_estimators': 500, 'max_depth': 7}, {'n_estimators': 10, 'max_depth': 10}, {'n_estimators': 50, 'max_depth': 10}, {'n_estimators': 100, 'max_depth': 10}, {'n_estimators': 500, 'max_depth': 10}, {'n_estimators': 10, 'max_depth': 15}, {'n_estimators': 50, 'max_depth': 15}, {'n_estimators': 100, 'max_depth': 15}, {'n_estimators': 500, 'max_depth': 15}), 'std_fit_time': array([  1.20452148e-02,   4.93407792e-02,   6.15658949e-02,
+         2.57340618e-01,   6.78788288e-04,   3.44842388e-03,
+         1.42102005e-01,   4.97858450e-01,   4.72041948e-04,
+         6.42273080e-02,   1.38943450e-01,   1.42861163e-01]), 'std_train_score': array([ 0.01300082,  0.01532366,  0.00994338,  0.00784919,  0.00695623,
+        0.00439055,  0.00389234,  0.0042381 ,  0.00337166,  0.        ,
+        0.        ,  0.        ]), 'split4_test_score': array([ 0.67647059,  0.66176471,  0.64705882,  0.66176471,  0.61764706,
+        0.66176471,  0.69852941,  0.67647059,  0.67647059,  0.61029412,
+        0.66911765,  0.69117647]), 'param_max_depth': masked_array(data = [7 7 7 7 10 10 10 10 15 15 15 15],
+             mask = [False False False False False False False False False False False False],
+       fill_value = ?)
+, 'split1_train_score': array([ 0.83636364,  0.88181818,  0.88      ,  0.88363636,  0.94909091,
+        0.97454545,  0.97636364,  0.98181818,  1.        ,  1.        ,
+        1.        ,  1.        ]), 'split2_train_score': array([ 0.83272727,  0.87454545,  0.88727273,  0.88363636,  0.94363636,
+        0.97272727,  0.97818182,  0.98181818,  1.        ,  1.        ,
+        1.        ,  1.        ]), 'split3_test_score': array([ 0.65942029,  0.62318841,  0.64492754,  0.63768116,  0.60144928,
+        0.68115942,  0.70289855,  0.65217391,  0.64492754,  0.64492754,
+        0.65942029,  0.64492754]), 'split4_train_score': array([ 0.82608696,  0.83876812,  0.85869565,  0.86956522,  0.95652174,
+        0.97101449,  0.97644928,  0.97826087,  0.99637681,  1.        ,
+        1.        ,  1.        ]), 'mean_score_time': array([ 0.00943861,  0.04141541,  0.0843915 ,  0.4133862 ,  0.0087388 ,
+        0.04128623,  0.09474573,  0.45750957,  0.0093998 ,  0.04401836,
+        0.11447096,  0.48307219]), 'split0_train_score': array([ 0.84363636,  0.85454545,  0.87090909,  0.87454545,  0.96363636,
+        0.97636364,  0.96727273,  0.98181818,  0.99818182,  1.        ,
+        1.        ,  1.        ]), 'mean_train_score': array([ 0.82885375,  0.86120817,  0.87283004,  0.87500395,  0.95239526,
+        0.97165744,  0.97419895,  0.9789249 ,  0.99709354,  1.        ,
+        1.        ,  1.        ]), 'split0_test_score': array([ 0.6884058 ,  0.73913043,  0.75362319,  0.72463768,  0.62318841,
+        0.68115942,  0.71014493,  0.71014493,  0.66666667,  0.68115942,
+        0.71014493,  0.6884058 ]), 'mean_test_score': array([ 0.64534884,  0.65843023,  0.64534884,  0.6497093 ,  0.59883721,
+        0.65552326,  0.66860465,  0.65697674,  0.62209302,  0.62645349,
+        0.64534884,  0.65261628]), 'param_n_estimators': masked_array(data = [10 50 100 500 10 50 100 500 10 50 100 500],
+             mask = [False False False False False False False False False False False False],
+       fill_value = ?)
+, 'split1_test_score': array([ 0.61594203,  0.64492754,  0.58695652,  0.61594203,  0.63043478,
+        0.65942029,  0.61594203,  0.61594203,  0.60869565,  0.63043478,
+        0.57971014,  0.60144928])}
+Best Extra Trees ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
+           max_depth=10, max_features='auto', max_leaf_nodes=None,
+           min_impurity_split=1e-07, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=100, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False)
+Best CV score for Extra Trees 0.668604651163
+Best Extra Trees params: {'n_estimators': 100, 'max_depth': 10}
+Finished in:  65.4663689137
+[Fri Dec  9 12:32:08 2016 : 503064] speechd: Speech Dispatcher 0.8 starting
+[Fri Dec  9 12:32:08 2016 : 503177] speechd: Speech Dispatcher already running.
+
+Speech Dispatcher already running.
+
+
+Process finished with exit code 0
