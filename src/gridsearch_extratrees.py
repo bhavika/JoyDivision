@@ -1,0 +1,30 @@
+from explore_features import train
+from sklearn.metrics import accuracy_score, make_scorer
+from time import time
+import subprocess
+from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.model_selection import GridSearchCV, KFold, cross_val_score
+
+features = ['KeyMode', 'LoudnessSq', 'Danceability', 'tim_13', 'tim_5', 'tim_1', 'tim_4', 'tim_77', 'pitchcomp_1', 'Beats',
+            'Energy', 'Tempo']
+
+xtra_params = {"n_estimators":[10, 50, 100, 500], "max_depth":[7, 10, 15]}
+
+start = time()
+accuracy = make_scorer(accuracy_score)
+
+xtra_grid = GridSearchCV(estimator=ExtraTreesClassifier(), param_grid=xtra_params, scoring=accuracy, cv=5)
+xtra_grid.fit(train[features], train['Mood'])
+
+
+print "Extra Trees grid search: "
+print "CV results", xtra_grid.cv_results_
+print "Best Extra Trees", xtra_grid.best_estimator_
+print "Best CV score for Extra Trees", xtra_grid.best_score_
+print "Best Extra Trees params:", xtra_grid.best_params_
+
+
+print "Finished in: ", (time() - start)
+
+subprocess.call(['speech-dispatcher'])        #start speech dispatcher
+subprocess.call(['spd-say', '"your process has finished"'])
