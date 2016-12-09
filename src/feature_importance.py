@@ -15,7 +15,7 @@ featurenames = ['KeyMode', 'LoudnessSq', 'Loudness', 'Key', 'Mode',  'Speechines
 
 features = pitchcomp + featurenames
 
-X = train[features]
+X = train[pitchcomp]
 
 y = train['Mood']
 

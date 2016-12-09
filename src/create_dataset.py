@@ -33,12 +33,11 @@ master['Instrumentalness'].fillna(master['Instrumentalness'].mean(), inplace=Tru
 def get_beatcount(x):
     return x.shape[0]
 
+
 def compute_timbre_feature(x):
     features = x.T
-
     flen = features.shape[1]
     ndim = features.shape[0]
-
     assert ndim == 12, "Transpose error - wrong dimension"
     finaldim = 90
     if flen < 3:
@@ -47,7 +46,6 @@ def compute_timbre_feature(x):
     avg = np.average(features, 1)
     cov = np.cov(features)
     covflat = []
-
     for k in range(12):
         covflat.extend(np.diag(cov, k))
     covflat = np.array(covflat, dtype=object)
@@ -55,7 +53,7 @@ def compute_timbre_feature(x):
     f = np.concatenate([avg, covflat])
     f = list(f)
     return f
-    # return f.reshape(1, finaldim)
+
 
 def compute_pitch_feature(x):
     features = x.T
@@ -112,8 +110,9 @@ print master
 
 master.to_pickle('../data/fullset.pkl')
 
+print master.columns.values
 
-#
+
 # 'File' 'Artist' 'Title' 'TimeSignature' 'Key' 'SegmentsLoudMax' 'Mode'
 #  'BeatsConfidence' 'Tempo' 'Loudness' 'Timbre' 'Pitches' 'KeyConfidence'
 #  'Artist_y' 'Title_y' 'TrackID' 'Energy' 'Speechiness' 'Valence'
