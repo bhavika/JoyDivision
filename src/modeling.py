@@ -9,8 +9,8 @@ import matplotlib.pyplot as plt
 
 filter_col = [col for col in list(train.columns.values) if col.startswith('tim_')]
 
-features = ['KeyMode', 'Valence']
-imp_timbres = ['tim_13', 'tim_5', 'tim_1', 'tim_4', 'tim_77']
+features = ['KeyMode', 'Beats']
+imp_timbres = ['tim_13', 'tim_5', 'tim_1', 'tim_4', 'tim_77', 'pitchcomp_1', 'pitchcomp_2']
 
 features = features + imp_timbres
 
@@ -34,13 +34,12 @@ y_pred = clf.predict(X_test)
 
 cfm = confusion_matrix(y_test, y_pred)
 print cfm
-
 sns.heatmap(cfm, annot=True, fmt='d', cmap="YlGnBu")
-
 plt.show()
 
 print accuracy_score(y_test, y_pred)
-
 print "Time elapased", time() - start
+
+print features
 
 # print cross_val_score(clf,  X, y, cv=10)

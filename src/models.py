@@ -5,7 +5,7 @@ from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
 import xgboost as xgb
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, accuracy_score
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -14,8 +14,8 @@ import subprocess
 
 start = time()
 
-features = ['KeyMode', 'Valence']
-imp_timbres = ['tim_13', 'tim_5', 'tim_1', 'tim_4', 'tim_77']
+features = ['KeyMode']
+imp_timbres = ['tim_13', 'tim_5', 'tim_1', 'tim_4', 'tim_77', 'pitchcomp_1']
 
 features = features + imp_timbres
 
@@ -37,6 +37,7 @@ for name, model in models.iteritems():
     model.fit(X_train, y_train)
     print name
     print classification_report(y_test, model.predict(X_test))
+    print "Accuracy: ", accuracy_score(y_test, model.predict(X_test))
     print '\n'
 
 

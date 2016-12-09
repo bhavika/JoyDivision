@@ -3,20 +3,24 @@ import matplotlib.pyplot as plt
 from sklearn.ensemble import ExtraTreesClassifier
 from explore_features import train
 
-filter_col = [col for col in list(train.columns.values) if col.startswith('tim_')]
+timbre_col = [col for col in list(train.columns.values) if col.startswith('tim_')]
+
+pitch_col = [col for col in list(train.columns.values) if col.startswith('pitch_')]
+
+pitchcomp = [col for col in list(train.columns.values) if col.startswith('pitchcomp_')]
+
 featurenames = ['KeyMode', 'LoudnessSq', 'Loudness', 'Key', 'Mode',  'Speechiness', 'Danceability',
-          'Acousticness', 'Instrumentalness', 'TimeSignature', 'Tempo', 'Energy', 'Valence']
-
-features = featurenames + filter_col
-
-X = train[filter_col]
+          'Acousticness', 'Instrumentalness', 'TimeSignature', 'Tempo', 'Energy', 'TempoMode', 'Beats']
 
 
+features = pitchcomp + featurenames
+
+X = train[features]
 
 y = train['Mood']
 
 
-forest = ExtraTreesClassifier(n_estimators=250, random_state=3)
+forest = ExtraTreesClassifier(n_estimators=250, random_state=55)
 
 forest.fit(X,y)
 
@@ -27,7 +31,7 @@ indices = np.argsort(importances)[::-1]
 print ("Feature ranking:")
 
 for f in range(X.shape[1]):
-    print ("%d. feature %d %s (%f)" % (f + 1, indices[f], filter_col[indices[f]],  importances[indices[f]]))
+    print ("%d. feature %d %s (%f)" % (f + 1, indices[f], indices[f],  importances[indices[f]]))
 
 plt.figure()
 plt.title("Feature importance")

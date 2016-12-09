@@ -107,3 +107,9 @@ Features: features = ['KeyMode', 'Valence']
 imp_timbres = ['tim_13', 'tim_5', 'tim_1', 'tim_4', 'tim_77']
 ACTUAL TEST SET - FIRST RUN WITH TIMBRES
 0.655
+
+30) Linear Kernel
+Features: features = ['KeyMode', 'Valence']
+imp_timbres = ['tim_13', 'tim_5', 'tim_1', 'tim_4', 'tim_77']
+Pitch: pitchcomp_1
+ACTUAL TEST SET: 0.66244
