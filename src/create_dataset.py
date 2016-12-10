@@ -1,8 +1,8 @@
+
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
-
 numerical = ['Tempo', 'Loudness', 'Energy', 'Speechiness', 'Valence', 'Danceability', 'Acousticness', 'Instrumentalness']
 
 trackids = pd.read_csv('../data/trackids.csv', sep=';')
@@ -88,23 +88,15 @@ master = pd.concat([master[:], timbrevec[:]], axis=1)
 
 pitchvec = master['PitchVector'].apply(pd.Series)
 pitchvec = pitchvec.rename(columns = lambda x: 'pitch_'+str(x))
-# master = pd.concat([master[:], pitchvec[:]], axis=1)
-
+master = pd.concat([master[:], pitchvec[:]], axis=1)
 
 filter_col = [col for col in list(master.columns.values) if col.startswith('pitch_')]
 
-pca = PCA(n_components=7)
-pitch_reduced = pca.fit_transform(pitchvec)
-pitch_red = pd.DataFrame(data=pitch_reduced)
-pitch_red.columns = ['pitchcomp_1', 'pitchcomp_2', 'pitchcomp_3', 'pitchcomp_4', 'pitchcomp_5', 'pitchcomp_6', 'pitchcomp_7']
-
-pitch_reduced = pca.fit_transform(pitchvec)
 
 master['Beats'] = master['BeatsConfidence'].apply(lambda x: get_beatcount(x))
-
-master.reset_index(drop=True, inplace=True)
-
-master = pd.concat([master, pitch_red], axis=1)
+#
+# master.reset_index(drop=True, inplace=True)
+#
 
 print master
 
@@ -112,8 +104,8 @@ master.to_pickle('../data/fullset.pkl')
 
 print master.columns.values
 
-
-# 'File' 'Artist' 'Title' 'TimeSignature' 'Key' 'SegmentsLoudMax' 'Mode'
+#
+# ['File' 'Artist' 'Title' 'TimeSignature' 'Key' 'SegmentsLoudMax' 'Mode'
 #  'BeatsConfidence' 'Tempo' 'Loudness' 'Timbre' 'Pitches' 'KeyConfidence'
 #  'Artist_y' 'Title_y' 'TrackID' 'Energy' 'Speechiness' 'Valence'
 #  'Danceability' 'Acousticness' 'Instrumentalness' 'Mood' 'KeyMode'
@@ -128,4 +120,19 @@ print master.columns.values
 #  'tim_59' 'tim_60' 'tim_61' 'tim_62' 'tim_63' 'tim_64' 'tim_65' 'tim_66'
 #  'tim_67' 'tim_68' 'tim_69' 'tim_70' 'tim_71' 'tim_72' 'tim_73' 'tim_74'
 #  'tim_75' 'tim_76' 'tim_77' 'tim_78' 'tim_79' 'tim_80' 'tim_81' 'tim_82'
-#  'tim_83' 'tim_84' 'tim_85' 'tim_86' 'tim_87' 'tim_88' 'tim_89']
+#  'tim_83' 'tim_84' 'tim_85' 'tim_86' 'tim_87' 'tim_88' 'tim_89' 'pitch_0'
+#  'pitch_1' 'pitch_2' 'pitch_3' 'pitch_4' 'pitch_5' 'pitch_6' 'pitch_7'
+#  'pitch_8' 'pitch_9' 'pitch_10' 'pitch_11' 'pitch_12' 'pitch_13' 'pitch_14'
+#  'pitch_15' 'pitch_16' 'pitch_17' 'pitch_18' 'pitch_19' 'pitch_20'
+#  'pitch_21' 'pitch_22' 'pitch_23' 'pitch_24' 'pitch_25' 'pitch_26'
+#  'pitch_27' 'pitch_28' 'pitch_29' 'pitch_30' 'pitch_31' 'pitch_32'
+#  'pitch_33' 'pitch_34' 'pitch_35' 'pitch_36' 'pitch_37' 'pitch_38'
+#  'pitch_39' 'pitch_40' 'pitch_41' 'pitch_42' 'pitch_43' 'pitch_44'
+#  'pitch_45' 'pitch_46' 'pitch_47' 'pitch_48' 'pitch_49' 'pitch_50'
+#  'pitch_51' 'pitch_52' 'pitch_53' 'pitch_54' 'pitch_55' 'pitch_56'
+#  'pitch_57' 'pitch_58' 'pitch_59' 'pitch_60' 'pitch_61' 'pitch_62'
+#  'pitch_63' 'pitch_64' 'pitch_65' 'pitch_66' 'pitch_67' 'pitch_68'
+#  'pitch_69' 'pitch_70' 'pitch_71' 'pitch_72' 'pitch_73' 'pitch_74'
+#  'pitch_75' 'pitch_76' 'pitch_77' 'pitch_78' 'pitch_79' 'pitch_80'
+#  'pitch_81' 'pitch_82' 'pitch_83' 'pitch_84' 'pitch_85' 'pitch_86'
+#  'pitch_87' 'pitch_88' 'pitch_89' 'Beats']

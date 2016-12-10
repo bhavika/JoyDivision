@@ -7,20 +7,18 @@ timbre_col = [col for col in list(train.columns.values) if col.startswith('tim_'
 
 pitch_col = [col for col in list(train.columns.values) if col.startswith('pitch_')]
 
-pitchcomp = [col for col in list(train.columns.values) if col.startswith('pitchcomp_')]
-
 featurenames = ['KeyMode', 'LoudnessSq', 'Loudness', 'Key', 'Mode',  'Speechiness', 'Danceability',
           'Acousticness', 'Instrumentalness', 'TimeSignature', 'Tempo', 'Energy', 'TempoMode', 'Beats']
 
 
-features = pitchcomp + featurenames
+features = featurenames + pitch_col + timbre_col
 
-X = train[pitchcomp]
+X = train[features]
 
 y = train['Mood']
 
 
-forest = ExtraTreesClassifier(n_estimators=250, random_state=55)
+forest = ExtraTreesClassifier(n_estimators=250)
 
 forest.fit(X,y)
 
