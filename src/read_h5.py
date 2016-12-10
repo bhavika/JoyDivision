@@ -34,7 +34,7 @@ def get_song_data(results):
             [os.path.basename(f), getter.get_artist_name(h5), getter.get_title(h5),
              getter.get_time_signature(h5), getter.get_key(h5),
              getter.get_segments_loudness_max(h5), getter.get_mode(h5),
-             getter.get_beats_confidence(h5),
+             getter.get_beats_confidence(h5), getter.get_duration(h5),
              getter.get_tempo(h5), getter.get_loudness(h5),
              getter.get_segments_timbre(h5), getter.get_segments_pitches(h5),
              getter.get_key_confidence(h5)])
@@ -43,7 +43,7 @@ def get_song_data(results):
 
 final = get_song_data(results)
 
-headers = ['File', 'Artist', 'Title', 'TimeSignature',  'Key', 'SegmentsLoudMax', 'Mode', 'BeatsConfidence', 'Tempo', 'Loudness', 'Timbre', 'Pitches', 'KeyConfidence']
+headers = ['File', 'Artist', 'Title', 'TimeSignature',  'Key', 'SegmentsLoudMax', 'Mode', 'BeatsConfidence', 'Length', 'Tempo', 'Loudness', 'Timbre', 'Pitches', 'KeyConfidence']
 
 print ("Elapsed time:", time() - start)
 
