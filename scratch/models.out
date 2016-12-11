@@ -11,23 +11,23 @@ Training on all features
 RFC
              precision    recall  f1-score   support
 
-      happy       0.62      0.60      0.61        92
-        sad       0.69      0.71      0.70       114
+      happy       0.63      0.65      0.64        92
+        sad       0.71      0.69      0.70       114
 
-avg / total       0.66      0.66      0.66       206
+avg / total       0.68      0.67      0.68       206
 
-Accuracy:  0.660194174757
+Accuracy:  0.674757281553
 
 
 ETC
              precision    recall  f1-score   support
 
-      happy       0.51      0.71      0.59        92
-        sad       0.65      0.45      0.53       114
+      happy       0.55      0.66      0.60        92
+        sad       0.68      0.57      0.62       114
 
-avg / total       0.59      0.56      0.56       206
+avg / total       0.62      0.61      0.61       206
 
-Accuracy:  0.563106796117
+Accuracy:  0.611650485437
 
 
 ABC
@@ -55,12 +55,12 @@ Accuracy:  0.665048543689
 GBC
              precision    recall  f1-score   support
 
-      happy       0.62      0.61      0.62        92
-        sad       0.69      0.70      0.70       114
+      happy       0.61      0.60      0.60        92
+        sad       0.68      0.69      0.69       114
 
-avg / total       0.66      0.66      0.66       206
+avg / total       0.65      0.65      0.65       206
 
-Accuracy:  0.660194174757
+Accuracy:  0.650485436893
 
 
 KNN
@@ -85,28 +85,28 @@ avg / total       0.67      0.67      0.67       206
 Accuracy:  0.674757281553
 
 
-Elapsed time:  40.3143699169
+Elapsed time:  11.362295866
 Training on audio features only
 RFC
              precision    recall  f1-score   support
 
-      happy       0.61      0.65      0.63        92
-        sad       0.70      0.67      0.68       114
+      happy       0.63      0.64      0.63        92
+        sad       0.71      0.69      0.70       114
 
-avg / total       0.66      0.66      0.66       206
+avg / total       0.67      0.67      0.67       206
 
-Accuracy:  0.660194174757
+Accuracy:  0.669902912621
 
 
 ETC
              precision    recall  f1-score   support
 
-      happy       0.54      0.65      0.59        92
-        sad       0.66      0.55      0.60       114
+      happy       0.53      0.76      0.62        92
+        sad       0.70      0.46      0.55       114
 
-avg / total       0.61      0.60      0.60       206
+avg / total       0.63      0.59      0.59       206
 
-Accuracy:  0.597087378641
+Accuracy:  0.592233009709
 
 
 ABC
@@ -134,12 +134,12 @@ Accuracy:  0.660194174757
 GBC
              precision    recall  f1-score   support
 
-      happy       0.57      0.61      0.59        92
+      happy       0.58      0.62      0.60        92
         sad       0.67      0.63      0.65       114
 
-avg / total       0.62      0.62      0.62       206
+avg / total       0.63      0.63      0.63       206
 
-Accuracy:  0.621359223301
+Accuracy:  0.626213592233
 
 
 KNN
@@ -164,28 +164,28 @@ avg / total       0.63      0.64      0.63       206
 Accuracy:  0.635922330097
 
 
-Elapsed time:  61.8775000572
+Elapsed time:  17.5652389526
 Training on qual features only
 RFC
              precision    recall  f1-score   support
 
-      happy       0.58      0.54      0.56        92
-        sad       0.65      0.68      0.67       114
+      happy       0.57      0.51      0.54        92
+        sad       0.63      0.68      0.66       114
 
-avg / total       0.62      0.62      0.62       206
+avg / total       0.60      0.61      0.60       206
 
-Accuracy:  0.621359223301
+Accuracy:  0.606796116505
 
 
 ETC
              precision    recall  f1-score   support
 
-      happy       0.48      0.63      0.54        92
-        sad       0.60      0.44      0.51       114
+      happy       0.53      0.65      0.59        92
+        sad       0.66      0.54      0.59       114
 
-avg / total       0.54      0.52      0.52       206
+avg / total       0.60      0.59      0.59       206
 
-Accuracy:  0.52427184466
+Accuracy:  0.587378640777
 
 
 ABC
@@ -221,20 +221,15 @@ avg / total       0.61      0.60      0.60       206
 Accuracy:  0.601941747573
 
 
-QInotifyFileSystemWatcherEngine::addPaths: inotify_add_watch failed: No space left on device
-QInotifyFileSystemWatcherEngine::addPaths: inotify_add_watch failed: No space left on device
-QInotifyFileSystemWatcherEngine::addPaths: inotify_add_watch failed: No space left on device
-QInotifyFileSystemWatcherEngine::addPaths: inotify_add_watch failed: No space left on device
-QInotifyFileSystemWatcherEngine::addPaths: inotify_add_watch failed: No space left on device
 KNN
              precision    recall  f1-score   support
 
-      happy       0.49      0.46      0.47        92
-        sad       0.59      0.62      0.60       114
+      happy       0.49      0.41      0.45        92
+        sad       0.58      0.65      0.61       114
 
-avg / total       0.55      0.55      0.55       206
+avg / total       0.54      0.54      0.54       206
 
-Accuracy:  0.54854368932
+Accuracy:  0.543689320388
 
 
 SVM
@@ -248,11 +243,11 @@ avg / total       0.65      0.65      0.65       206
 Accuracy:  0.645631067961
 
 
-Elapsed time:  89.3792419434
-[Sat Dec 10 21:14:25 2016 : 624477] speechd: Speech Dispatcher 0.8 starting
-[Sat Dec 10 21:14:25 2016 : 624757] speechd: Speech Dispatcher already running.
-
+Elapsed time:  43.854902029
 Speech Dispatcher already running.
+
+[Sun Dec 11 01:17:34 2016 : 913961] speechd: Speech Dispatcher 0.8 starting
+[Sun Dec 11 01:17:34 2016 : 914052] speechd: Speech Dispatcher already running.
 
 
 Process finished with exit code 0

@@ -179,7 +179,9 @@ plt.show()
 # other models
 simple_models = {}
 simple_models['SVM'] = SVC(kernel='linear')
-simple_models['KNN'] = KNeighborsClassifier()
+simple_models['KNN'] = KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='euclidean',
+           metric_params=None, n_jobs=1, n_neighbors=37, p=2,
+           weights='uniform')
 
 for name, model in simple_models.iteritems():
     model.fit(X_train, y_train)

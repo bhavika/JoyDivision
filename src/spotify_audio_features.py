@@ -3,11 +3,11 @@ import spotipy
 from time import time
 import pandas as pd
 
-client_credentials_manager = SpotifyClientCredentials(client_id='e0bf251c8ff249d9ad59e1b1de608641', client_secret='2d849f8d339b4aa0bf2d03e4449d16ba')
+client_credentials_manager = SpotifyClientCredentials(client_id=YOUR_CLIENT_ID, client_secret=YOUR_CLIENT_SECRET)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 sp.trace=True
 
-alltracks = pd.read_csv('../data/trackids_2.csv', sep=';', header=0)
+alltracks = pd.read_csv('../data/trackids_new_2.csv', sep=';', header=0)
 tracklist = alltracks[alltracks['TrackID'] != 'Not Found']
 tracklist = tracklist['TrackID'].tolist()
 print len(tracklist)
@@ -16,7 +16,7 @@ chunks = [tracklist[x:x+49] for x in xrange(0, len(tracklist), 49)]
 
 start = time()
 
-with open('../data/audiofeatures2.csv', 'w') as out:
+with open('../data/audiofeatures3.csv', 'w') as out:
     for idx, chunk in enumerate(chunks):
         print "Chunk {} has length {}".format(idx, len(chunk))
         features = sp.audio_features(chunk)

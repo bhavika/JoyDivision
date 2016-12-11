@@ -1,8 +1,7 @@
-
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
-from sklearn.decomposition import PCA
+
 
 numerical = ['Tempo', 'Loudness', 'Energy', 'Speechiness', 'Valence', 'Danceability', 'Acousticness', 'Instrumentalness']
 
@@ -12,25 +11,36 @@ subset = pd.read_pickle('../data/subset.pkl')
 labels = pd.read_csv('../data/labels.csv', sep=';')
 
 master = pd.merge(subset, trackids, on='File', how='inner')
-
-print "After trackids", master.shape
-
 master = pd.merge(master, features, on='TrackID', how='inner')
-
-print "After features", master.shape
-
 master = pd.merge(master, labels, on='File', how='inner')
-
-print "After labels", master.shape
-
-
 master = master.rename(index=str, columns={"Artist_x": "Artist", "Title_x": "Title"})
+
+trackids_2 = pd.read_csv('../data/trackids_new_2.csv', sep=';')
+features_2 = pd.read_csv('../data/features_2.csv', sep=';')
+subset_2 = pd.read_pickle('../data/newsubset.pkl')
+
+d = pd.merge(subset_2, trackids_2, on='File', how='inner')
+d = pd.merge(d, features_2, on='TrackID', how='inner')
+
+d = d.rename(index=str, columns={"Artist_x": "Artist", "Title_x": "Title"})
+master = pd.concat([master, d])
+master = master.drop_duplicates(subset=['File', 'Artist', 'Title'], keep='first')
+
+# print master['Tempo'].mean(), master['Tempo'].std()
+# print master['Loudness'].mean(), master['Loudness'].std()
+# print master['Energy'].mean(), master['Energy'].std()
+# print master['Danceability'].mean(), master['Danceability'].std()
+# print master['Acousticness'].mean(), master['Acousticness'].std()
+# print master['Valence'].mean(), master['Valence'].std()
+# print master['Instrumentalness'].mean(), master['Instrumentalness'].std()
+# print master['Speechiness'].mean(), master['Speechiness'].std()
+
 
 master['KeyMode'] = master['Key'] * master['Mode']
 master['LoudnessSq'] = master['Loudness'] * master['Loudness']
 master['TempoMode'] = master['Tempo'] * master['Mode']
 
-# master[numerical] = master[numerical].apply(lambda x: StandardScaler().fit_transform(x))
+
 
 # Impute missing values
 master['Energy'].fillna(master['Energy'].mean(), inplace=True)
@@ -38,6 +48,8 @@ master['Danceability'].fillna(master['Danceability'].mean(), inplace=True)
 master['Acousticness'].fillna(master['Acousticness'].mean(), inplace=True)
 master['Valence'].fillna(master['Valence'].mean(), inplace=True)
 master['Instrumentalness'].fillna(master['Instrumentalness'].mean(), inplace=True)
+master['Speechiness'].fillna(master['Speechiness'].mean(), inplace=True)
+
 
 
 def get_beatcount(x):
@@ -123,10 +135,13 @@ master = pd.concat([master[:], pitchvec[:]], axis=1)
 filter_col = [col for col in list(master.columns.values) if col.startswith('pitch_')]
 
 master['Beats'] = master['BeatsConfidence'].apply(lambda x: get_beatcount(x))
+# Scaling values
+
+master[numerical].apply(lambda x: StandardScaler().fit_transform(x))
+
 
 master.to_pickle('../data/fullset.pkl')
 
-print master.columns.values
 
 # ['File' 'Artist' 'Title' 'TimeSignature' 'Key' 'SegmentsLoudMax' 'Mode'
 #  'BeatsConfidence' 'Length' 'Tempo' 'Loudness' 'Timbre' 'Pitches'

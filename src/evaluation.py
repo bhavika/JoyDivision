@@ -5,6 +5,7 @@ from sklearn.ensemble import VotingClassifier
 from sklearn.cluster import KMeans
 import xgboost as xgb
 import subprocess
+from sklearn.neighbors import KNeighborsClassifier
 
 qual_features = ['Danceability',  'Speechiness',  'Instrumentalness',  'Tempo',
             'Energy', 'Acousticness', 'LoudnessSq']
@@ -54,11 +55,21 @@ print "Ada Boost Classifier"
 print accuracy_score(test['Mood'], ada.predict(test[features]))
 
 
+knn = KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='euclidean',
+           metric_params=None, n_jobs=1, n_neighbors=37, p=2,
+           weights='uniform')
+knn.fit(train[features], train['Mood'])
+print "KNeighbors Classifier"
+print accuracy_score(test['Mood'], knn.predict(test[features]))
+
+
+
 estimators = []
 estimators.append(('RFC', rfc))
 estimators.append(('ExtraTreess', xtra))
 estimators.append(('AdaBoost', ada))
 estimators.append(('Gradient Boosting', gb))
+estimators.append(('KNeighbors', knn))
 ensemble = VotingClassifier(estimators)
 ensemble.fit(train[features], train['Mood'])
 print "Voting Classifier"
@@ -86,6 +97,12 @@ print accuracy_score(test['Mood'], xtra.predict(test[audio_features]))
 ada.fit(train[audio_features], train['Mood'])
 print "Ada Boost Classifier"
 print accuracy_score(test['Mood'], ada.predict(test[audio_features]))
+
+
+knn.fit(train[audio_features], train['Mood'])
+print "KNeighbors Classifier"
+print accuracy_score(test['Mood'], knn.predict(test[audio_features]))
+
 
 ensemble.fit(train[audio_features], train['Mood'])
 print "Voting Classifier"
@@ -115,6 +132,10 @@ print accuracy_score(test['Mood'], xtra.predict(test[qual_features]))
 ada.fit(train[qual_features], train['Mood'])
 print "Ada Boost Classifier"
 print accuracy_score(test['Mood'], ada.predict(test[qual_features]))
+
+knn.fit(train[qual_features], train['Mood'])
+print "KNeighbors Classifier"
+print accuracy_score(test['Mood'], knn.predict(test[qual_features]))
 
 ensemble.fit(train[qual_features], train['Mood'])
 print "Voting Classifier"

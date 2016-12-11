@@ -10,49 +10,55 @@ None
 Evaluating on all features
 ---------------------------------------------------------------------------------------------------
 Random Forest Classifier
-0.643518518519
+0.62962962963
 XGBoost Classifier
 0.581018518519
 Gradient Boosting Classifier
-0.574074074074
+0.571759259259
 Extra Trees Classifier
-0.622685185185
+0.618055555556
 Ada Boost Classifier
 0.62962962963
+KNeighbors Classifier
+0.539351851852
 Voting Classifier
-0.613425925926
+0.622685185185
 Evaluating on audio features
 ---------------------------------------------------------------------------------------------------
 Random Forest Classifier
-0.597222222222
+0.606481481481
 XGBoost Classifier
 0.599537037037
 Gradient Boosting Classifier
-0.604166666667
+0.606481481481
 Extra Trees Classifier
-0.622685185185
+0.604166666667
 Ada Boost Classifier
 0.585648148148
+KNeighbors Classifier
+0.604166666667
 Voting Classifier
-0.599537037037
+0.590277777778
 Evaluating on qual features
 ---------------------------------------------------------------------------------------------------
 Random Forest Classifier
-0.608796296296
+0.597222222222
 XGBoost Classifier
 0.601851851852
 Gradient Boosting Classifier
 0.604166666667
 Extra Trees Classifier
-0.604166666667
+0.611111111111
 Ada Boost Classifier
 0.592592592593
+KNeighbors Classifier
+0.548611111111
 Voting Classifier
-0.608796296296
-Speech Dispatcher already running.
+0.611111111111
+[Sun Dec 11 01:25:39 2016 : 423098] speechd: Speech Dispatcher 0.8 starting
+[Sun Dec 11 01:25:39 2016 : 423180] speechd: Speech Dispatcher already running.
 
-[Sat Dec 10 21:32:16 2016 : 965605] speechd: Speech Dispatcher 0.8 starting
-[Sat Dec 10 21:32:16 2016 : 965691] speechd: Speech Dispatcher already running.
+Speech Dispatcher already running.
 
 
 Process finished with exit code 0
