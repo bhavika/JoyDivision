@@ -5,8 +5,9 @@ import subprocess
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.model_selection import GridSearchCV, KFold, cross_val_score
 
-features = ['KeyMode', 'LoudnessSq', 'Danceability', 'tim_13', 'tim_5', 'tim_1', 'tim_4', 'tim_77', 'pitchcomp_1', 'Beats',
-            'Energy', 'Tempo']
+features = ['Danceability', 'timavg_5', 'timavg_1', 'timavg_3', 'Speechiness', 'pitch_0', 'timavg_11', 'timavg_9', 'pitch_10',
+            'timavg_4', 'pitch_7', 'Instrumentalness', 'pitch_1', 'pitch_9', 'pitch_6', 'pitch_8', 'pitch_5', 'Tempo', 'timavg_7',
+            'Energy', 'Acousticness', 'LoudnessSq', 'timavg_10']
 
 gb_params = {"loss": ['deviance', 'exponential'], 'learning_rate': [0.1, 0.001, 0.001, 1], 'n_estimators': [100, 150, 200, 350, 500],
              'max_depth': [3, 6, 10], 'criterion': ['mse']}

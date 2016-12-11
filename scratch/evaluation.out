@@ -1,0 +1,58 @@
+/home/bhavika/anaconda2/bin/python /home/bhavika/PycharmProjects/JoyDivision/src/evaluation.py
+<class 'pandas.core.frame.DataFrame'>
+Index: 686 entries, 0 to 1116
+Columns: 145 entries, File to Beats
+dtypes: float64(126), int64(5), object(14)
+memory usage: 782.5+ KB
+None
+/home/bhavika/anaconda2/lib/python2.7/site-packages/sklearn/cross_validation.py:44: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.
+  "This module will be removed in 0.20.", DeprecationWarning)
+Evaluating on all features
+---------------------------------------------------------------------------------------------------
+Random Forest Classifier
+0.643518518519
+XGBoost Classifier
+0.581018518519
+Gradient Boosting Classifier
+0.574074074074
+Extra Trees Classifier
+0.622685185185
+Ada Boost Classifier
+0.62962962963
+Voting Classifier
+0.613425925926
+Evaluating on audio features
+---------------------------------------------------------------------------------------------------
+Random Forest Classifier
+0.597222222222
+XGBoost Classifier
+0.599537037037
+Gradient Boosting Classifier
+0.604166666667
+Extra Trees Classifier
+0.622685185185
+Ada Boost Classifier
+0.585648148148
+Voting Classifier
+0.599537037037
+Evaluating on qual features
+---------------------------------------------------------------------------------------------------
+Random Forest Classifier
+0.608796296296
+XGBoost Classifier
+0.601851851852
+Gradient Boosting Classifier
+0.604166666667
+Extra Trees Classifier
+0.604166666667
+Ada Boost Classifier
+0.592592592593
+Voting Classifier
+0.608796296296
+Speech Dispatcher already running.
+
+[Sat Dec 10 21:32:16 2016 : 965605] speechd: Speech Dispatcher 0.8 starting
+[Sat Dec 10 21:32:16 2016 : 965691] speechd: Speech Dispatcher already running.
+
+
+Process finished with exit code 0

@@ -6,8 +6,9 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.model_selection import train_test_split
 
 
-features = ['KeyMode', 'LoudnessSq', 'Danceability', 'tim_13', 'tim_5', 'tim_1', 'tim_4', 'tim_77', 'pitchcomp_1', 'Beats',
-            'Energy', 'Tempo']
+features = ['Danceability', 'timavg_5', 'timavg_1', 'timavg_3', 'Speechiness', 'pitch_0', 'timavg_11', 'timavg_9', 'pitch_10',
+            'timavg_4', 'pitch_7', 'Instrumentalness', 'pitch_1', 'pitch_9', 'pitch_6', 'pitch_8', 'pitch_5', 'Tempo', 'timavg_7',
+            'Energy', 'Acousticness', 'LoudnessSq', 'timavg_10']
 
 start = time()
 accuracy = make_scorer(accuracy_score)

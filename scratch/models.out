@@ -1,0 +1,258 @@
+/home/bhavika/anaconda2/bin/python /home/bhavika/PycharmProjects/JoyDivision/src/models.py
+<class 'pandas.core.frame.DataFrame'>
+Index: 686 entries, 0 to 1116
+Columns: 145 entries, File to Beats
+dtypes: float64(126), int64(5), object(14)
+memory usage: 782.5+ KB
+None
+/home/bhavika/anaconda2/lib/python2.7/site-packages/sklearn/cross_validation.py:44: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.
+  "This module will be removed in 0.20.", DeprecationWarning)
+Training on all features
+RFC
+             precision    recall  f1-score   support
+
+      happy       0.62      0.60      0.61        92
+        sad       0.69      0.71      0.70       114
+
+avg / total       0.66      0.66      0.66       206
+
+Accuracy:  0.660194174757
+
+
+ETC
+             precision    recall  f1-score   support
+
+      happy       0.51      0.71      0.59        92
+        sad       0.65      0.45      0.53       114
+
+avg / total       0.59      0.56      0.56       206
+
+Accuracy:  0.563106796117
+
+
+ABC
+             precision    recall  f1-score   support
+
+      happy       0.55      0.52      0.53        92
+        sad       0.63      0.65      0.64       114
+
+avg / total       0.59      0.59      0.59       206
+
+Accuracy:  0.592233009709
+
+
+XGB
+             precision    recall  f1-score   support
+
+      happy       0.64      0.59      0.61        92
+        sad       0.69      0.73      0.71       114
+
+avg / total       0.66      0.67      0.66       206
+
+Accuracy:  0.665048543689
+
+
+GBC
+             precision    recall  f1-score   support
+
+      happy       0.62      0.61      0.62        92
+        sad       0.69      0.70      0.70       114
+
+avg / total       0.66      0.66      0.66       206
+
+Accuracy:  0.660194174757
+
+
+KNN
+             precision    recall  f1-score   support
+
+      happy       0.54      0.62      0.58        92
+        sad       0.65      0.58      0.61       114
+
+avg / total       0.60      0.60      0.60       206
+
+Accuracy:  0.597087378641
+
+
+SVM
+             precision    recall  f1-score   support
+
+      happy       0.64      0.62      0.63        92
+        sad       0.70      0.72      0.71       114
+
+avg / total       0.67      0.67      0.67       206
+
+Accuracy:  0.674757281553
+
+
+Elapsed time:  40.3143699169
+Training on audio features only
+RFC
+             precision    recall  f1-score   support
+
+      happy       0.61      0.65      0.63        92
+        sad       0.70      0.67      0.68       114
+
+avg / total       0.66      0.66      0.66       206
+
+Accuracy:  0.660194174757
+
+
+ETC
+             precision    recall  f1-score   support
+
+      happy       0.54      0.65      0.59        92
+        sad       0.66      0.55      0.60       114
+
+avg / total       0.61      0.60      0.60       206
+
+Accuracy:  0.597087378641
+
+
+ABC
+             precision    recall  f1-score   support
+
+      happy       0.57      0.55      0.56        92
+        sad       0.65      0.67      0.66       114
+
+avg / total       0.62      0.62      0.62       206
+
+Accuracy:  0.616504854369
+
+
+XGB
+             precision    recall  f1-score   support
+
+      happy       0.61      0.65      0.63        92
+        sad       0.70      0.67      0.68       114
+
+avg / total       0.66      0.66      0.66       206
+
+Accuracy:  0.660194174757
+
+
+GBC
+             precision    recall  f1-score   support
+
+      happy       0.57      0.61      0.59        92
+        sad       0.67      0.63      0.65       114
+
+avg / total       0.62      0.62      0.62       206
+
+Accuracy:  0.621359223301
+
+
+KNN
+             precision    recall  f1-score   support
+
+      happy       0.56      0.58      0.57        92
+        sad       0.65      0.63      0.64       114
+
+avg / total       0.61      0.61      0.61       206
+
+Accuracy:  0.606796116505
+
+
+SVM
+             precision    recall  f1-score   support
+
+      happy       0.61      0.52      0.56        92
+        sad       0.65      0.73      0.69       114
+
+avg / total       0.63      0.64      0.63       206
+
+Accuracy:  0.635922330097
+
+
+Elapsed time:  61.8775000572
+Training on qual features only
+RFC
+             precision    recall  f1-score   support
+
+      happy       0.58      0.54      0.56        92
+        sad       0.65      0.68      0.67       114
+
+avg / total       0.62      0.62      0.62       206
+
+Accuracy:  0.621359223301
+
+
+ETC
+             precision    recall  f1-score   support
+
+      happy       0.48      0.63      0.54        92
+        sad       0.60      0.44      0.51       114
+
+avg / total       0.54      0.52      0.52       206
+
+Accuracy:  0.52427184466
+
+
+ABC
+             precision    recall  f1-score   support
+
+      happy       0.54      0.60      0.57        92
+        sad       0.65      0.60      0.62       114
+
+avg / total       0.60      0.60      0.60       206
+
+Accuracy:  0.597087378641
+
+
+XGB
+             precision    recall  f1-score   support
+
+      happy       0.56      0.58      0.57        92
+        sad       0.65      0.64      0.65       114
+
+avg / total       0.61      0.61      0.61       206
+
+Accuracy:  0.611650485437
+
+
+GBC
+             precision    recall  f1-score   support
+
+      happy       0.55      0.60      0.57        92
+        sad       0.65      0.61      0.63       114
+
+avg / total       0.61      0.60      0.60       206
+
+Accuracy:  0.601941747573
+
+
+QInotifyFileSystemWatcherEngine::addPaths: inotify_add_watch failed: No space left on device
+QInotifyFileSystemWatcherEngine::addPaths: inotify_add_watch failed: No space left on device
+QInotifyFileSystemWatcherEngine::addPaths: inotify_add_watch failed: No space left on device
+QInotifyFileSystemWatcherEngine::addPaths: inotify_add_watch failed: No space left on device
+QInotifyFileSystemWatcherEngine::addPaths: inotify_add_watch failed: No space left on device
+KNN
+             precision    recall  f1-score   support
+
+      happy       0.49      0.46      0.47        92
+        sad       0.59      0.62      0.60       114
+
+avg / total       0.55      0.55      0.55       206
+
+Accuracy:  0.54854368932
+
+
+SVM
+             precision    recall  f1-score   support
+
+      happy       0.60      0.61      0.61        92
+        sad       0.68      0.68      0.68       114
+
+avg / total       0.65      0.65      0.65       206
+
+Accuracy:  0.645631067961
+
+
+Elapsed time:  89.3792419434
+[Sat Dec 10 21:14:25 2016 : 624477] speechd: Speech Dispatcher 0.8 starting
+[Sat Dec 10 21:14:25 2016 : 624757] speechd: Speech Dispatcher already running.
+
+Speech Dispatcher already running.
+
+
+Process finished with exit code 0
