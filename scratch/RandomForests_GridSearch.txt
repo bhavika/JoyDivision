@@ -58,10 +58,69 @@ Best RFC RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gi
 Best CV score for RFC 0.6472303207
 Best RFC  params: {'n_estimators': 1000, 'max_depth': 15}
 Finished in:  326.468218088
-Speech Dispatcher already running.
-
-[Sat Dec 10 19:30:43 2016 : 455659] speechd: Speech Dispatcher 0.8 starting
-[Sat Dec 10 19:30:43 2016 : 455736] speechd: Speech Dispatcher already running.
 
 
-Process finished with exit code 0
+
+More data
+
+/home/bhavika/anaconda2/bin/python /home/bhavika/PycharmProjects/JoyDivision/src/gridsearch_rfc.py
+<class 'pandas.core.frame.DataFrame'>
+Index: 4362 entries, 0 to 6387
+Columns: 145 entries, File to Beats
+dtypes: float64(126), int64(5), object(14)
+memory usage: 4.9+ MB
+None
+RFC grid search:
+CV results {'rank_test_score': array([11, 10, 11,  9,  5,  8,  3,  1,  6,  6,  4,  2], dtype=int32), 'std_score_time': array([ 0.0115883 ,  0.04207493,  0.08170987,  0.0952163 ,  0.09942994,
+        0.13346831,  0.12521961,  0.08280541,  0.04354404,  0.03154411,
+        0.16690195,  0.17348843]), 'split2_test_score': array([ 0.74311927,  0.73623853,  0.73853211,  0.74311927,  0.75688073,
+        0.74885321,  0.75114679,  0.74885321,  0.75      ,  0.74885321,
+        0.74655963,  0.75458716]), 'mean_fit_time': array([  5.36309767,   8.62782993,  10.29085617,  19.5054224 ,
+         8.77967091,  14.9195776 ,  19.54940615,  27.23377862,
+         9.51934781,  14.19043717,  20.28073716,  28.68918381]), 'split3_train_score': array([ 0.84097421,  0.84011461,  0.84011461,  0.84383954,  0.97535817,
+        0.97621777,  0.9747851 ,  0.97535817,  0.99083095,  0.99111748,
+        0.99054441,  0.99054441]), 'std_test_score': array([ 0.04318781,  0.04426432,  0.04495834,  0.04443592,  0.04797598,
+        0.04720776,  0.0488029 ,  0.04873691,  0.05007851,  0.04738997,
+        0.04763762,  0.05060812]), 'params': ({'n_estimators': 300, 'max_depth': 7}, {'n_estimators': 500, 'max_depth': 7}, {'n_estimators': 700, 'max_depth': 7}, {'n_estimators': 1000, 'max_depth': 7}, {'n_estimators': 300, 'max_depth': 12}, {'n_estimators': 500, 'max_depth': 12}, {'n_estimators': 700, 'max_depth': 12}, {'n_estimators': 1000, 'max_depth': 12}, {'n_estimators': 300, 'max_depth': 15}, {'n_estimators': 500, 'max_depth': 15}, {'n_estimators': 700, 'max_depth': 15}, {'n_estimators': 1000, 'max_depth': 15}), 'std_fit_time': array([ 0.27338029,  0.25288734,  1.28320007,  2.18525635,  0.48478027,
+        0.48691888,  0.87156337,  1.52374634,  0.76180409,  0.99894819,
+        0.96322638,  1.85017252]), 'std_train_score': array([ 0.00948408,  0.01026024,  0.01006893,  0.01039894,  0.00282403,
+        0.00281578,  0.00311814,  0.00279816,  0.0007898 ,  0.00176259,
+        0.00124197,  0.001422  ]), 'split4_test_score': array([ 0.78440367,  0.78784404,  0.78784404,  0.79357798,  0.79931193,
+        0.79472477,  0.80619266,  0.79816514,  0.80045872,  0.79587156,
+        0.80275229,  0.80389908]), 'param_max_depth': masked_array(data = [7 7 7 7 12 12 12 12 15 15 15 15],
+             mask = [False False False False False False False False False False False False],
+       fill_value = ?)
+, 'split1_train_score': array([ 0.8346231 ,  0.83978217,  0.83634279,  0.83949556,  0.97277157,
+        0.97305818,  0.97363141,  0.97277157,  0.99025509,  0.98939524,
+        0.99025509,  0.9905417 ]), 'split2_train_score': array([ 0.84441261,  0.84212034,  0.84670487,  0.84212034,  0.9713467 ,
+        0.97249284,  0.97106017,  0.97163324,  0.98968481,  0.98882521,
+        0.98911175,  0.98939828]), 'split3_test_score': array([ 0.74541284,  0.75688073,  0.75573394,  0.75229358,  0.76261468,
+        0.76605505,  0.75802752,  0.77293578,  0.76376147,  0.76376147,
+        0.76720183,  0.76949541]), 'split4_train_score': array([ 0.84154728,  0.84297994,  0.84183381,  0.83896848,  0.9747851 ,
+        0.9730659 ,  0.97191977,  0.97363897,  0.99169054,  0.99197708,
+        0.99140401,  0.99226361]), 'mean_score_time': array([ 0.28657122,  0.50680261,  0.5845932 ,  1.18348227,  0.40917773,
+        0.62685461,  0.8957408 ,  1.17726874,  0.33146353,  0.51184068,
+        0.96124258,  1.23221316]), 'split0_train_score': array([ 0.86271138,  0.86672399,  0.8650043 ,  0.86672399,  0.97965033,
+        0.97993694,  0.97993694,  0.97965033,  0.99168816,  0.99369447,
+        0.99283462,  0.99340785]), 'mean_train_score': array([ 0.84485372,  0.84634421,  0.84600008,  0.84622958,  0.97478237,
+        0.97495433,  0.97426668,  0.97461045,  0.99082991,  0.9910019 ,
+        0.99082998,  0.99123117]), 'split0_test_score': array([ 0.65521191,  0.65635739,  0.65292096,  0.65864834,  0.65521191,
+        0.65521191,  0.65750286,  0.65635739,  0.65063001,  0.65521191,
+        0.65864834,  0.65292096]), 'mean_test_score': array([ 0.73635947,  0.73842274,  0.73635947,  0.74048602,  0.74507107,
+        0.74438331,  0.74713434,  0.74850986,  0.74461256,  0.74461256,
+        0.74552957,  0.74805135]), 'param_n_estimators': masked_array(data = [300 500 700 1000 300 500 700 1000 300 500 700 1000],
+             mask = [False False False False False False False False False False False False],
+       fill_value = ?)
+, 'split1_test_score': array([ 0.75372279,  0.75486827,  0.74684994,  0.75486827,  0.75143184,
+        0.75715922,  0.7628866 ,  0.76632302,  0.7583047 ,  0.75945017,
+        0.75257732,  0.75945017])}
+Best RFC RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
+            max_depth=12, max_features='auto', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            n_estimators=1000, n_jobs=1, oob_score=False,
+            random_state=None, verbose=0, warm_start=False)
+Best CV score for RFC 0.748509857863
+Best RFC  params: {'n_estimators': 1000, 'max_depth': 12}
+Finished in:  1075.27135015
+

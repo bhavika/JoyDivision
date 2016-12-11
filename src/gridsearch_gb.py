@@ -5,9 +5,13 @@ import subprocess
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.model_selection import GridSearchCV, KFold, cross_val_score
 
-features = ['Danceability', 'timavg_5', 'timavg_1', 'timavg_3', 'Speechiness', 'pitch_0', 'timavg_11', 'timavg_9', 'pitch_10',
-            'timavg_4', 'pitch_7', 'Instrumentalness', 'pitch_1', 'pitch_9', 'pitch_6', 'pitch_8', 'pitch_5', 'Tempo', 'timavg_7',
-            'Energy', 'Acousticness', 'LoudnessSq', 'timavg_10']
+features = ['Danceability', 'timavg_5', 'Energy',
+ 'Instrumentalness', 'timavg_3', 'Acousticness', 'pitch_1', 'timavg_1',
+ 'pitch_0', 'Speechiness', 'pitch_8', 'pitch_5', 'timavg_0', 'pitch_10', 'pitch_6',
+ 'pitch_2', 'timavg_4', 'pitch_11', 'pitch_3', 'pitch_7', 'Beats', 'timavg_7', 'timavg_9',
+ 'pitch_9', 'pitch_4', 'timavg_10', 'LoudnessSq', 'Tempo', 'timavg_2', 'timavg_6', 'timavg_8',
+ 'timavg_11', 'TempoMode', 'TimeSignature', 'KeyMode', 'Mode']
+
 
 gb_params = {"loss": ['deviance', 'exponential'], 'learning_rate': [0.1, 0.001, 0.001, 1], 'n_estimators': [100, 150, 200, 350, 500],
              'max_depth': [3, 6, 10], 'criterion': ['mse']}
