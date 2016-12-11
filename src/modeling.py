@@ -9,12 +9,9 @@ import matplotlib.pyplot as plt
 
 filter_col = [col for col in list(train.columns.values) if col.startswith('tim_')]
 
-features = ['Danceability', 'Instrumentalness', 'pitch_10', 'tim_13', 'tim_33', 'Speechiness', 'tim_5', 'tim_1', 'pitch_3', 'TempoMode',
-            'tim_7', 'tim_38', 'tim_64', 'pitch_1', 'tim_3', 'pitch_0', 'tim_72', 'Energy', 'pitch_8', 'tim_68', 'tim_40',
-            'pitch_6', 'pitch_2', 'tim_26', 'pitch_7', 'pitch_11', 'tim_57', 'tim_63', 'tim_59', 'tim_0', 'tim_24', 'tim_23',
-            'tim_12', 'tim_4', 'pitch_5', 'tim_9', 'tim_77', 'tim_17', 'tim_44', 'tim_41',
-            'pitch_4', 'tim_6', 'tim_29', 'tim_60', 'tim_46', 'tim_20', 'Mode', 'tim_49', 'tim_52', 'tim_34', 'tim_18', 'tim_89', 'tim_61', 'tim_19']
-
+features = ['Danceability', 'timavg_5', 'timavg_1', 'timavg_3', 'Speechiness', 'pitch_0', 'timavg_11', 'timavg_9', 'pitch_10',
+            'timavg_4', 'pitch_7', 'Instrumentalness', 'pitch_1', 'pitch_9', 'pitch_6', 'pitch_8', 'pitch_5', 'Tempo', 'timavg_7',
+            'Energy', 'Acousticness', 'LoudnessSq', 'timavg_10']
 
 X = train[features]
 y = train['Mood']

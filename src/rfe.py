@@ -6,7 +6,7 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.feature_selection import RFECV
 from explore_features import train
 
-timbre_col = [col for col in list(train.columns.values) if col.startswith('tim_')]
+timbre_col = [col for col in list(train.columns.values) if col.startswith('timavg_')]
 
 pitch_col = [col for col in list(train.columns.values) if col.startswith('pitch_')]
 
@@ -36,6 +36,10 @@ rfecv = RFECV(estimator=rfc, step=1, cv=StratifiedKFold(2),
 rfecv.fit(X, y)
 
 print("Optimal number of features : %d" % rfecv.n_features_)
+
+print ("Ranking of features")
+ranked = [rfecv.ranking_[i] for i in range(len(rfecv.ranking_))]
+print ranked
 
 # Plot number of features VS. cross-validation scores
 plt.figure()

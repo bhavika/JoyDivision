@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from sklearn.ensemble import ExtraTreesClassifier
 from explore_features import train
 
-#
+
 timbre_avg = [col for col in list(train.columns.values) if col.startswith('timavg_')]
 pitch_col = [col for col in list(train.columns.values) if col.startswith('pitch_')]
 
@@ -33,7 +33,7 @@ for f in range(X.shape[1]):
 
 plt.figure()
 plt.title("Feature importance")
-plt.bar(range(X.shape[1]), importances[indices], color="g", yerr=std[indices], align="center")
+plt.bar(range(X.shape[1]), importances[indices], color="b", yerr=std[indices], align="center")
 plt.xticks(range(X.shape[1]), features_neworder)
 plt.xlim([-1, X.shape[1]])
 plt.show()
