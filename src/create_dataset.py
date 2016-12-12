@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 
 
-numerical = ['Tempo', 'Loudness', 'Energy', 'Speechiness', 'Valence', 'Danceability', 'Acousticness', 'Instrumentalness']
+numerical = ['Tempo', 'Loudness', 'Energy', 'Speechiness', 'Danceability', 'Acousticness', 'Instrumentalness']
 
 trackids = pd.read_csv('../data/trackids.csv', sep=';')
 features = pd.read_csv('../data/features.csv', sep=';')

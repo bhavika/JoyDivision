@@ -19,15 +19,13 @@ features = ['Danceability', 'timavg_5', 'Energy',
 X = train[features]
 y = train['Mood']
 
-X_test = test[features]
-y_test = test['Mood']
 
-# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,random_state=45)
-# print len(y_test)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,random_state=45)
+print len(y_test)
 
 start = time()
 
-clf = SVC(kernel='linear')
+clf = SVC(kernel='linear', C=0.1, gamma='auto')
 # clf.fit(X_train, y_train)
 clf.fit(X,y)
 y_pred = clf.predict(X_test)
@@ -42,4 +40,3 @@ print "Time elapased", time() - start
 
 print features
 
-# print cross_val_score(clf,  X, y, cv=10)

@@ -2,20 +2,24 @@ from sklearn.metrics import accuracy_score, v_measure_score
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, AdaBoostClassifier, ExtraTreesClassifier
 from explore_features import train, test
 from sklearn.ensemble import VotingClassifier
+from sklearn.svm import SVC
 from sklearn.cluster import KMeans
+from sklearn.naive_bayes import GaussianNB
 import xgboost as xgb
 import subprocess
 from sklearn.neighbors import KNeighborsClassifier
 
-qual_features = ['Danceability',  'Speechiness',  'Instrumentalness',  'Tempo',
+qual_features = ['Danceability',  'Speechiness',  'Instrumentalness', 'Mode', 'Tempo', 'TimeSignature', 'KeyMode', 'TempoMode', 'Beats',
             'Energy', 'Acousticness', 'LoudnessSq']
 
 
-audio_features = ['timavg_5', 'timavg_1', 'timavg_3', 'pitch_0', 'timavg_11', 'timavg_9', 'pitch_10',
-                  'timavg_4', 'pitch_7', 'pitch_1', 'pitch_9', 'pitch_6', 'pitch_8', 'pitch_5', 'timavg_7', 'timavg_10']
+audio_features = ['timavg_5', 'timavg_3',  'pitch_1', 'timavg_1', 'pitch_0', 'pitch_8', 'pitch_5', 'timavg_0',
+                  'pitch_10', 'pitch_6', 'pitch_2', 'timavg_4', 'pitch_11', 'pitch_3', 'pitch_7', 'timavg_7',
+                  'timavg_9', 'pitch_9', 'pitch_4', 'timavg_10',  'timavg_2', 'timavg_6', 'timavg_8', 'timavg_11']
+
 
 features = audio_features + qual_features
-
+print features
 
 print "Evaluating on all features "
 print "---------------------------------------------------------------------------------------------------"
@@ -63,6 +67,15 @@ print "KNeighbors Classifier"
 print accuracy_score(test['Mood'], knn.predict(test[features]))
 
 
+svm = SVC(kernel='linear', C=0.1, gamma='auto')
+svm.fit(train[features], train['Mood'])
+print "Support Vector Machines"
+print accuracy_score(test['Mood'], svm.predict(test[features]))
+
+nb = GaussianNB()
+nb.fit(train[features], train['Mood'])
+print "Naive Bayes Classifier"
+print accuracy_score(test['Mood'], nb.predict(test[features]))
 
 estimators = []
 estimators.append(('RFC', rfc))
@@ -70,13 +83,15 @@ estimators.append(('ExtraTreess', xtra))
 estimators.append(('AdaBoost', ada))
 estimators.append(('Gradient Boosting', gb))
 estimators.append(('KNeighbors', knn))
+estimators.append(('SVM', svm))
+estimators.append(('NB', nb))
 ensemble = VotingClassifier(estimators)
 ensemble.fit(train[features], train['Mood'])
 print "Voting Classifier"
 print accuracy_score(test['Mood'], ensemble.predict(test[features]))
 
 
-print "Evaluating on audio features "
+print "Evaluating on spectral features "
 print "---------------------------------------------------------------------------------------------------"
 rfc.fit(train[audio_features], train['Mood'])
 print "Random Forest Classifier"
@@ -103,13 +118,20 @@ knn.fit(train[audio_features], train['Mood'])
 print "KNeighbors Classifier"
 print accuracy_score(test['Mood'], knn.predict(test[audio_features]))
 
+svm.fit(train[audio_features], train['Mood'])
+print "Support Vector Machines"
+print accuracy_score(test['Mood'], svm.predict(test[audio_features]))
+
+nb.fit(train[audio_features], train['Mood'])
+print "Naive Bayes Classifier"
+print accuracy_score(test['Mood'], nb.predict(test[audio_features]))
 
 ensemble.fit(train[audio_features], train['Mood'])
 print "Voting Classifier"
 print accuracy_score(test['Mood'], ensemble.predict(test[audio_features]))
 
 
-print "Evaluating on qual features "
+print "Evaluating on descriptive features "
 print "---------------------------------------------------------------------------------------------------"
 rfc.fit(train[qual_features], train['Mood'])
 print "Random Forest Classifier"
@@ -136,6 +158,14 @@ print accuracy_score(test['Mood'], ada.predict(test[qual_features]))
 knn.fit(train[qual_features], train['Mood'])
 print "KNeighbors Classifier"
 print accuracy_score(test['Mood'], knn.predict(test[qual_features]))
+
+svm.fit(train[qual_features], train['Mood'])
+print "Support Vector Machines"
+print accuracy_score(test['Mood'], svm.predict(test[qual_features]))
+
+nb.fit(train[qual_features], train['Mood'])
+print "Naive Bayes Classifier"
+print accuracy_score(test['Mood'], nb.predict(test[qual_features]))
 
 ensemble.fit(train[qual_features], train['Mood'])
 print "Voting Classifier"

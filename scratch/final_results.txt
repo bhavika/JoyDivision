@@ -1,0 +1,71 @@
+/home/bhavika/anaconda2/bin/python /home/bhavika/PycharmProjects/JoyDivision/src/evaluation.py
+<class 'pandas.core.frame.DataFrame'>
+Index: 4362 entries, 0 to 6387
+Columns: 145 entries, File to Beats
+dtypes: float64(126), int64(5), object(14)
+memory usage: 4.9+ MB
+None
+/home/bhavika/anaconda2/lib/python2.7/site-packages/sklearn/cross_validation.py:44: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.
+  "This module will be removed in 0.20.", DeprecationWarning)
+['timavg_5', 'timavg_3', 'pitch_1', 'timavg_1', 'pitch_0', 'pitch_8', 'pitch_5', 'timavg_0', 'pitch_10', 'pitch_6', 'pitch_2', 'timavg_4', 'pitch_11', 'pitch_3', 'pitch_7', 'timavg_7', 'timavg_9', 'pitch_9', 'pitch_4', 'timavg_10', 'timavg_2', 'timavg_6', 'timavg_8', 'timavg_11', 'Danceability', 'Speechiness', 'Instrumentalness', 'Mode', 'Tempo', 'TimeSignature', 'KeyMode', 'TempoMode', 'Beats', 'Energy', 'Acousticness', 'LoudnessSq']
+Evaluating on all features
+---------------------------------------------------------------------------------------------------
+Random Forest Classifier
+0.751812788398
+XGBoost Classifier
+0.752471984179
+Gradient Boosting Classifier
+0.743243243243
+Extra Trees Classifier
+0.739617666447
+Ada Boost Classifier
+0.730718523401
+KNeighbors Classifier
+0.623928806856
+Support Vector Machines
+0.732696110745
+Naive Bayes Classifier
+0.683256427159
+Voting Classifier
+0.751153592617
+Evaluating on spectral features
+---------------------------------------------------------------------------------------------------
+Random Forest Classifier
+0.733684904417
+XGBoost Classifier
+0.731048121292
+Gradient Boosting Classifier
+0.728740936058
+Extra Trees Classifier
+0.720171390903
+Ada Boost Classifier
+0.703032300593
+KNeighbors Classifier
+0.676994067238
+Support Vector Machines
+0.705998681608
+Naive Bayes Classifier
+0.665787738958
+Voting Classifier
+0.727092946605
+Evaluating on descriptive features
+---------------------------------------------------------------------------------------------------
+Random Forest Classifier
+0.720830586684
+XGBoost Classifier
+0.723796967699
+Gradient Boosting Classifier
+0.726433750824
+Extra Trees Classifier
+0.71259063942
+Ada Boost Classifier
+0.699736321688
+KNeighbors Classifier
+0.566578773896
+Support Vector Machines
+0.699736321688
+Naive Bayes Classifier
+0.64930784443
+Voting Classifier
+0.715886618326
+

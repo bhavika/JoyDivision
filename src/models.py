@@ -2,6 +2,7 @@ from explore_features import train
 from sklearn.model_selection import GridSearchCV
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, AdaBoostClassifier, ExtraTreesClassifier
 from sklearn.svm import SVC
+from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 import xgboost as xgb
 from sklearn.model_selection import train_test_split
@@ -14,12 +15,14 @@ import subprocess
 
 start = time()
 
-qual_features = ['Danceability',  'Speechiness',  'Instrumentalness',  'Tempo',
+qual_features = ['Danceability',  'Speechiness',  'Instrumentalness', 'Mode', 'Tempo', 'TimeSignature', 'KeyMode', 'TempoMode', 'Beats',
             'Energy', 'Acousticness', 'LoudnessSq']
 
 
-audio_features = ['timavg_5', 'timavg_1', 'timavg_3', 'pitch_0', 'timavg_11', 'timavg_9', 'pitch_10',
-                  'timavg_4', 'pitch_7', 'pitch_1', 'pitch_9', 'pitch_6', 'pitch_8', 'pitch_5', 'timavg_7', 'timavg_10']
+audio_features = ['timavg_5', 'timavg_3',  'pitch_1', 'timavg_1', 'pitch_0', 'pitch_8', 'pitch_5', 'timavg_0',
+                  'pitch_10', 'pitch_6', 'pitch_2', 'timavg_4', 'pitch_11', 'pitch_3', 'pitch_7', 'timavg_7',
+                  'timavg_9', 'pitch_9', 'pitch_4', 'timavg_10',  'timavg_2', 'timavg_6', 'timavg_8', 'timavg_11']
+
 
 features = audio_features + qual_features
 
@@ -33,6 +36,7 @@ X_audio = train[audio_features]
 
 
 #ensemble models
+
 models = {}
 
 
@@ -45,6 +49,7 @@ models['XGB'] = xgb.XGBClassifier(max_depth=3, n_estimators=300, learning_rate=0
 models['GBC'] = GradientBoostingClassifier()
 models['ABC'] = AdaBoostClassifier()
 models['ETC'] = ExtraTreesClassifier()
+
 
 for name, model in models.iteritems():
     model.fit(X_train, y_train)
@@ -70,9 +75,11 @@ feature_importances = feature_importances.sort_values('average', ascending = Fal
 fig, axes = plt.subplots(figsize=(10,8))
 sns.set(rc={'axes.facecolor':'black', 'figure.facecolor':'black', 'axes.grid' : False, 'text.color': 'white',
              'xtick.color': 'white', 'ytick.color': 'white', 'axes.labelcolor': 'white', 'axes.edgecolor': 'white'} )
-
-sns.heatmap(feature_importances, cmap = 'BuPu')
+plt.xlabel('Models')
+plt.ylabel('Features')
+sns.heatmap(feature_importances, cmap = 'YlGnBu')
 fig.savefig('../explore/feature_importances.png');
+plt.yticks(rotation=0)
 plt.show()
 
 
@@ -80,6 +87,7 @@ plt.show()
 simple_models = {}
 simple_models['SVM'] = SVC(kernel='linear')
 simple_models['KNN'] = KNeighborsClassifier()
+simple_models['NB'] = GaussianNB()
 
 for name, model in simple_models.iteritems():
     model.fit(X_train, y_train)
@@ -120,9 +128,11 @@ feature_importances = feature_importances.sort_values('average', ascending = Fal
 fig, axes = plt.subplots(figsize=(10,8))
 sns.set(rc={'axes.facecolor':'black', 'figure.facecolor':'black', 'axes.grid' : False, 'text.color': 'white',
              'xtick.color': 'white', 'ytick.color': 'white', 'axes.labelcolor': 'white', 'axes.edgecolor': 'white'} )
-
-sns.heatmap(feature_importances, cmap = 'BuPu')
-fig.savefig('../explore/feature_importances.png');
+plt.xlabel('Models')
+plt.ylabel('Features')
+sns.heatmap(feature_importances, cmap = 'YlGnBu')
+fig.savefig('../explore/feature_importances_audio.png');
+plt.yticks(rotation=0)
 plt.show()
 
 
@@ -130,6 +140,7 @@ plt.show()
 simple_models = {}
 simple_models['SVM'] = SVC(kernel='linear')
 simple_models['KNN'] = KNeighborsClassifier()
+simple_models['NB'] = GaussianNB()
 
 for name, model in simple_models.iteritems():
     model.fit(X_train, y_train)
@@ -170,9 +181,11 @@ feature_importances = feature_importances.sort_values('average', ascending = Fal
 fig, axes = plt.subplots(figsize=(10,8))
 sns.set(rc={'axes.facecolor':'black', 'figure.facecolor':'black', 'axes.grid' : False, 'text.color': 'white',
              'xtick.color': 'white', 'ytick.color': 'white', 'axes.labelcolor': 'white', 'axes.edgecolor': 'white'} )
-
-sns.heatmap(feature_importances, cmap = 'BuPu')
-fig.savefig('../explore/feature_importances.png');
+plt.xlabel('Models')
+plt.ylabel('Features')
+sns.heatmap(feature_importances, cmap = 'YlGnBu')
+fig.savefig('../explore/feature_importances_desc.png');
+plt.yticks(rotation=0)
 plt.show()
 
 
@@ -182,6 +195,7 @@ simple_models['SVM'] = SVC(kernel='linear')
 simple_models['KNN'] = KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='euclidean',
            metric_params=None, n_jobs=1, n_neighbors=37, p=2,
            weights='uniform')
+simple_models['NB'] = GaussianNB()
 
 for name, model in simple_models.iteritems():
     model.fit(X_train, y_train)
