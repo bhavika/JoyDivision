@@ -6,13 +6,16 @@ from sklearn.model_selection import ShuffleSplit
 from explore_features import train
 
 
-features = ['Danceability', 'timavg_5', 'Energy',
- 'Instrumentalness', 'timavg_3', 'Acousticness', 'pitch_1', 'timavg_1',
- 'pitch_0', 'Speechiness', 'pitch_8', 'pitch_5', 'timavg_0', 'pitch_10', 'pitch_6',
- 'pitch_2', 'timavg_4', 'pitch_11', 'pitch_3', 'pitch_7', 'Beats', 'timavg_7', 'timavg_9',
- 'pitch_9', 'pitch_4', 'timavg_10', 'LoudnessSq', 'Tempo', 'timavg_2', 'timavg_6', 'timavg_8',
- 'timavg_11', 'TempoMode', 'TimeSignature', 'KeyMode', 'Mode']
+qual_features = ['Danceability',  'Speechiness',  'Instrumentalness', 'Mode', 'Tempo', 'TimeSignature', 'KeyMode', 'TempoMode', 'Beats',
+            'Energy', 'Acousticness', 'LoudnessSq']
 
+
+audio_features = ['timavg_5', 'timavg_3',  'pitch_1', 'timavg_1', 'pitch_0', 'pitch_8', 'pitch_5', 'timavg_0',
+                  'pitch_10', 'pitch_6', 'pitch_2', 'timavg_4', 'pitch_11', 'pitch_3', 'pitch_7', 'timavg_7',
+                  'timavg_9', 'pitch_9', 'pitch_4', 'timavg_10',  'timavg_2', 'timavg_6', 'timavg_8', 'timavg_11']
+
+
+features = audio_features + qual_features
 
 
 def plot_learning_curve(estimator, title, X, y, ylim=None, cv=None,

@@ -78,7 +78,7 @@ sns.set(rc={'axes.facecolor':'black', 'figure.facecolor':'black', 'axes.grid' : 
 plt.xlabel('Models')
 plt.ylabel('Features')
 sns.heatmap(feature_importances, cmap = 'YlGnBu')
-fig.savefig('../explore/feature_importances.png');
+fig.savefig('../explore/feature_imp_all.png', dpi=400, transparent=True)
 plt.yticks(rotation=0)
 plt.show()
 
@@ -131,7 +131,7 @@ sns.set(rc={'axes.facecolor':'black', 'figure.facecolor':'black', 'axes.grid' : 
 plt.xlabel('Models')
 plt.ylabel('Features')
 sns.heatmap(feature_importances, cmap = 'YlGnBu')
-fig.savefig('../explore/feature_importances_audio.png');
+fig.savefig('../explore/feature_imp_audio.png', dpi=400, transparent=True)
 plt.yticks(rotation=0)
 plt.show()
 
@@ -184,7 +184,7 @@ sns.set(rc={'axes.facecolor':'black', 'figure.facecolor':'black', 'axes.grid' : 
 plt.xlabel('Models')
 plt.ylabel('Features')
 sns.heatmap(feature_importances, cmap = 'YlGnBu')
-fig.savefig('../explore/feature_importances_desc.png');
+fig.savefig('../explore/feature_imp_qual.png', dpi=400, transparent=True)
 plt.yticks(rotation=0)
 plt.show()
 

@@ -2,7 +2,7 @@ print(__doc__)
 
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import StratifiedKFold
+from sklearn.model_selection import KFold
 from sklearn.feature_selection import RFECV
 from explore_features import train
 
@@ -30,7 +30,7 @@ y = train['Mood']
 
 # The "accuracy" scoring is proportional to the number of correct
 # classifications
-rfecv = RFECV(estimator=rfc, step=1, cv=StratifiedKFold(2),
+rfecv = RFECV(estimator=rfc, step=1, cv=KFold(5),
               scoring='accuracy')
 
 rfecv.fit(X, y)
