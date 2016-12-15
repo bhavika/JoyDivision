@@ -151,3 +151,62 @@ Time elapased 12.994437933
 
 4) RBF
 Always 0.49 accuracy with varying C
+
+
+
+
+---------------------------------------------
+
+
+/home/bhavika/anaconda2/bin/python /home/bhavika/PycharmProjects/JoyDivision/src/gridsearch_svm.py
+<class 'pandas.core.frame.DataFrame'>
+Index: 4362 entries, 0 to 6387
+Columns: 145 entries, File to Beats
+dtypes: float64(126), int64(5), object(14)
+memory usage: 4.9+ MB
+None
+SVM grid search:
+CV results {'std_train_score': array([ 0.02143329]), 'rank_test_score': array([1], dtype=int32), 'mean_score_time': array([ 0.13056803]), 'std_test_score': array([ 0.02555037]), 'param_gamma': masked_array(data = [0.1],
+             mask = [False],
+       fill_value = ?)
+, 'split1_train_score': array([ 0.72456462]), 'split0_test_score': array([ 0.69981668]), 'mean_test_score': array([ 0.72535534]), 'param_C': masked_array(data = [1],
+             mask = [False],
+       fill_value = ?)
+, 'split0_train_score': array([ 0.76743119]), 'params': ({'kernel': 'linear', 'C': 1, 'gamma': 0.1},), 'std_fit_time': array([ 57.14510548]), 'std_score_time': array([ 0.01189208]), 'mean_train_score': array([ 0.74599791]), 'mean_fit_time': array([ 348.3063575]), 'param_kernel': masked_array(data = ['linear'],
+             mask = [False],
+       fill_value = ?)
+, 'split1_test_score': array([ 0.75091743])}
+Best SVM SVC(C=1, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape=None, degree=3, gamma=0.1, kernel='linear',
+  max_iter=-1, probability=False, random_state=None, shrinking=True,
+  tol=0.001, verbose=False)
+Best CV score for SVM 0.725355341586
+Best SVM params: {'kernel': 'linear', 'C': 1, 'gamma': 0.1}
+Finished in:  1544.1269989
+Speech Dispatcher already running.
+
+[Tue Dec 13 22:32:16 2016 : 583688] speechd: Speech Dispatcher 0.8 starting
+[Tue Dec 13 22:32:16 2016 : 583771] speechd: Speech Dispatcher already running.
+
+
+Process finished with exit code 0
+------------------------------------------------------------------------------------------------------
+
+SVM grid search:
+CV results {'std_train_score': array([ 0.02418495]), 'rank_test_score': array([1], dtype=int32), 'mean_score_time': array([ 0.11249006]), 'std_test_score': array([ 0.02715735]), 'param_gamma': masked_array(data = [0.1],
+             mask = [False],
+       fill_value = ?)
+, 'split1_train_score': array([ 0.72318973]), 'split0_test_score': array([ 0.70302475]), 'mean_test_score': array([ 0.73016965]), 'param_C': masked_array(data = [3],
+             mask = [False],
+       fill_value = ?)
+, 'split0_train_score': array([ 0.77155963]), 'params': ({'kernel': 'linear', 'C': 3, 'gamma': 0.1},), 'std_fit_time': array([ 147.39764798]), 'std_score_time': array([ 0.00709999]), 'mean_train_score': array([ 0.74737468]), 'mean_fit_time': array([ 660.78084004]), 'param_kernel': masked_array(data = ['linear'],
+             mask = [False],
+       fill_value = ?)
+, 'split1_test_score': array([ 0.75733945])}
+Best SVM SVC(C=3, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape=None, degree=3, gamma=0.1, kernel='linear',
+  max_iter=-1, probability=False, random_state=None, shrinking=True,
+  tol=0.001, verbose=False)
+Best CV score for SVM 0.730169646951
+Best SVM params: {'kernel': 'linear', 'C': 3, 'gamma': 0.1}
+Finished in:  2841.25559211
