@@ -183,7 +183,7 @@ textbf{Russell's}
 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-1"
+key "key-3"
 
 \end_inset
 
@@ -260,8 +260,367 @@ textit{sad}
 Literature Review
 \end_layout
 
+\begin_layout Subsection
+Automatic Mood Detection and Tracking of Music Audio Signals (Lie Lu et
+ al) 
+\end_layout
+
+\begin_layout Standard
+Lie Lu et al 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-5"
+
+\end_inset
+
+ explore a hierarchical framework for classifying music into four mood clusters.
+ Working with a dataset of 250 pieces of classical music, they extract timbral
+ Mel Frequency Cepstral Coefficients (MFCC) and define spectral features
+ like shape and contrast.
+ These are used in the form of a 25 dimensional timbre feature.
+ Rhythm features are extracted at the song level by finding the onset curve
+ of each subband (an octave based section of a 32 ms frame) and summing
+ them.
+ Calculating average correlation peak, ratio between average peak strength
+ and average valley strength, average tempo and average onset frequency
+ leads to a five feature rhythm feature vector.
+ They use the mean and standard deviation of the frame level features (timbre
+ and intensity) to capture the overall structure of the frame.
+ 
+\end_layout
+
+\begin_layout Standard
+A Gaussian Mixture Model (GMM) with 16 mixtures is used to model each feature
+ related to a particular mood cluster.
+ The Expectation Maximization (EM) algorithm is used to estimate the parameters
+ of Gaussian components and mixture weights.
+ K-Means is used for initialization.
+ Once the GMM models are obtained, the mood classification depends on a
+ simple hypothesis test with the intensity features given by (1).
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{equation} 
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+lambda =     
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+frac{P(G_{1}/I)}{P(G_{2}/I)}, 
+\backslash
+left
+\backslash
+{
+\backslash
+begin{array}{@{}lr@{}}     
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+geq 1, 
+\backslash
+text { Select & G_{1} } 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+     < 1 ,  
+\backslash
+text { Select & G_{2} }
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+end{array}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{equation} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{array} 
+\backslash
+right 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Here, 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lambda
+\end_layout
+
+\end_inset
+
+ represents the likelihood ratio, 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+text{G_{i}}
+\end_layout
+
+\end_inset
+
+ represents different mood groups, I is the intensity feature set and 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+text{P(G_{i}|I}
+\end_layout
+
+\end_inset
+
+ is the probability that a particular audio clip belongs to a mood group
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+text{G_{i}}
+\end_layout
+
+\end_inset
+
+ given its Intensity features which are calculated from the GMM.
+ 
+\end_layout
+
+\begin_layout Subsection
+Aggregate Features and ADABOOST for Music Classification (Bergstra et al)
+\end_layout
+
+\begin_layout Standard
+Bergstra et al 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-12"
+
+\end_inset
+
+ present a solution towards artist and genre recognition.
+ Their technique employs frame compression to convert frames from songs
+ to a song level set of features based on covariance.
+ They borrow from West & Cox 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-10"
+
+\end_inset
+
+ who introduce a 
+\begin_inset Quotes eld
+\end_inset
+
+memory feature
+\begin_inset Quotes erd
+\end_inset
+
+ containing the mean and variance of a frame.
+ After computing frames, they group non-overlapping blocks of frames into
+ segments.
+ Segment summarization is done by fitting independent Gaussian models to
+ the features.
+ Covariance between the features is ignored.
+ The resulting mean and variance values are inputs to ADABOOST.
+ Bergstra et all explore the effects of varying segment lengths on classificatio
+n accuracy and conclude that in smaller segments, mean and variance have
+ higher variance.
+\end_layout
+
+\begin_layout Subsection
+An Exploration of Mood Classification in the Million Songs Dataset (Corona
+ et al)
+\end_layout
+
+\begin_layout Standard
+Corona et al 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-13"
+
+\end_inset
+
+ perform mood classification on the Million Song Dataset using lyrics as
+ features.
+ They experiment with term weighting schemes like TF, TF-IDF, Delta TF-IDF
+ and BM25 to explore the term distributions across four mood quadrants defined
+ by Russell
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-3"
+
+\end_inset
+
+.
+ The Kruskal Wallis test is used to measure statistically significant difference
+s in the results obtained using different term weighting schemes.
+ They find that a support vector machine (SVM) provides the best accuracy
+ and moods like 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{angst}
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{rage}
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{cool-down}
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{depressive}
+\end_layout
+
+\end_inset
+
+ were predicted with higher accuracy than others.
+ 
+\end_layout
+
+\begin_layout Subsection
+Music Mood Classification
+\end_layout
+
+\begin_layout Standard
+Goel & Padial 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-11"
+
+\end_inset
+
+ attempt binary classification for mood on the Million Song Dataset.
+ They use features like Tempo, Energy, Mode, Key and Harmony.
+ The harmony feature is engineered as a 7 element vector.
+ A soft margin SVM with the RBF kernel is used for classification to provide
+ a success rate of 75.76%.
+\end_layout
+
+\begin_layout Subsection
+Music Genre Classification with the Million Song Dataset
+\end_layout
+
+\begin_layout Standard
+Liang et al 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-7"
+
+\end_inset
+
+ use a blend model for music genre classification with feature classes comprisin
+g of Hidden Markov Model (HMM) genre probabilities extracted from timbre
+ features, loudness and tempo, lyrics bag-of-words submodel probabilities
+ and emotional valence.
+ They assume each genre corresponds to a HMM and use labeled training data
+ to train one HMM for each genre.
+ Additionally, they combine audio and textual (lyrics) features for Canonical
+ Correlation Analysis (CCA) by revealing shared linear correlations between
+ audio and lyrics features in order to design a low dimensional, shared
+ feature representation.
+ 
+\end_layout
+
 \begin_layout Section
 Methods and Techniques
+\end_layout
+
+\begin_layout Subsection
+Feature Engineering and Selection
+\end_layout
+
+\begin_layout Subsection
+Modeling
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \begin_layout Section
@@ -270,6 +629,418 @@ Discussion and Results
 
 \begin_layout Subsection
 Datasets
+\end_layout
+
+\begin_layout Standard
+We are using the Million Song Dataset (MSD) created by LabROSA at Columbia
+ University in association with Echo Nest.
+ The dataset contains audio features and metadata for a million popular
+ tracks.
+ For the purpose of this project, we use the subset of 10,000 songs made
+ available by LabROSA.
+ The compressed file containing this subset is 1.8 GB in size.
+ Using this dataset in its original form was a challenging task.
+ We hand labeled 7396 songs as 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{happy}
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{sad}
+\end_layout
+
+\end_inset
+
+.
+ This was very time consuming and the only limitation to taking mood classificat
+ion a step further and attempting hierarchical classification.
+ We use a naive definition of 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{happy}
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{sad}
+\end_layout
+
+\end_inset
+
+ labels.
+ Songs that would be interpreted as angry, depressing, melancholic, wistful,
+ brooding, tense/anxious have all been tagged as 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{sad}
+\end_layout
+
+\end_inset
+
+.
+ On the other hand songs interpreted as joyful, rousing, confident, fun,
+ cheerful, humourous, silly have been tagged as 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{happy}
+\end_layout
+
+\end_inset
+
+.
+ Admittedly, this is an oversimplification of the ways music can be analyzed
+ and understood.
+ An obvious caveat of this method is that it does not account for subjectivity
+ in the labels and only one frame of reference is used as ground truth.
+ However, to deal with this to some extent, we dropped songs that we couldn't
+ neatly bucket into either labels.
+ This means that a song as complex as Queen's Bohemian Rhapsody does not
+ appear in the dataset.
+ In Table 1, we present a snapshot of the data available to us.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+captionof{Table 1: Fields in the Million Song Dataset and Spotify API}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="12" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Million Song Dataset
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Spotify API
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Artist name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Danceability
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Title
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Speechiness
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Beats confidence
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Instrumentalness
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Loudness (dB)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Energy
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Key
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Acousticness
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mode
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Segments Pitches
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Segments Timbre
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Time Signature
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tempo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Duration (seconds)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -291,7 +1062,7 @@ Directions for Future Work
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-1"
+key "key-3"
 
 \end_inset
 
@@ -316,11 +1087,11 @@ textit{A Circumplex Model of Effect}
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-2"
+key "key-4"
 
 \end_inset
 
- Thierry Bertin-Mahieux, Daniel P.W.
+Thierry Bertin-Mahieux, Daniel P.W.
  Ellis, Brian Whitman, and Paul Lamere.
  
 \begin_inset ERT
@@ -343,15 +1114,271 @@ textit{The Million Song Dataset}
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-3"
+key "key-5"
 
 \end_inset
 
+Lie Lu, D.
+ Liu, and Hong-Jiang Zhang.
+ 
+\begin_inset ERT
+status open
 
+\begin_layout Plain Layout
+
+
+\backslash
+textit{Automatic Mood Detection and Tracking of Music Audio Signals}
 \end_layout
 
-\begin_layout Standard
+\end_inset
 
+, IEEE Transactions on Audio, Speech and Language Processing 14, no.
+ 1 (January 2006): 5–18.
+ doi:10.1109/TSA.2005.860344.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-6"
+
+\end_inset
+
+Panagakis, Ioannis, Emmanouil Benetos, and Constantine Kotropoulos.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{Music Genre Classification: A Multilinear Approach}
+\end_layout
+
+\end_inset
+
+.
+ In ISMIR, 583–588, 2008.
+ http://openaccess.city.ac.uk/2109/.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-7"
+
+\end_inset
+
+Liang, Dawen, Haijie Gu, and Brendan O’Connor.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{Music Genre Classification with the Million Song Dataset}
+\end_layout
+
+\end_inset
+
+.
+ Machine Learning Department, CMU, 2011.
+ http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.700.2701&rep=rep1&type=pdf.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-8"
+
+\end_inset
+
+Laurier, Cyril, Jens Grivolla, and Perfecto Herrera.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{Multimodal Music Mood Classification Using Audio and Lyrics}
+\end_layout
+
+\end_inset
+
+.
+ In Machine Learning and Applications, 2008.
+ ICMLA’08.
+ Seventh International Conference on, 688–693.
+ IEEE, 2008.
+ http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=4725050.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-9"
+
+\end_inset
+
+Schindler, Alexander, and Andreas Rauber.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{Capturing the Temporal Domain in Echonest Features for Improved Classific
+ation Effectiveness}
+\end_layout
+
+\end_inset
+
+.
+ In International Workshop on Adaptive Multimedia Retrieval, 214–227.
+ Springer, 2012.
+ http://link.springer.com/chapter/10.1007/978-3-319-12093-5_13.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-10"
+
+\end_inset
+
+West, Kristopher, and Stephen Cox.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{Features and Classifiers for the Automatic Classification of Musical
+ Audio Signals}
+\end_layout
+
+\end_inset
+
+.
+ In ISMIR.
+ Citeseer, 2004.
+ http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.443.5612&rep=rep1&type=pdf.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-11"
+
+\end_inset
+
+Padial, Jose, and Ashish Goel.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{Music Mood Classification}
+\end_layout
+
+\end_inset
+
+.
+ Accessed December 16, 2016.
+ http://cs229.stanford.edu/proj2011/GoelPadial-MusicMoodClassification.pdf.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-12"
+
+\end_inset
+
+Bergstra, James, Norman Casagrande, Dumitru Erhan, Douglas Eck, and Balázs
+ Kégl.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{Aggregate Features and ADABOOST for Music Classification}
+\end_layout
+
+\end_inset
+
+.
+ Machine Learning 65, no.
+ 2–3 (December 2006): 473–84.
+ doi:10.1007/s10994-006-9019-7.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-13"
+
+\end_inset
+
+Corona, Humberto, and Michael P.
+ O’Mahony.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{An Exploration of Mood Classification in the Million Songs Dataset}
+\end_layout
+
+\end_inset
+
+.
+ In 12th Sound and Music Computing Conference, Maynooth University, Ireland,
+ 26 July-1 August 2015.
+ Music Technology Research Group, Department of Computer Science, Maynooth
+ University, 2015.
+ http://researchrepository.ucd.ie/handle/10197/7234.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-14"
+
+\end_inset
+
+Dolhansky, Brian.
+ “Musical Ensemble Classification Using Universal Background Model Adaptation
+ and the Million Song Dataset.” Citeseer, 2012.
+ http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.658.4162&rep=rep1&type=pdf.
+ 
 \end_layout
 
 \end_body

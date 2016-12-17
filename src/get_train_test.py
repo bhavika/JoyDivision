@@ -9,9 +9,3 @@ from sklearn.preprocessing import StandardScaler
 
 train = pd.read_pickle('../data/train.pkl')
 test = pd.read_pickle('../data/test.pkl')
-
-
-# y_test = test['Mood']
-# X_test = test.ix[:, test.columns != 'Mood']
-
-print train.info()
