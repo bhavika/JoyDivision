@@ -11,7 +11,7 @@ from time import time
 timbre_avg = [col for col in list(train.columns.values) if col.startswith('timavg_')]
 timbre = [col for col in list(train.columns.values) if col.startswith('tim_')]
 pitch_col = [col for col in list(train.columns.values) if col.startswith('pitch_')]
-desc_features = ['Energy', 'Tempo', 'LoudnessSq', 'Acousticness', 'Instrumentalness', 'Speechiness', 'Danceability']
+desc_features = ['Energy', 'Tempo', 'LoudnessSq', 'Acousticness', 'Instrumentalness', 'Speechiness', 'Danceability', 'Beats']
 notational_features = ['Mode', 'KeyMode', 'TimeSignature', 'TempoMode', 'Beats']
 top_4_timbre = ['timavg_1', 'timavg_2', 'timavg_3', 'timavg_4']
 

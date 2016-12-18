@@ -15,23 +15,12 @@ import subprocess
 
 start = time()
 
+qual_features = ['Danceability',  'Speechiness',  'Instrumentalness', 'Beats',
+            'Energy', 'Acousticness', 'LoudnessSq']
 
-# qual_features = ['Danceability',  'Speechiness',  'Instrumentalness', 'Mode', 'Tempo', 'TimeSignature', 'KeyMode', 'TempoMode', 'Beats',
-#             'Energy', 'Acousticness', 'LoudnessSq']
-#
-#
-# audio_features = ['timavg_5', 'timavg_3',  'pitch_1', 'timavg_1', 'pitch_0', 'pitch_8', 'pitch_5', 'timavg_0',
-#                   'pitch_10', 'pitch_6', 'pitch_2', 'timavg_4', 'pitch_11', 'pitch_3', 'pitch_7', 'timavg_7',
-#                   'timavg_9', 'pitch_9', 'pitch_4', 'timavg_10',  'timavg_2', 'timavg_6', 'timavg_8', 'timavg_11']
-#
-# timbres = ['AvgLoudnessTimbre', 'AvgBrightnessTimbre', 'AvgFlatnessTimbre', 'AvgAttackTimbre']
 
 pitches = [col for col in list(train.columns.values) if col.startswith('pitch_')]
 timbres = [col for col in list(train.columns.values) if col.startswith('timavg_')]
-
-qual_features = ['KeyMode', 'LoudnessSq', 'Mode',  'Speechiness', 'Danceability',
-               'Acousticness', 'Instrumentalness', 'TimeSignature',
-                'Tempo', 'Energy', 'TempoMode', 'Beats']
 
 audio_features = pitches + timbres
 

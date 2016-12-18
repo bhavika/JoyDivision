@@ -9,26 +9,16 @@ import xgboost as xgb
 import subprocess
 from sklearn.neighbors import KNeighborsClassifier
 
-# qual_features = ['Danceability',  'Speechiness',  'Instrumentalness', 'Mode', 'Tempo', 'TimeSignature', 'KeyMode', 'TempoMode', 'Beats',
-#             'Energy', 'Acousticness', 'LoudnessSq']
-#
-#
-# audio_features = ['timavg_5', 'timavg_3',  'pitch_1', 'timavg_1', 'pitch_0', 'pitch_8', 'pitch_5', 'timavg_0',
-#                   'pitch_10', 'pitch_6', 'pitch_2', 'timavg_4', 'pitch_11', 'pitch_3', 'pitch_7', 'timavg_7',
-#                   'timavg_9', 'pitch_9', 'pitch_4', 'timavg_10',  'timavg_2', 'timavg_6', 'timavg_8', 'timavg_11']
-#
-#
-# features = audio_features + qual_features
+qual_features = ['Danceability',  'Speechiness',  'Instrumentalness', 'Beats',
+            'Energy', 'Acousticness', 'LoudnessSq']
 
 
-timbre_avg = [col for col in list(train.columns.values) if col.startswith('timavg_')]
-timbre = [col for col in list(train.columns.values) if col.startswith('tim_')]
-pitch_col = [col for col in list(train.columns.values) if col.startswith('pitch_')]
-desc_features = ['Energy', 'Tempo', 'LoudnessSq', 'Acousticness', 'Instrumentalness', 'Speechiness', 'Danceability']
-notational_features = ['Mode', 'KeyMode', 'TimeSignature', 'TempoMode', 'Beats']
-top_4_timbre = ['timavg_1', 'timavg_2', 'timavg_3', 'timavg_4']
+pitches = [col for col in list(train.columns.values) if col.startswith('pitch_')]
+timbres = [col for col in list(train.columns.values) if col.startswith('timavg_')]
 
-features = timbre_avg + timbre + pitch_col + desc_features + notational_features
+audio_features = pitches + timbres
+
+features = audio_features + qual_features
 
 
 print features
@@ -40,13 +30,14 @@ rfc = RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini'
             max_depth=15, max_features='auto', max_leaf_nodes=None,
             min_impurity_split=1e-07, min_samples_leaf=1,
             min_samples_split=2, min_weight_fraction_leaf=0.0,
-            n_estimators=500, n_jobs=1, oob_score=False, random_state=88,
+            n_estimators=300, n_jobs=1, oob_score=False, random_state=None,
             verbose=0, warm_start=False)
 
 rfc.fit(train[features], train['Mood'])
 print "Random Forest Classifier"
 print accuracy_score(test['Mood'], rfc.predict(test[features]))
 
+#update XGB params
 xgboost = xgb.XGBClassifier(max_depth=3, n_estimators=300, learning_rate=0.05)
 xgboost.fit(train[features], train['Mood'])
 print "XGBoost Classifier"
@@ -59,27 +50,35 @@ print "Gradient Boosting Classifier"
 print accuracy_score(test['Mood'], gb.predict(test[features]))
 
 
-xtra = ExtraTreesClassifier(n_estimators=100, max_depth=10)
+xtra = ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion='gini',
+           max_depth=15, max_features='auto', max_leaf_nodes=None,
+           min_impurity_split=1e-07, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=100, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False)
 xtra.fit(train[features], train['Mood'])
 print "Extra Trees Classifier"
 print accuracy_score(test['Mood'], xtra.predict(test[features]))
 
 
-ada = AdaBoostClassifier(n_estimators= 150, learning_rate= 1, algorithm= 'SAMME')
+ada = AdaBoostClassifier(algorithm='SAMME.R', base_estimator=None, learning_rate=0.1, n_estimators=300, random_state=None)
 ada.fit(train[features], train['Mood'])
 print "Ada Boost Classifier"
 print accuracy_score(test['Mood'], ada.predict(test[features]))
 
 
 knn = KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='euclidean',
-           metric_params=None, n_jobs=1, n_neighbors=37, p=2,
+           metric_params=None, n_jobs=1, n_neighbors=29, p=2,
            weights='uniform')
 knn.fit(train[features], train['Mood'])
 print "KNeighbors Classifier"
 print accuracy_score(test['Mood'], knn.predict(test[features]))
 
 
-svm = SVC(kernel='linear', C=3, gamma=3)
+svm = SVC(C=2, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape=None, degree=3, gamma=0.1, kernel='linear',
+  max_iter=-1, probability=False, random_state=None, shrinking=True,
+  tol=0.001, verbose=False)
 svm.fit(train[features], train['Mood'])
 print "Support Vector Machines"
 print accuracy_score(test['Mood'], svm.predict(test[features]))

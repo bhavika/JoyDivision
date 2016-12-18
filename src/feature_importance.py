@@ -10,7 +10,7 @@ desc_features = ['Energy', 'Tempo', 'LoudnessSq', 'Acousticness', 'Instrumentaln
 notational_features = ['Mode', 'KeyMode', 'TimeSignature', 'TempoMode', 'Beats']
 top_4_timbre = ['timavg_1', 'timavg_2', 'timavg_3', 'timavg_4']
 
-features = timbre_avg + timbre + pitch_col + desc_features + notational_features
+features = timbre_avg  + pitch_col + desc_features + notational_features
 
 X = train[features]
 y = train['Mood']

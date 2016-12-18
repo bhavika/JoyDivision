@@ -1,0 +1,48 @@
+/home/bhavika/anaconda2/bin/python /home/bhavika/PycharmProjects/JoyDivision/src/gridsearch_svm.py
+Train--------
+False    2205
+True     2171
+Name: Mood, dtype: int64
+Test----------
+True     1522
+False    1498
+Name: Mood, dtype: int64
+SVM grid search:
+CV results {'std_train_score': array([ 0.02296023,  0.00114103,  0.02296023,  0.        ,  0.02296023,
+        0.        ,  0.02296023,  0.        ,  0.02296023,  0.        ]), 'rank_test_score': array([1, 6, 1, 7, 1, 8, 1, 8, 1, 8], dtype=int32), 'mean_score_time': array([ 0.21195304,  0.43780494,  0.40236795,  0.7167635 ,  0.27751696,
+        0.49956441,  0.17739654,  0.4735024 ,  0.19878852,  0.47999859]), 'std_test_score': array([  1.97534395e-02,   1.67744387e-02,   1.97534395e-02,
+         6.83468817e-04,   1.97534395e-02,   1.77551496e-06,
+         1.97534395e-02,   1.77551496e-06,   1.97534395e-02,
+         1.77551496e-06]), 'param_gamma': masked_array(data = [0.1 0.1 1 1 2 2 3 3 4 4],
+             mask = [False False False False False False False False False False],
+       fill_value = ?)
+, 'split1_train_score': array([ 0.71402467,  0.9954317 ,  0.71402467,  1.        ,  0.71402467,
+        1.        ,  0.71402467,  1.        ,  0.71402467,  1.        ]), 'split0_test_score': array([ 0.70077661,  0.68570123,  0.70077661,  0.50525354,  0.70077661,
+        0.50388305,  0.70077661,  0.50388305,  0.70077661,  0.50388305]), 'mean_test_score': array([ 0.72052102,  0.70246801,  0.72052102,  0.50457038,  0.72052102,
+        0.50388483,  0.72052102,  0.50388483,  0.72052102,  0.50388483]), 'param_C': masked_array(data = [3 3 3 3 3 3 3 3 3 3],
+             mask = [False False False False False False False False False False],
+       fill_value = ?)
+, 'split0_train_score': array([ 0.75994513,  0.99771376,  0.75994513,  1.        ,  0.75994513,
+        1.        ,  0.75994513,  1.        ,  0.75994513,  1.        ]), 'params': ({'kernel': 'linear', 'C': 3, 'gamma': 0.1}, {'kernel': 'rbf', 'C': 3, 'gamma': 0.1}, {'kernel': 'linear', 'C': 3, 'gamma': 1}, {'kernel': 'rbf', 'C': 3, 'gamma': 1}, {'kernel': 'linear', 'C': 3, 'gamma': 2}, {'kernel': 'rbf', 'C': 3, 'gamma': 2}, {'kernel': 'linear', 'C': 3, 'gamma': 3}, {'kernel': 'rbf', 'C': 3, 'gamma': 3}, {'kernel': 'linear', 'C': 3, 'gamma': 4}, {'kernel': 'rbf', 'C': 3, 'gamma': 4}), 'std_fit_time': array([ 0.04328609,  0.02048838,  0.12678599,  0.03631639,  0.53177655,
+        0.04621804,  0.15611959,  0.02182198,  0.11950135,  0.02658749]), 'std_score_time': array([ 0.02327311,  0.00198412,  0.02210987,  0.12797236,  0.06835306,
+        0.01183248,  0.01528645,  0.02398157,  0.00379264,  0.00293255]), 'mean_train_score': array([ 0.7369849 ,  0.99657273,  0.7369849 ,  1.        ,  0.7369849 ,
+        1.        ,  0.7369849 ,  1.        ,  0.7369849 ,  1.        ]), 'mean_fit_time': array([ 1.73574996,  0.73997653,  2.153373  ,  0.97303653,  2.27456653,
+        0.74146402,  1.66263652,  0.62005496,  2.29283547,  0.67161345]), 'param_kernel': masked_array(data = ['linear' 'rbf' 'linear' 'rbf' 'linear' 'rbf' 'linear' 'rbf' 'linear' 'rbf'],
+             mask = [False False False False False False False False False False],
+       fill_value = ?)
+, 'split1_test_score': array([ 0.74028349,  0.71925011,  0.74028349,  0.5038866 ,  0.74028349,
+        0.5038866 ,  0.74028349,  0.5038866 ,  0.74028349,  0.5038866 ])}
+Best SVM SVC(C=3, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape=None, degree=3, gamma=0.1, kernel='linear',
+  max_iter=-1, probability=False, random_state=None, shrinking=True,
+  tol=0.001, verbose=False)
+Best CV score for SVM 0.720521023766
+Best SVM params: {'kernel': 'linear', 'C': 3, 'gamma': 0.1}
+Finished in:  51.4404470921
+[Sun Dec 18 07:07:30 2016 : 424343] speechd: Speech Dispatcher 0.8 starting
+[Sun Dec 18 07:07:30 2016 : 424545] speechd: Speech Dispatcher already running.
+
+Speech Dispatcher already running.
+
+
+Process finished with exit code 0

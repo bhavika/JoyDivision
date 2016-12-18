@@ -1,5 +1,4 @@
-from explore_features import train, test
-from sklearn.model_selection import train_test_split, cross_val_score
+from get_train_test import train, test
 from sklearn.svm import SVC
 import numpy as np
 from sklearn.metrics import accuracy_score, confusion_matrix
@@ -8,15 +7,16 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler as scaler
 
+qual_features = ['Danceability',  'Speechiness',  'Instrumentalness', 'Beats',
+            'Energy', 'Acousticness', 'LoudnessSq']
 
-features = ['Danceability', 'timavg_5', 'Energy',
- 'Instrumentalness', 'timavg_3', 'Acousticness', 'pitch_1', 'timavg_1',
- 'pitch_0', 'Speechiness', 'pitch_8', 'pitch_5', 'timavg_0', 'pitch_10', 'pitch_6',
- 'pitch_2', 'timavg_4', 'pitch_11', 'pitch_3', 'pitch_7', 'Beats', 'timavg_7', 'timavg_9',
- 'pitch_9', 'pitch_4', 'timavg_10', 'LoudnessSq', 'Tempo', 'timavg_2', 'timavg_6', 'timavg_8',
- 'timavg_11', 'TempoMode', 'TimeSignature', 'KeyMode', 'Mode']
 
-numerical = ['Danceability', 'Energy', 'Instrumentalness', 'Acousticness', 'Speechiness']
+pitches = [col for col in list(train.columns.values) if col.startswith('pitch_')]
+timbres = [col for col in list(train.columns.values) if col.startswith('timavg_')]
+
+audio_features = pitches + timbres
+
+features = audio_features + qual_features
 
 X = train[features]
 y = train['Mood']
@@ -25,9 +25,14 @@ X_test = test[features]
 y_test = test['Mood']
 
 
+# Scaling all numeric features for SVMs
+train[features] = scaler.fit_transform(train[features])
+test[features] = scaler.fit_transform(test[features])
+
+
 start = time()
 
-clf = SVC(kernel='linear', C=3, gamma='auto')
+clf = SVC(kernel='linear', C=3, gamma=3)
 # clf.fit(X_train, y_train)
 clf.fit(X,y)
 y_pred = clf.predict(X_test)

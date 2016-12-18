@@ -1,21 +1,23 @@
-from explore_features import train
+from get_train_test import train
 from sklearn.metrics import accuracy_score, make_scorer
 from time import time
 import subprocess
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.model_selection import GridSearchCV, KFold, cross_val_score
 
-features = ['Danceability', 'timavg_5', 'Energy',
- 'Instrumentalness', 'timavg_3', 'Acousticness', 'pitch_1', 'timavg_1',
- 'pitch_0', 'Speechiness', 'pitch_8', 'pitch_5', 'timavg_0', 'pitch_10', 'pitch_6',
- 'pitch_2', 'timavg_4', 'pitch_11', 'pitch_3', 'pitch_7', 'Beats', 'timavg_7', 'timavg_9',
- 'pitch_9', 'pitch_4', 'timavg_10', 'LoudnessSq', 'Tempo', 'timavg_2', 'timavg_6', 'timavg_8',
- 'timavg_11', 'TempoMode', 'TimeSignature', 'KeyMode', 'Mode']
+qual_features = ['Danceability',  'Speechiness',  'Instrumentalness', 'Beats',
+            'Energy', 'Acousticness', 'LoudnessSq']
 
+
+pitches = [col for col in list(train.columns.values) if col.startswith('pitch_')]
+timbres = [col for col in list(train.columns.values) if col.startswith('timavg_')]
+
+audio_features = pitches + timbres
+
+features = audio_features + qual_features
 
 gb_params = {"loss": ['deviance', 'exponential'], 'learning_rate': [0.1, 0.001, 0.001, 1], 'n_estimators': [100, 150, 200, 350, 500],
              'max_depth': [3, 6, 10], 'criterion': ['mse']}
-
 
 start = time()
 

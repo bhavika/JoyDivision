@@ -1,0 +1,25 @@
+/home/bhavika/anaconda2/bin/python /home/bhavika/PycharmProjects/JoyDivision/src/rfe.py
+None
+Train--------
+False    2205
+True     2171
+Name: Mood, dtype: int64
+Test----------
+True     1522
+False    1498
+Name: Mood, dtype: int64
+Optimal number of features : 35
+Ranking of features
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1]
+Support [ True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True False  True  True  True  True]
+[ 0.59415525  0.64855395  0.69105936  0.69106354  0.71048663  0.71185936
+  0.71345753  0.71345988  0.72054194  0.72396999  0.73036791  0.72694116
+  0.72968297  0.72968115  0.72693986  0.73356895  0.73288271  0.73562531
+  0.73356791  0.73608115  0.7317409   0.73654064  0.73676973  0.73745414
+  0.73562792  0.73745623  0.74019778  0.74019804  0.74110946  0.73951181
+  0.74431076  0.74545336  0.73951102  0.74248063  0.74590946  0.74133933]
+Elapsed time:  2132.24230194
+
+Process finished with exit code 0
