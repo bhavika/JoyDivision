@@ -1,5 +1,9 @@
 /home/bhavika/anaconda2/bin/python /home/bhavika/PycharmProjects/JoyDivision/src/feature_importance.py
-['Danceability', 'timavg_5', 'Energy', 'Instrumentalness', 'timavg_3', 'pitch_1', 'Acousticness', 'pitch_0', 'pitch_10', 'timavg_0', 'pitch_8', 'timavg_1', 'Speechiness', 'pitch_6', 'pitch_3', 'pitch_5', 'pitch_11', 'pitch_9', 'pitch_7', 'pitch_2', 'timavg_4', 'timavg_9', 'pitch_4', 'Beats', 'timavg_10', 'timavg_7', 'timavg_2', 'Tempo', 'LoudnessSq', 'timavg_8', 'timavg_6', 'timavg_11', 'TempoMode', 'KeyMode', 'TimeSignature', 'Mode']
+['Danceability', 'timavg_5', 'Energy', 'Instrumentalness', 'timavg_3', 'pitch_1', 'Acousticness', 'pitch_0', 'pitch_10',
+ 'timavg_0', 'pitch_8', 'timavg_1', 'Speechiness', 'pitch_6', 'pitch_3', 'pitch_5', 'pitch_11', 'pitch_9', 'pitch_7', 'pitch_2',
+  'timavg_4', 'timavg_9', 'pitch_4', 'Beats', 'timavg_10', 'timavg_7', 'timavg_2', 'Tempo', 'LoudnessSq', 'timavg_8', 'timavg_6',
+   'timavg_11', 'TempoMode', 'KeyMode', 'TimeSignature', 'Mode']
+
 Feature ranking:
 1. feature 4 Danceability (0.086370)
 2. feature 29 timavg_5 (0.060772)

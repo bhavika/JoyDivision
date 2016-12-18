@@ -49,7 +49,7 @@ def plot_learning_curve(estimator, title, X, y, ylim=None, cv=None,
 X, y = train[features], train['Mood']
 
 cv = ShuffleSplit(n_splits=15, test_size=0.4, random_state=0)
-title = "Learning Curves (SVM, RBF kernel, $\gamma=0.001$)"
+title = "Learning Curves (SVM, RBF kernel, $\gamma=3$)"
 estimator = SVC(kernel='linear', gamma=3)
 
 plot_learning_curve(estimator, title, X, y, (0, 1.01), cv, n_jobs=4)

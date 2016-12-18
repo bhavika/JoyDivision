@@ -1,7 +1,5 @@
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import StandardScaler
-from sklearn import preprocessing
 
 
 numerical = ['Tempo', 'Loudness', 'Energy', 'Speechiness', 'Danceability', 'Acousticness', 'Instrumentalness']
@@ -41,8 +39,9 @@ master['Valence'].fillna(master['Valence'].mean(), inplace=True)
 master['Instrumentalness'].fillna(master['Instrumentalness'].mean(), inplace=True)
 master['Speechiness'].fillna(master['Speechiness'].mean(), inplace=True)
 
-# Create segment features
 
+
+# Create segment features
 
 def get_shape(x):
     return x.shape[0]
@@ -51,11 +50,11 @@ def get_shape(x):
 # timbre features of shape (1, 90)
 def compute_timbre_feature(x):
     features = x.T
-    flen = features.shape[1]
-    ndim = features.shape[0]
-    assert ndim == 12, "Transpose error - wrong dimension"
+    x = features.shape[1]
+    y = features.shape[0]
+    assert y == 12, "Transpose error - wrong dimension"
     #finaldim = 90
-    if flen < 3:
+    if x < 3:
         print "flen < 3"
         return None
     avg = np.average(features, 1)
@@ -73,10 +72,10 @@ def compute_timbre_feature(x):
 # pitch average feature vector of size (1, 12)
 def compute_pitch_feature(x):
     features = x.T
-    flen = features.shape[1]
-    ndim = features.shape[0]
-    assert ndim == 12, "Transpose error - wrong dimension"
-    if flen < 3:
+    x = features.shape[1]
+    y = features.shape[0]
+    assert y == 12, "Transpose error - wrong dimension"
+    if x < 3:
         print "flen < 3"
         return None
     avg = np.average(features, 1)
@@ -84,6 +83,7 @@ def compute_pitch_feature(x):
     return avg
 
 
+# timbre average feature vector of size(1, 12)
 def compute_timbre_average(x):
     features = x.T
     flen = features.shape[1]
@@ -97,23 +97,9 @@ def compute_timbre_average(x):
     return avg
 
 
-def compute_timbre_var(x):
-    features = x.T
-    flen = features.shape[1]
-    ndim = features.shape[0]
-    assert ndim == 12, "Transpose error - wrong dimension"
-    variance = np.var(features, 1)
-    if flen < 3:
-        print "flen < 3"
-        return None
-    f = list([variance])
-    return f
-
-
 master['TimbreVector'] = master['Timbre'].apply(lambda x: compute_timbre_feature(x))
 master['PitchVector'] = master['Pitches'].apply(lambda x: compute_pitch_feature(x))
 master['TimbreAverage'] = master['Timbre'].apply(lambda x: compute_timbre_average(x))
-master['TimbreAvgVariance'] = master['Timbre'].apply(lambda x: compute_timbre_var(x))
 
 
 timbrevec = master['TimbreVector'].apply(pd.Series)
@@ -130,17 +116,38 @@ master = pd.concat([master[:], pitchvec[:]], axis=1)
 
 
 master['Beats'] = master['BeatsConfidence'].apply(lambda x: get_shape(x))
-master['MinutesLong'] = master['Length'] / 60
-master['NoOfSegments'] = master['Pitches'].apply(lambda x: get_shape(x))
 
-master['AvgLoudnessTimbre'] = master['timavg_1']
-master['AvgBrightnessTimbre'] = master['timavg_2']
-master['AvgFlatnessTimbre'] = master['timavg_3']
-master['AvgAttackTimbre'] = master['timavg_4']
-
-
-print master.columns.values
+# Echonest Analyse Docs
+# AvgLoudnessTimbre' - timavg_1
+# AvgBrightnessTimbre' - timavg_2
+# AvgFlatnessTimbre'- timavg_3'
+# AvgAttackTimbre' - timavg_4'
 
 
 master.to_pickle('../data/fullset.pkl')
+master.to_csv('../data/fullset.csv')
 
+# Create train and test sets
+
+data = pd.read_pickle('../data/fullset.pkl')
+
+# Partition dataset to get a train and test set
+# track_info = data[['File', 'Artist', 'Title']]
+# track_info.to_csv('../data/tracks.csv', sep=';')
+
+mask = np.random.rand(len(data)) < 0.6
+
+train = data[mask]
+test = data[~mask]
+
+print "Train--------"
+happy_train = train['Mood'] == 'happy'
+print happy_train.value_counts()
+
+print "Test----------"
+happy_test = test['Mood'] == 'happy'
+print happy_test.value_counts()
+
+
+train.to_pickle('../data/train.pkl')
+test.to_pickle('../data/test.pkl')

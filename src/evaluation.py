@@ -9,16 +9,28 @@ import xgboost as xgb
 import subprocess
 from sklearn.neighbors import KNeighborsClassifier
 
-qual_features = ['Danceability',  'Speechiness',  'Instrumentalness', 'Mode', 'Tempo', 'TimeSignature', 'KeyMode', 'TempoMode', 'Beats',
-            'Energy', 'Acousticness', 'LoudnessSq']
+# qual_features = ['Danceability',  'Speechiness',  'Instrumentalness', 'Mode', 'Tempo', 'TimeSignature', 'KeyMode', 'TempoMode', 'Beats',
+#             'Energy', 'Acousticness', 'LoudnessSq']
+#
+#
+# audio_features = ['timavg_5', 'timavg_3',  'pitch_1', 'timavg_1', 'pitch_0', 'pitch_8', 'pitch_5', 'timavg_0',
+#                   'pitch_10', 'pitch_6', 'pitch_2', 'timavg_4', 'pitch_11', 'pitch_3', 'pitch_7', 'timavg_7',
+#                   'timavg_9', 'pitch_9', 'pitch_4', 'timavg_10',  'timavg_2', 'timavg_6', 'timavg_8', 'timavg_11']
+#
+#
+# features = audio_features + qual_features
 
 
-audio_features = ['timavg_5', 'timavg_3',  'pitch_1', 'timavg_1', 'pitch_0', 'pitch_8', 'pitch_5', 'timavg_0',
-                  'pitch_10', 'pitch_6', 'pitch_2', 'timavg_4', 'pitch_11', 'pitch_3', 'pitch_7', 'timavg_7',
-                  'timavg_9', 'pitch_9', 'pitch_4', 'timavg_10',  'timavg_2', 'timavg_6', 'timavg_8', 'timavg_11']
+timbre_avg = [col for col in list(train.columns.values) if col.startswith('timavg_')]
+timbre = [col for col in list(train.columns.values) if col.startswith('tim_')]
+pitch_col = [col for col in list(train.columns.values) if col.startswith('pitch_')]
+desc_features = ['Energy', 'Tempo', 'LoudnessSq', 'Acousticness', 'Instrumentalness', 'Speechiness', 'Danceability']
+notational_features = ['Mode', 'KeyMode', 'TimeSignature', 'TempoMode', 'Beats']
+top_4_timbre = ['timavg_1', 'timavg_2', 'timavg_3', 'timavg_4']
+
+features = timbre_avg + timbre + pitch_col + desc_features + notational_features
 
 
-features = audio_features + qual_features
 print features
 
 print "Evaluating on all features "
@@ -67,7 +79,7 @@ print "KNeighbors Classifier"
 print accuracy_score(test['Mood'], knn.predict(test[features]))
 
 
-svm = SVC(kernel='linear', C=3, gamma='auto')
+svm = SVC(kernel='linear', C=3, gamma=3)
 svm.fit(train[features], train['Mood'])
 print "Support Vector Machines"
 print accuracy_score(test['Mood'], svm.predict(test[features]))
