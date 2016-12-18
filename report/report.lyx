@@ -171,20 +171,7 @@ textit{pyAudioAnalysis}
  This task has an appreciable level of complexity because of the inherent
  subjectivity in the way people interpret music.
  We believe that despite this subjectivity, there are patterns to be found
- in a song that could help place it on 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-textbf{Russell's}
-\end_layout
-
-\end_inset
-
-
+ in a song that could help place it on Russell's 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-3"
@@ -240,12 +227,121 @@ textit{sad}
 
 .
  For the sake of simplicity, we limit ourselves to these two labels though
- they're an oversimplification of the complex emotional nature of music.
+ they do not sufficiently represent the complex emotional nature of music.
  
 \end_layout
 
 \begin_layout Subsection*
 2.1 Notations
+\end_layout
+
+\begin_layout Standard
+We introduce some notations for the feature representations in this paper.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{equation}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+mathit{f_{timbre_avg}} = [timavg_{1}, timavg_{2}...timavg_{12}]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{equation}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Equation (1) represents the vector of timbral features at the song level.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{equation}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+mathit{f_{pitch}} = [pitch_{1}, pitch_{2}...pitch_{12}]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{equation}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Equation (2) represents a vector of chroma features at the song level.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{equation}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+mathit{f_{timbre}} = [tim_{1}, tim_{2}...tim_{90}]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{equation}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Equation (3) is a vector of mean and covariance values of all the segments
+ aggregated at the song level.
 \end_layout
 
 \begin_layout Section
@@ -280,6 +376,10 @@ key "key-5"
  They use the mean and standard deviation of the frame level features (timbre
  and intensity) to capture the overall structure of the frame.
  
+\begin_inset VSpace 1pt
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -570,8 +670,8 @@ key "key-7"
 g of Hidden Markov Model (HMM) genre probabilities extracted from timbre
  features, loudness and tempo, lyrics bag-of-words submodel probabilities
  and emotional valence.
- They assume each genre corresponds to a HMM and use labeled training data
- to train one HMM for each genre.
+ They assume each genre corresponds to one HMM and use labeled training
+ data to train one HMM for each genre.
  Additionally, they combine audio and textual (lyrics) features for Canonical
  Correlation Analysis (CCA) by revealing shared linear correlations between
  audio and lyrics features in order to design a low dimensional, shared
@@ -630,6 +730,10 @@ textit{sad}
  were often missing when we tried using the Spotify API to fetch them.
  In that case, we imputed the mean of these values.
  
+\begin_inset VSpace 1pt
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -656,16 +760,46 @@ key "key-1"
  segment in a 12 dimensional vector.
  Here, the 12 elements of the vector represent pitch classes like C, C#,
  B and so on.
- The challenge here is two-fold - how do we find a uniform representation
- of timbre and pitches that represents a whole song and 
+ The challenge here is - how do we find a uniform representation of timbre
+ and pitches that represents a whole song? We use a technique called segment
+ aggregation
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-10,key-12,key-5"
+
+\end_inset
+
+.
+ 
+\begin_inset VSpace 1pt
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Segment aggregation involves computing several statistical moments like
+ mean, minimum, maximum, standard deviation, variances and covariances across
+ each segment.
+ In our technique, we use two methods and compare them.
+ First, we compute a vector containing the mean and covariances of all segments
+ and obtain a 90 element vector (12 averages and 78 covariances).
+ We can use this approach for timbre and pitch arrays both.
+ The drawback is that 90 elements make for a very large feature vector and
+ they would need to be pruned in some way or the most important elements
+ would have to be identified.
+ Using PCA is not desirable here for two reasons: timbre features have already
+ been extracted through PCA on MFCC values and our segment aggregation does
+ not account for temporal relations between the segments.
+ This leads to some loss of information in the segments.
+ Our second approach is calculating only the elementwise mean of all segments
+ in a song.
+ This gives us two 12 dimensional vectors for pitches and timbre.
+ 
 \end_layout
 
 \begin_layout Subsection
 Modeling
-\end_layout
-
-\begin_layout Standard
-
 \end_layout
 
 \begin_layout Section
