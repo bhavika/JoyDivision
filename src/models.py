@@ -26,14 +26,16 @@ start = time()
 #
 # timbres = ['AvgLoudnessTimbre', 'AvgBrightnessTimbre', 'AvgFlatnessTimbre', 'AvgAttackTimbre']
 
-audio_features = [col for col in list(train.columns.values) if col.startswith('pitch_')]
-timbres = ['AvgLoudnessTimbre', 'AvgBrightnessTimbre', 'AvgFlatnessTimbre', 'AvgAttackTimbre']
+pitches = [col for col in list(train.columns.values) if col.startswith('pitch_')]
+timbres = [col for col in list(train.columns.values) if col.startswith('timavg_')]
 
 qual_features = ['KeyMode', 'LoudnessSq', 'Mode',  'Speechiness', 'Danceability',
                'Acousticness', 'Instrumentalness', 'TimeSignature',
                 'Tempo', 'Energy', 'TempoMode', 'Beats']
 
-features = audio_features + qual_features + timbres
+audio_features = pitches + timbres
+
+features = audio_features + qual_features
 print features
 
 X = train[features]
@@ -81,14 +83,16 @@ feature_importances['average'] = (feature_importances['RFC'] + feature_importanc
 feature_importances = feature_importances.sort_values('average', ascending = False).drop('average', axis=1)
 
 
-fig, axes = plt.subplots(figsize=(10,8))
+fig, axes = plt.subplots(figsize=(18,12))
 sns.set(rc={'axes.facecolor':'black', 'figure.facecolor':'black', 'axes.grid' : False, 'text.color': 'white',
              'xtick.color': 'white', 'ytick.color': 'white', 'axes.labelcolor': 'white', 'axes.edgecolor': 'white'} )
 plt.xlabel('Models')
 plt.ylabel('Features')
-sns.heatmap(feature_importances, cmap = 'YlGnBu')
-fig.savefig('../explore/feature_imp_all.png', dpi=400, transparent=True)
-plt.yticks(rotation=0)
+plt.title('Feature Importance by Estimator')
+heatmap = sns.heatmap(feature_importances, cmap = 'YlGnBu', cbar=False, annot=True)
+heatmap.set_yticklabels(heatmap.get_yticklabels(), rotation=0)
+heatmap.set(xlabel='Estimators', ylabel='Features')
+plt.savefig('../explore/feature_imp_all.png', dpi=300)
 plt.show()
 
 
@@ -134,16 +138,16 @@ feature_importances['average'] = (feature_importances['RFC'] + feature_importanc
 feature_importances = feature_importances.sort_values('average', ascending = False).drop('average', axis=1)
 
 
-fig, axes = plt.subplots(figsize=(10,8))
+fig, axes = plt.subplots(figsize=(18, 12))
 sns.set(rc={'axes.facecolor':'black', 'figure.facecolor':'black', 'axes.grid' : False, 'text.color': 'white',
              'xtick.color': 'white', 'ytick.color': 'white', 'axes.labelcolor': 'white', 'axes.edgecolor': 'white'} )
 plt.xlabel('Models')
 plt.ylabel('Features')
-sns.heatmap(feature_importances, cmap = 'YlGnBu')
-fig.savefig('../explore/feature_imp_audio.png', dpi=400, transparent=True)
-plt.yticks(rotation=0)
+heatmap = sns.heatmap(feature_importances, cmap = 'YlGnBu', cbar=False, annot=True)
+heatmap.set_yticklabels(heatmap.get_yticklabels(), rotation=0)
+heatmap.set(xlabel='Estimators', ylabel='Features')
+plt.savefig('../explore/feature_imp_audio.png', dpi=300)
 plt.show()
-
 
 # other models
 simple_models = {}
@@ -187,16 +191,16 @@ feature_importances['average'] = (feature_importances['RFC'] + feature_importanc
 feature_importances = feature_importances.sort_values('average', ascending = False).drop('average', axis=1)
 
 
-fig, axes = plt.subplots(figsize=(10,8))
+fig, axes = plt.subplots(figsize=(18,12))
 sns.set(rc={'axes.facecolor':'black', 'figure.facecolor':'black', 'axes.grid' : False, 'text.color': 'white',
              'xtick.color': 'white', 'ytick.color': 'white', 'axes.labelcolor': 'white', 'axes.edgecolor': 'white'} )
 plt.xlabel('Models')
 plt.ylabel('Features')
-sns.heatmap(feature_importances, cmap = 'YlGnBu')
-fig.savefig('../explore/feature_imp_qual.png', dpi=400, transparent=True)
-plt.yticks(rotation=0)
+heatmap = sns.heatmap(feature_importances, cmap = 'YlGnBu', cbar=False, annot=True)
+heatmap.set_yticklabels(heatmap.get_yticklabels(), rotation=0)
+heatmap.set(xlabel='Estimators', ylabel='Features')
+plt.savefig('../explore/feature_imp_qual.png', dpi=300)
 plt.show()
-
 
 # other models
 simple_models = {}
