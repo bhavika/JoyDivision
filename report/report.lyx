@@ -59,8 +59,8 @@
 \end_index
 \secnumdepth 3
 \tocdepth 3
-\paragraph_separation indent
-\paragraph_indentation 0bp
+\paragraph_separation skip
+\defskip 2bp
 \quotes_language english
 \papercolumns 1
 \papersides 1
@@ -125,7 +125,7 @@ textit{sad}
  We also compare the effects of using certain descriptive features like
  acousticness, speechiness, danceability and instrumentalness for this type
  of binary mood classification as against combining them with timbral and
- spectral features.
+ pitch features.
  We find that the models we use for classification rate danceability, energy,
  speechiness and the number of beats as important features as compared to
  others during the classification task.
@@ -271,7 +271,7 @@ end{equation}
 \end_layout
 
 \begin_layout Standard
-Equation (1) represents the vector of timbral features at the song level.
+(1) represents the vector of timbral average features at the song level.
 \end_layout
 
 \begin_layout Standard
@@ -305,7 +305,7 @@ end{equation}
 \end_layout
 
 \begin_layout Standard
-Equation (2) represents a vector of chroma features at the song level.
+(2) represents a vector of chroma average features at the song level.
  
 \end_layout
 
@@ -340,8 +340,8 @@ end{equation}
 \end_layout
 
 \begin_layout Standard
-Equation (3) is a vector of mean and covariance values of all the segments
- aggregated at the song level.
+(3) is a vector of mean and covariance values of all the segments aggregated
+ at the song level.
 \end_layout
 
 \begin_layout Section
@@ -376,10 +376,6 @@ key "key-5"
  They use the mean and standard deviation of the frame level features (timbre
  and intensity) to capture the overall structure of the frame.
  
-\begin_inset VSpace 1pt
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -730,7 +726,7 @@ textit{sad}
  were often missing when we tried using the Spotify API to fetch them.
  In that case, we imputed the mean of these values.
  
-\begin_inset VSpace 1pt
+\begin_inset VSpace 2pt
 \end_inset
 
 
@@ -753,7 +749,7 @@ key "key-1"
 
 \end_inset
 
- states that they provide Segments Timbre functions by getting MFCC for
+ states that they provide Segments Timbre functions by extracting MFCC for
  each segment in a song and then using Principal Component Analysis (PCA)
  to compactly represent them as a 12 element vector.
  In a similar vein, Segments Pitches represent the chroma features of each
@@ -771,7 +767,10 @@ key "key-10,key-12,key-5"
 
 .
  
-\begin_inset VSpace 1pt
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 2pt
 \end_inset
 
 
@@ -795,11 +794,274 @@ Segment aggregation involves computing several statistical moments like
  Our second approach is calculating only the elementwise mean of all segments
  in a song.
  This gives us two 12 dimensional vectors for pitches and timbre.
+ Now, we use these as features for our models.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{figure}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/bhavika/PycharmProjects/JoyDivision/explore/rfe.png
+	lyxscale 30
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{figure}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The figure above shows the cross validation accuracy as it varies depending
+ on the number of features selected.
  
 \end_layout
 
 \begin_layout Subsection
-Modeling
+Classification Models
+\end_layout
+
+\begin_layout Standard
+For this binary classification problem, we evaluate several models and compare
+ how the perform on the test set.
+ To tune the performance of each model, we perform a hyperparameter search
+ and then select the ones that perform best with each model.
+ 5 fold cross validation is used during the hyperparameter search.
+ 
+\end_layout
+
+\begin_layout Standard
+Table 1 below shows the different estimators we used and the parameters
+ we tuned for each.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[h]     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|l|l|}     
+\backslash
+hline  
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+backslashtextbf
+\backslash
+{Estimator
+\backslash
+} 
+\end_layout
+
+\begin_layout Plain Layout
+
+& 
+\backslash
+backslashtextbf
+\backslash
+{Parameters
+\backslash
+}                                                      
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     Random Forest Classifier        & n
+\backslash
+_estimators = 
+\backslash
+{300
+\backslash
+} (10), max
+\backslash
+_depth = 
+\backslash
+{15
+\backslash
+} (None)                                                          
+\backslash
+
+\backslash
+ 
+\backslash
+hline     XGBoost Classifier              & ~                          
+                                                                 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     Gradient Boosting Classifier    & 
+\end_layout
+
+\begin_layout Plain Layout
+
+loss=
+\backslash
+{exponential
+\backslash
+} (deviance), max
+\backslash
+_depth = (6
+\backslash
+} (3), 
+\backslash
+
+\backslash
+ criteria=mse (friedman
+\backslash
+_mse), 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+n
+\backslash
+_estimators=(200
+\backslash
+}(100) 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline     ADABOOST Classifier             & learning
+\backslash
+_rate=
+\backslash
+{0.1
+\backslash
+}(1), n
+\backslash
+_estimators=
+\backslash
+{300
+\backslash
+}(50)                                                              
+\backslash
+
+\backslash
+ 
+\backslash
+hline     Support Vector Machine          & C=
+\backslash
+{2
+\backslash
+}(1), kernel=
+\backslash
+{linear
+\backslash
+} (rbf), gamma = 
+\backslash
+{0.1
+\backslash
+} (auto)                                                       
+\backslash
+
+\backslash
+ 
+\backslash
+hline     Gaussian Naive Bayes Classifier & priors=None (None)         
+                                                                       
+                
+\backslash
+
+\backslash
+ 
+\backslash
+hline     K Nearest Neighbors             & n
+\backslash
+_neighbors=
+\backslash
+{29
+\backslash
+} (5), metric = 
+\backslash
+{euclidean
+\backslash
+}(minkowski)                                                        
+\backslash
+
+\backslash
+ 
+\backslash
+hline     
+\backslash
+end{tabular}     
+\backslash
+caption {Estimators with tuned hyperparameters} 
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1129,11 +1391,11 @@ begin{tabular}{|l|l|l|}
 \backslash
 hline     
 \backslash
-textbf{Notational Features} & 
+textbf{Notational} & 
 \backslash
-textbf{Descriptive Features}                          & 
+textbf{Descriptive}                          & 
 \backslash
-textbf{Audio Features}                  
+textbf{Audio}                  
 \backslash
 
 \backslash
@@ -1213,7 +1475,7 @@ Evaluation Metrics
 \end_layout
 
 \begin_layout Standard
-Our dataset contains a near equal distribution of 
+The dataset contains a near equal distribution of 
 \begin_inset ERT
 status open
 
@@ -1297,7 +1559,7 @@ end{table}
 \begin_layout Standard
 It is due to this distribution that we decide that Accuracy would be the
  correct metric to use.
- We define accuracy in (2) where TP, TN, FP, FN stand for True Positive,
+ Accuracy is defined in (2) where TP, TN, FP, FN stand for True Positive,
  True Negative, False Positive and False Negative.
 \end_layout
 
@@ -1335,6 +1597,168 @@ end{equation}
 
 \begin_layout Subsection
 Experimental Results
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[h]  
+\backslash
+centering   
+\backslash
+begin{tabular}{|l|l|l|}     
+\backslash
+hline     Estimator                     & Features & Test Accuracy 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     Random Forest Classifier      & P, T, D  & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     ~                             & P , T    & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     ~                             & D        & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     ADABOOST Classifier           & P.
+ T.
+ D  & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     ~                             & P, T     & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     ~                             & D        & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     XGBoost Classifier            & P, T, D  & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     ~                             & P, T     & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     ~                             & D        & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     Gradient Boosting Classifier  & P, T, D  & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     ~                             & P, T     & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     ~                             & D        & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     SVM                           & P, T, D  & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     ~                             & P, T     & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     ~                             & D        & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     K Nearest Neighbor Classifier & P, T, D  & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     ~                             & P, T     & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     ~                             & D        & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     Voting Classifier             & P, T, D  & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     ~                             & P, T     & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     ~                             & D        & ~             
+\backslash
+
+\backslash
+ 
+\backslash
+hline     
+\backslash
+end{tabular}     
+\backslash
+caption {Classification Accuracy by Estimator and Features} 
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1712,8 +2136,20 @@ key "key-1"
 \end_inset
 
 Ellis, Daniel PW.
- “Classifying Music Audio with Timbral and Chroma Features.” In ISMIR, 7:339–340,
- 2007.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{Classifying Music Audio with Timbral and Chroma Features}
+\end_layout
+
+\end_inset
+
+, In ISMIR, 7:339–340, 2007.
  https://www.ee.columbia.edu/~dpwe/pubs/Ellis07-timbrechroma.pdf.
  
 \end_layout

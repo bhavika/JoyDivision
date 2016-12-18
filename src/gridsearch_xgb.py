@@ -23,7 +23,7 @@ accuracy = make_scorer(accuracy_score)
 
 
 param_grid = {"max_depth": [3, 5, 10, 15, 17], "learning_rate": [0.1, 0.001, 1], "n_estimators": [100, 150, 200, 300, 500],
-              "gamma": [0, 0.5, 0.1, 0.01], "colsample_bytree": [1, 3, 5, 7], "max_delta_step": [0, 0.01, 0.1]}
+              "gamma": [0, 0.5, 0.1, 0.01], "colsample_bytree": [1], "max_delta_step": [0, 0.01, 0.1]}
 
 
 xgb_grid = GridSearchCV(estimator=XGBClassifier(), param_grid=param_grid, scoring=accuracy, cv=5)

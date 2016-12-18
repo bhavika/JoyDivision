@@ -44,7 +44,13 @@ print "XGBoost Classifier"
 print accuracy_score(test['Mood'], xgboost.predict(test[features]))
 
 
-gb = GradientBoostingClassifier(n_estimators=100, loss='deviance', learning_rate=0.1, criterion='mse', max_depth=3)
+gb = GradientBoostingClassifier(criterion='mse', init=None, learning_rate=0.1,
+              loss='exponential', max_depth=6, max_features=None,
+              max_leaf_nodes=None, min_impurity_split=1e-07,
+              min_samples_leaf=1, min_samples_split=2,
+              min_weight_fraction_leaf=0.0, n_estimators=200,
+              presort='auto', random_state=None, subsample=1.0, verbose=0,
+              warm_start=False)
 gb.fit(train[features], train['Mood'])
 print "Gradient Boosting Classifier"
 print accuracy_score(test['Mood'], gb.predict(test[features]))
