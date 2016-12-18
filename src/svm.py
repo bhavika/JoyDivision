@@ -6,6 +6,7 @@ from sklearn.metrics import accuracy_score, confusion_matrix
 from time import time
 import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler as scaler
 
 
 features = ['Danceability', 'timavg_5', 'Energy',
@@ -15,17 +16,18 @@ features = ['Danceability', 'timavg_5', 'Energy',
  'pitch_9', 'pitch_4', 'timavg_10', 'LoudnessSq', 'Tempo', 'timavg_2', 'timavg_6', 'timavg_8',
  'timavg_11', 'TempoMode', 'TimeSignature', 'KeyMode', 'Mode']
 
+numerical = ['Danceability', 'Energy', 'Instrumentalness', 'Acousticness', 'Speechiness']
 
 X = train[features]
 y = train['Mood']
 
+X_test = test[features]
+y_test = test['Mood']
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,random_state=45)
-print len(y_test)
 
 start = time()
 
-clf = SVC(kernel='linear', C=0.1, gamma='auto')
+clf = SVC(kernel='linear', C=3, gamma='auto')
 # clf.fit(X_train, y_train)
 clf.fit(X,y)
 y_pred = clf.predict(X_test)

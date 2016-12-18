@@ -17,7 +17,7 @@ start = time()
 accuracy = make_scorer(accuracy_score)
 
 
-rfc_params = {"n_estimators":[300, 500, 700, 1000], "max_depth": [7, 12, 15]}
+rfc_params = {"n_estimators":[300, 500, 700, 1000], "max_depth": [7, 12, 15], "criterion": ['gini', 'entropy']}
 
 rfc_grid = GridSearchCV(estimator=RandomForestClassifier(), param_grid=rfc_params, scoring=accuracy, cv=5)
 rfc_grid.fit(train[features], train['Mood'])

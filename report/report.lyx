@@ -60,7 +60,7 @@
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
-\paragraph_indentation default
+\paragraph_indentation 0bp
 \quotes_language english
 \papercolumns 1
 \papersides 1
@@ -202,20 +202,8 @@ key "key-3"
  and television shows.
  Music applications that enable algorithmic playlist generation based on
  mood would make for richer, user-centric applications.
- 
-\begin_inset Note Comment
-status open
-
-\begin_layout Plain Layout
-REDO THIS : In the next few chapters, we discuss the Million Song Dataset,
- an evaluation of the different techniques tried for mood classification
- and how they stack up against previous work done in this area.
- 
-\end_layout
-
-\end_inset
-
-
+ In the next few chapters, we discuss the approach that leads us to 75%
+ accuracy and how it compares to other work done in this area.
 \end_layout
 
 \begin_layout Section
@@ -261,6 +249,7 @@ textit{sad}
 \end_layout
 
 \begin_layout Section
+\noindent
 Literature Review
 \end_layout
 
@@ -341,7 +330,7 @@ begin{array}{@{}lr@{}}
 \backslash
 geq 1, 
 \backslash
-text { Select & G_{1} } 
+text{Select & G_{1}} 
 \backslash
 
 \backslash
@@ -352,7 +341,7 @@ text { Select & G_{1} }
 
      < 1 ,  
 \backslash
-text { Select & G_{2} }
+text{Select & G_{2}}
 \end_layout
 
 \begin_layout Plain Layout
@@ -385,59 +374,38 @@ right
 
 \begin_layout Standard
 Here, 
-\begin_inset ERT
-status collapsed
+\begin_inset Formula $\lambda$
+\end_inset
+
+ represents the likelihood ratio, G
+\begin_inset script subscript
 
 \begin_layout Plain Layout
-
-
-\backslash
-lambda
+i
 \end_layout
 
 \end_inset
 
- represents the likelihood ratio, 
-\begin_inset ERT
-status open
+ represents different mood groups, I is the intensity feature set and P(G
+\begin_inset script subscript
 
 \begin_layout Plain Layout
-
-
-\backslash
-text{G_{i}}
+i
 \end_layout
 
 \end_inset
 
- represents different mood groups, I is the intensity feature set and 
-\begin_inset ERT
-status open
+| I) is the probability that a particular audio clip belongs to a mood group
+ G
+\begin_inset script subscript
 
 \begin_layout Plain Layout
-
-
-\backslash
-text{P(G_{i}|I}
+i 
 \end_layout
 
 \end_inset
 
- is the probability that a particular audio clip belongs to a mood group
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-text{G_{i}}
-\end_layout
-
-\end_inset
-
- given its Intensity features which are calculated from the GMM.
+given its Intensity features which are calculated from the GMM.
  
 \end_layout
 
@@ -619,6 +587,79 @@ Methods and Techniques
 Feature Engineering and Selection
 \end_layout
 
+\begin_layout Standard
+For mood classification, one of the questions we try to answer is, can a
+ model capture the attributes that make a song 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{happy}
+\end_layout
+
+\end_inset
+
+or 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{sad}
+\end_layout
+
+\end_inset
+
+ the same way we as humans do? To answer this question, we used Recursive
+ Feature Elimination with a Random Forest Classifier and 5-fold cross validation.
+ Recursive Feature Elimination is a Backwards Selection technique that helps
+ you find the optimal number of features that minimize the training error.
+ Additionally, once we select the features we also examine the relative
+ importance of these features for different estimators to better understand
+ whether some features are better indicators of mood than others.
+ We mutliplied mode and key and tempo and mode to capture the multiplicative
+ relations between these features.
+ Loudness is provided in decibels and is often negative, so we squared the
+ value for better interpretability.
+ Values for Speechiness, Danceability, Energy, Acousticness and Instrumentalness
+ were often missing when we tried using the Spotify API to fetch them.
+ In that case, we imputed the mean of these values.
+ 
+\end_layout
+
+\begin_layout Standard
+The dataset includes two features Segments Pitches and Segments Timbre which
+ are both 2D arrays of varying shapes.
+ A segment is a 0.3 second long frame in a song.
+ This means that the number of segments varies with the song.
+ Segments Timbre is a 12 dimensional MFCC-like feature for every segment.
+ MFCC is a representation of the short-term power spectrum of a sound obtained
+ by taking a cosine transform of the power spectrum and converting it to
+ the Mel scale.
+ These are very commonly used in audio analysis for speech recognition tasks.
+ In our dataset, the Echo Nest API's Analyze documentation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-1"
+
+\end_inset
+
+ states that they provide Segments Timbre functions by getting MFCC for
+ each segment in a song and then using Principal Component Analysis (PCA)
+ to compactly represent them as a 12 element vector.
+ In a similar vein, Segments Pitches represent the chroma features of each
+ segment in a 12 dimensional vector.
+ Here, the 12 elements of the vector represent pitch classes like C, C#,
+ B and so on.
+ The challenge here is two-fold - how do we find a uniform representation
+ of timbre and pitches that represents a whole song and 
+\end_layout
+
 \begin_layout Subsection
 Modeling
 \end_layout
@@ -738,12 +779,12 @@ textit{happy}
  neatly bucket into either labels.
  This means that a song as complex as Queen's Bohemian Rhapsody does not
  appear in the dataset.
- In Table 1, we present a snapshot of the data available to us.
+ In Table 1, we present a snapshot of the data available to us and Table
+ 2 shows the different categories our attributes fall into.
  
 \end_layout
 
 \begin_layout Standard
-
 \begin_inset ERT
 status open
 
@@ -992,7 +1033,7 @@ end{tabular}
 
 
 \backslash
-caption {Feature Categories} 
+caption {Attribute Categories} 
 \end_layout
 
 \begin_layout Plain Layout
@@ -1011,8 +1052,151 @@ end{table}
 
 \end_layout
 
+\begin_layout Standard
+Upon downloading the dataset and inspecting it, we found that the values
+ of Energy and Danceability which were supposed to be a part of the dataset
+ were 0 in all the tracks.
+ According to the Analyze documentation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-1"
+
+\end_inset
+
+, it means these values were not analyzed.
+ However, Energy and Danceability were crucial features that we needed for
+ our particular task.
+ To solve this problem, we used the Spotify API (the Echo Nest API is now
+ a part of Spotify's Web API).
+ We fetched descriptive features like Energy, Acousticness, Danceability,
+ Instrumentalness and Speechiness for the 7396 songs.
+ Our dataset consists of the atrributes listed in Table 1.
+ 
+\end_layout
+
 \begin_layout Subsection
 Evaluation Metrics
+\end_layout
+
+\begin_layout Standard
+Our dataset contains a near equal distribution of 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{happy}
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{sad}
+\end_layout
+
+\end_inset
+
+ songs as shown in Table 3.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[h]  
+\backslash
+centering   
+\backslash
+begin{tabular}{|l|l|l|}     
+\backslash
+hline     
+\backslash
+textbf{Label} & 
+\backslash
+textbf{Train} & 
+\backslash
+textbf{Test} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     Happy & 2171  & 1522 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     Sad   & 2205  & 1498 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     
+\backslash
+end{tabular} 
+\backslash
+caption {Train and test set distributions} 
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It is due to this distribution that we decide that Accuracy would be the
+ correct metric to use.
+ We define accuracy in (2) where TP, TN, FP, FN stand for True Positive,
+ True Negative, False Positive and False Negative.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{equation}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+text{Accuracy} = 
+\backslash
+frac{TP+TN}{TP+TN+FP+FN}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{equation}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1343,9 +1527,60 @@ key "key-14"
 \end_inset
 
 Dolhansky, Brian.
- “Musical Ensemble Classification Using Universal Background Model Adaptation
- and the Million Song Dataset.” Citeseer, 2012.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{Musical Ensemble Classification Using Universal Background Model
+ Adaptation and the Million Song Dataset}
+\end_layout
+
+\end_inset
+
+.
+ Citeseer, 2012.
  http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.658.4162&rep=rep1&type=pdf.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-1"
+
+\end_inset
+
+Tristan Jehan, David DesRoches, 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{Echo Nest API: Analyze Documentation}
+\end_layout
+
+\end_inset
+
+, http://developer.echonest.com/docs/v4/_static/AnalyzeDocumentation.pdf
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-1"
+
+\end_inset
+
+Ellis, Daniel PW.
+ “Classifying Music Audio with Timbral and Chroma Features.” In ISMIR, 7:339–340,
+ 2007.
+ https://www.ee.columbia.edu/~dpwe/pubs/Ellis07-timbrechroma.pdf.
  
 \end_layout
 

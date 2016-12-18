@@ -13,7 +13,7 @@ features = ['Danceability', 'timavg_5', 'Energy',
  'timavg_11', 'TempoMode', 'TimeSignature', 'KeyMode', 'Mode']
 
 
-xtra_params = {"n_estimators":[10, 50, 100, 500], "max_depth":[7, 10, 15]}
+xtra_params = {"n_estimators":[10, 50, 100, 500, 700], "max_depth":[7, 10, 15], "max_features":['auto', 'sqrt', 'log2', None]}
 
 start = time()
 accuracy = make_scorer(accuracy_score)

@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.svm import SVC
 from sklearn.model_selection import learning_curve
 from sklearn.model_selection import ShuffleSplit
-from explore_features import train
+from get_train_test import train
 
 
 qual_features = ['Danceability',  'Speechiness',  'Instrumentalness', 'Mode', 'Tempo', 'TimeSignature', 'KeyMode', 'TempoMode', 'Beats',
@@ -50,7 +50,7 @@ X, y = train[features], train['Mood']
 
 cv = ShuffleSplit(n_splits=15, test_size=0.4, random_state=0)
 title = "Learning Curves (SVM, RBF kernel, $\gamma=0.001$)"
-estimator = SVC(kernel='linear', gamma=0.1)
+estimator = SVC(kernel='linear', gamma=3)
 
 plot_learning_curve(estimator, title, X, y, (0, 1.01), cv, n_jobs=4)
 

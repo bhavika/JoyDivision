@@ -1,16 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.ensemble import ExtraTreesClassifier
-from explore_features import train
+from get_train_test import train
 
+timbre = [col for col in list(train.columns.values) if col.startswith('tim_')]
 
-timbre_avg = [col for col in list(train.columns.values) if col.startswith('timavg_')]
+# timbre_avg = [col for col in list(train.columns.values) if col.startswith('timavg_')]
 pitch_col = [col for col in list(train.columns.values) if col.startswith('pitch_')]
 
 featurenames = ['KeyMode', 'LoudnessSq', 'Mode',  'Speechiness', 'Danceability',
           'Acousticness', 'Instrumentalness', 'TimeSignature', 'Tempo', 'Energy', 'TempoMode', 'Beats']
 
-features = featurenames  + pitch_col + timbre_avg
+timbres = ['AvgLoudnessTimbre', 'AvgBrightnessTimbre', 'AvgFlatnessTimbre', 'AvgAttackTimbre']
+
+features = timbres+ pitch_col + featurenames
 
 X = train[features]
 y = train['Mood']

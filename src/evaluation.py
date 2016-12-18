@@ -1,6 +1,6 @@
 from sklearn.metrics import accuracy_score, v_measure_score
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, AdaBoostClassifier, ExtraTreesClassifier
-from explore_features import train, test
+from get_train_test import train, test
 from sklearn.ensemble import VotingClassifier
 from sklearn.svm import SVC
 from sklearn.cluster import KMeans
@@ -28,7 +28,7 @@ rfc = RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini'
             max_depth=15, max_features='auto', max_leaf_nodes=None,
             min_impurity_split=1e-07, min_samples_leaf=1,
             min_samples_split=2, min_weight_fraction_leaf=0.0,
-            n_estimators=500, n_jobs=1, oob_score=False, random_state=None,
+            n_estimators=500, n_jobs=1, oob_score=False, random_state=88,
             verbose=0, warm_start=False)
 
 rfc.fit(train[features], train['Mood'])
@@ -67,7 +67,7 @@ print "KNeighbors Classifier"
 print accuracy_score(test['Mood'], knn.predict(test[features]))
 
 
-svm = SVC(kernel='linear', C=0.1, gamma='auto')
+svm = SVC(kernel='linear', C=3, gamma='auto')
 svm.fit(train[features], train['Mood'])
 print "Support Vector Machines"
 print accuracy_score(test['Mood'], svm.predict(test[features]))

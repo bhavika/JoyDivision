@@ -97,7 +97,7 @@ def compute_timbre_average(x):
     return avg
 
 
-def compute_timbre_avg_var(x):
+def compute_timbre_var(x):
     features = x.T
     flen = features.shape[1]
     ndim = features.shape[0]
@@ -106,19 +106,14 @@ def compute_timbre_avg_var(x):
     if flen < 3:
         print "flen < 3"
         return None
-    avg = np.average(features, 1)
-    varflat = []
-    for k in range(12):
-        varflat.extend(np.diag(variance, k))
-    f = np.concatenate([avg, varflat])
-    f = list(f)
+    f = list([variance])
     return f
 
 
 master['TimbreVector'] = master['Timbre'].apply(lambda x: compute_timbre_feature(x))
 master['PitchVector'] = master['Pitches'].apply(lambda x: compute_pitch_feature(x))
 master['TimbreAverage'] = master['Timbre'].apply(lambda x: compute_timbre_average(x))
-master['TimbreAvgVariance'] = master['Timbre'].apply(lambda x: compute_timbre_avg_var(x))
+master['TimbreAvgVariance'] = master['Timbre'].apply(lambda x: compute_timbre_var(x))
 
 
 timbrevec = master['TimbreVector'].apply(pd.Series)
@@ -133,9 +128,6 @@ pitchvec = master['PitchVector'].apply(pd.Series)
 pitchvec = pitchvec.rename(columns = lambda x: 'pitch_'+str(x))
 master = pd.concat([master[:], pitchvec[:]], axis=1)
 
-timbrevariances = master['TimbreAvgVariance'].apply(pd.Series)
-timbrevariances = timbrevariances.rename(columns = lambda x: 'timvar_'+str(x))
-master = pd.concat([master[:], timbrevariances[:]], axis=1)
 
 master['Beats'] = master['BeatsConfidence'].apply(lambda x: get_shape(x))
 master['MinutesLong'] = master['Length'] / 60

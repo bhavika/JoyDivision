@@ -1,4 +1,4 @@
-from explore_features import train
+from get_train_test import train
 from sklearn.model_selection import GridSearchCV
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, AdaBoostClassifier, ExtraTreesClassifier
 from sklearn.svm import SVC
@@ -15,17 +15,26 @@ import subprocess
 
 start = time()
 
-qual_features = ['Danceability',  'Speechiness',  'Instrumentalness', 'Mode', 'Tempo', 'TimeSignature', 'KeyMode', 'TempoMode', 'Beats',
-            'Energy', 'Acousticness', 'LoudnessSq']
 
+# qual_features = ['Danceability',  'Speechiness',  'Instrumentalness', 'Mode', 'Tempo', 'TimeSignature', 'KeyMode', 'TempoMode', 'Beats',
+#             'Energy', 'Acousticness', 'LoudnessSq']
+#
+#
+# audio_features = ['timavg_5', 'timavg_3',  'pitch_1', 'timavg_1', 'pitch_0', 'pitch_8', 'pitch_5', 'timavg_0',
+#                   'pitch_10', 'pitch_6', 'pitch_2', 'timavg_4', 'pitch_11', 'pitch_3', 'pitch_7', 'timavg_7',
+#                   'timavg_9', 'pitch_9', 'pitch_4', 'timavg_10',  'timavg_2', 'timavg_6', 'timavg_8', 'timavg_11']
+#
+# timbres = ['AvgLoudnessTimbre', 'AvgBrightnessTimbre', 'AvgFlatnessTimbre', 'AvgAttackTimbre']
 
-audio_features = ['timavg_5', 'timavg_3',  'pitch_1', 'timavg_1', 'pitch_0', 'pitch_8', 'pitch_5', 'timavg_0',
-                  'pitch_10', 'pitch_6', 'pitch_2', 'timavg_4', 'pitch_11', 'pitch_3', 'pitch_7', 'timavg_7',
-                  'timavg_9', 'pitch_9', 'pitch_4', 'timavg_10',  'timavg_2', 'timavg_6', 'timavg_8', 'timavg_11']
+audio_features = [col for col in list(train.columns.values) if col.startswith('pitch_')]
+timbres = ['AvgLoudnessTimbre', 'AvgBrightnessTimbre', 'AvgFlatnessTimbre', 'AvgAttackTimbre']
 
+qual_features = ['KeyMode', 'LoudnessSq', 'Mode',  'Speechiness', 'Danceability',
+               'Acousticness', 'Instrumentalness', 'TimeSignature',
+                'Tempo', 'Energy', 'TempoMode', 'Beats']
 
-features = audio_features + qual_features
-
+features = audio_features + qual_features + timbres
+print features
 
 X = train[features]
 y = train['Mood']

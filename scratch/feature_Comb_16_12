@@ -1,0 +1,106 @@
+/home/bhavika/anaconda2/bin/python /home/bhavika/PycharmProjects/JoyDivision/src/feature_combinations.py
+Combination 1: top 4 timbres, pitch averages, desc and notational features
+['Danceability', 'Energy', 'Instrumentalness', 'AvgFlatnessTimbre', 'Acousticness', 'pitch_0', 'AvgLoudnessTimbre', 'pitch_1', 'pitch_8', 'pitch_3', 'pitch_11', 'pitch_6', 'Speechiness', 'pitch_10', 'pitch_5', 'AvgAttackTimbre', 'pitch_2', 'AvgBrightnessTimbre', 'pitch_9', 'pitch_7', 'Beats', 'pitch_4', 'LoudnessSq', 'Tempo', 'TempoMode', 'TimeSignature', 'KeyMode', 'Mode']
+Feature ranking:
+1. feature 16 Danceability (0.110939)
+2. feature 17 Energy (0.051920)
+3. feature 21 Instrumentalness (0.048342)
+4. feature 2 AvgFlatnessTimbre (0.046213)
+5. feature 20 Acousticness (0.038398)
+6. feature 4 pitch_0 (0.037610)
+7. feature 0 AvgLoudnessTimbre (0.037180)
+8. feature 5 pitch_1 (0.037091)
+9. feature 12 pitch_8 (0.034039)
+10. feature 7 pitch_3 (0.033726)
+11. feature 15 pitch_11 (0.033667)
+12. feature 10 pitch_6 (0.033554)
+13. feature 22 Speechiness (0.033378)
+14. feature 14 pitch_10 (0.033153)
+15. feature 9 pitch_5 (0.032954)
+16. feature 3 AvgAttackTimbre (0.032108)
+17. feature 6 pitch_2 (0.032074)
+18. feature 1 AvgBrightnessTimbre (0.031466)
+19. feature 13 pitch_9 (0.031314)
+20. feature 11 pitch_7 (0.031221)
+21. feature 27 Beats (0.030648)
+22. feature 8 pitch_4 (0.029686)
+23. feature 19 LoudnessSq (0.029639)
+24. feature 18 Tempo (0.029103)
+25. feature 26 TempoMode (0.023767)
+26. feature 25 TimeSignature (0.022862)
+27. feature 24 KeyMode (0.021840)
+28. feature 23 Mode (0.012105)
+Done with combination 1
+Combination 2- Top 4 timbres and Desc features -----------------------------------
+['Danceability', 'Energy', 'AvgFlatnessTimbre', 'Instrumentalness', 'AvgLoudnessTimbre', 'Acousticness', 'Speechiness', 'AvgBrightnessTimbre', 'LoudnessSq', 'AvgAttackTimbre', 'Tempo']
+Feature ranking for combination 2:
+1. feature 4 Danceability (0.173732)
+2. feature 5 Energy (0.104367)
+3. feature 2 AvgFlatnessTimbre (0.092134)
+4. feature 9 Instrumentalness (0.091040)
+5. feature 0 AvgLoudnessTimbre (0.084636)
+6. feature 8 Acousticness (0.082546)
+7. feature 10 Speechiness (0.080264)
+8. feature 1 AvgBrightnessTimbre (0.075015)
+9. feature 7 LoudnessSq (0.072296)
+10. feature 3 AvgAttackTimbre (0.072084)
+11. feature 6 Tempo (0.071886)
+Done with combination 2
+Combination 3 - Notational features & Desc features -----------------------------------
+['Danceability', 'Energy', 'Instrumentalness', 'Acousticness', 'Speechiness', 'Beats', 'LoudnessSq', 'Tempo', 'TempoMode', 'KeyMode', 'TimeSignature', 'Mode']
+Feature ranking for combination 3:
+1. feature 0 Danceability (0.192657)
+2. feature 1 Energy (0.120835)
+3. feature 5 Instrumentalness (0.100369)
+4. feature 4 Acousticness (0.093175)
+5. feature 6 Speechiness (0.089002)
+6. feature 11 Beats (0.083385)
+7. feature 3 LoudnessSq (0.081795)
+8. feature 2 Tempo (0.079838)
+9. feature 10 TempoMode (0.054750)
+10. feature 8 KeyMode (0.049340)
+11. feature 9 TimeSignature (0.043549)
+12. feature 7 Mode (0.011303)
+Done with combination 3
+Combination 4 - Pitch, Timbre and Desc -----------------------------------
+['Danceability', 'Energy', 'Instrumentalness', 'AvgFlatnessTimbre', 'Acousticness', 'pitch_0', 'pitch_1', 'AvgLoudnessTimbre', 'pitch_3', 'pitch_8', 'Speechiness', 'pitch_11', 'pitch_6', 'pitch_10', 'AvgBrightnessTimbre', 'pitch_5', 'pitch_9', 'pitch_7', 'AvgAttackTimbre', 'pitch_2', 'Tempo', 'LoudnessSq', 'pitch_4']
+Feature ranking for combination 4:
+1. feature 16 Danceability (0.118138)
+2. feature 17 Energy (0.053931)
+3. feature 21 Instrumentalness (0.052964)
+4. feature 14 AvgFlatnessTimbre (0.051427)
+5. feature 20 Acousticness (0.043272)
+6. feature 0 pitch_0 (0.043067)
+7. feature 1 pitch_1 (0.042983)
+8. feature 12 AvgLoudnessTimbre (0.042167)
+9. feature 3 pitch_3 (0.039105)
+10. feature 8 pitch_8 (0.038821)
+11. feature 22 Speechiness (0.038583)
+12. feature 11 pitch_11 (0.038243)
+13. feature 6 pitch_6 (0.038136)
+14. feature 10 pitch_10 (0.037715)
+15. feature 13 AvgBrightnessTimbre (0.036873)
+16. feature 5 pitch_5 (0.036529)
+17. feature 9 pitch_9 (0.036290)
+18. feature 7 pitch_7 (0.036239)
+19. feature 15 AvgAttackTimbre (0.036223)
+20. feature 2 pitch_2 (0.036117)
+21. feature 18 Tempo (0.034773)
+22. feature 19 LoudnessSq (0.034292)
+23. feature 4 pitch_4 (0.034114)
+Done with combination 4
+Combination 5 - Desc features only -----------------------------------
+['Danceability', 'Energy', 'Instrumentalness', 'Acousticness', 'Speechiness', 'LoudnessSq', 'Tempo']
+Feature ranking for combination 5:
+1. feature 0 Danceability (0.228026)
+2. feature 1 Energy (0.157520)
+3. feature 5 Instrumentalness (0.131194)
+4. feature 4 Acousticness (0.129630)
+5. feature 6 Speechiness (0.125367)
+6. feature 3 LoudnessSq (0.115273)
+7. feature 2 Tempo (0.112990)
+Done with combination 5
+ -------------------------------------------------------------------
+Elapsed time 13.4286010265
+
+Process finished with exit code 0

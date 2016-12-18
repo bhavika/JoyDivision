@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from explore_features import train
+from get_train_test import train
 from sklearn.ensemble import ExtraTreesClassifier
 import matplotlib.pyplot as plt
 from time import time
@@ -9,7 +9,7 @@ timbre_avg = [col for col in list(train.columns.values) if col.startswith('timav
 timbre = [col for col in list(train.columns.values) if col.startswith('tim_')]
 pitch_col = [col for col in list(train.columns.values) if col.startswith('pitch_')]
 top_4_timbre = ['AvgLoudnessTimbre', 'AvgBrightnessTimbre', 'AvgFlatnessTimbre', 'AvgAttackTimbre']
-desc_features = ['Danceability', 'Energy', 'Tempo', 'LoudnessSq', 'Acousticness', 'Instrumentalness', 'Speechiness']
+desc_features = ['Energy', 'Tempo', 'LoudnessSq', 'Acousticness', 'Instrumentalness', 'Speechiness', 'Danceability']
 notational_features = ['Mode', 'KeyMode', 'TimeSignature', 'TempoMode', 'Beats']
 
 comb1 = top_4_timbre + pitch_col + desc_features + notational_features
