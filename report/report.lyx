@@ -7,6 +7,7 @@
 \textclass article
 \begin_preamble
 \usepackage{caption}
+\usepackage{tabulary}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -78,7 +79,7 @@
 Music Mood Classification Using The Million Song Dataset
 \end_layout
 
-\begin_layout Date
+\begin_layout Author
 Bhavika Tekwani
 \end_layout
 
@@ -120,8 +121,8 @@ textit{sad}
 \end_inset
 
  through audio content analysis.
- The paper shows that timbral and spectral features like MFCC can indeed
- be used for mood classification with a fair degree of success.
+ The paper shows that low level audio features like MFCC can indeed be used
+ for mood classification with a fair degree of success.
  We also compare the effects of using certain descriptive features like
  acousticness, speechiness, danceability and instrumentalness for this type
  of binary mood classification as against combining them with timbral and
@@ -372,7 +373,7 @@ key "key-5"
  them.
  Calculating average correlation peak, ratio between average peak strength
  and average valley strength, average tempo and average onset frequency
- leads to a five feature rhythm feature vector.
+ leads to a five element rhythm feature vector.
  They use the mean and standard deviation of the frame level features (timbre
  and intensity) to capture the overall structure of the frame.
  
@@ -383,10 +384,10 @@ A Gaussian Mixture Model (GMM) with 16 mixtures is used to model each feature
  related to a particular mood cluster.
  The Expectation Maximization (EM) algorithm is used to estimate the parameters
  of Gaussian components and mixture weights.
- K-Means is used for initialization.
+ In this case, K-Means is used for initialization.
  Once the GMM models are obtained, the mood classification depends on a
- simple hypothesis test with the intensity features given by (1).
- 
+ simple hypothesis test with the intensity features given by the equation
+ below.
 \end_layout
 
 \begin_layout Standard
@@ -397,7 +398,7 @@ status open
 
 
 \backslash
-begin{equation} 
+begin{equation}
 \end_layout
 
 \begin_layout Plain Layout
@@ -412,6 +413,11 @@ lambda =
     
 \backslash
 frac{P(G_{1}/I)}{P(G_{2}/I)}, 
+\end_layout
+
+\begin_layout Plain Layout
+
+    
 \backslash
 left
 \backslash
@@ -426,18 +432,13 @@ begin{array}{@{}lr@{}}
 \backslash
 geq 1, 
 \backslash
-text{Select & G_{1}} 
+text{Select & G_{1}}  
 \backslash
 
 \backslash
-
-\end_layout
-
-\begin_layout Plain Layout
-
      < 1 ,  
 \backslash
-text{Select & G_{2}}
+text{Select & G_{2}}                           
 \end_layout
 
 \begin_layout Plain Layout
@@ -451,7 +452,7 @@ end{array}
 
 
 \backslash
-end{equation} 
+end{equation}
 \end_layout
 
 \begin_layout Plain Layout
@@ -543,8 +544,8 @@ memory feature
  Covariance between the features is ignored.
  The resulting mean and variance values are inputs to ADABOOST.
  Bergstra et all explore the effects of varying segment lengths on classificatio
-n accuracy and conclude that in smaller segments, mean and variance have
- higher variance.
+n accuracy and conclude that in smaller segments, mean and variance of the
+ segments have higher variance.
 \end_layout
 
 \begin_layout Subsection
@@ -712,7 +713,8 @@ textit{sad}
 \end_inset
 
  the same way we as humans do? To answer this question, we used Recursive
- Feature Elimination with a Random Forest Classifier and 5-fold cross validation.
+ Feature Elimination (RFECV) with a Random Forest Classifier and 5-fold
+ cross validation.
  Recursive Feature Elimination is a Backwards Selection technique that helps
  you find the optimal number of features that minimize the training error.
  Additionally, once we select the features we also examine the relative
@@ -796,54 +798,19 @@ Segment aggregation involves computing several statistical moments like
  This gives us two 12 dimensional vectors for pitches and timbre.
  Now, we use these as features for our models.
  
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{figure}
-\end_layout
-
+\begin_inset VSpace 2pt
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Graphics
-	filename /home/bhavika/PycharmProjects/JoyDivision/explore/rfe.png
-	lyxscale 30
-	scale 25
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{figure}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-The figure above shows the cross validation accuracy as it varies depending
- on the number of features selected.
+Using RFECV, we selected 12 timbre features (equation (1)), 12 pitch averages
+ (equation (2)) and descriptive features like Danceability, Speechiness,
+ Beats, LoudnessSq, Instrumentalness, Energy and Acousticness for a total
+ of 31 features.
+ Other features like Key*Mode, Tempo*Mode, Time Signature, Key and Mode
+ were found to not aid the classification task and were discarded.
  
 \end_layout
 
@@ -873,14 +840,9 @@ status open
 
 
 \backslash
-begin{table}[h]     
-\end_layout
-
-\begin_layout Plain Layout
-
-
+begin{table}[htbp]   
 \backslash
-centering
+centering 
 \end_layout
 
 \begin_layout Plain Layout
@@ -889,84 +851,15 @@ centering
 \backslash
 begin{tabular}{|l|l|}     
 \backslash
-hline  
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-backslashtextbf
-\backslash
-{Estimator
-\backslash
-} 
-\end_layout
-
-\begin_layout Plain Layout
-
-& 
-\backslash
-backslashtextbf
-\backslash
-{Parameters
-\backslash
-}                                                      
-\end_layout
-
-\begin_layout Plain Layout
-
- 
+hline     Estimators      & Hyperparameters                            
+                                         
 \backslash
 
 \backslash
  
 \backslash
-hline     Random Forest Classifier        & n
-\backslash
-_estimators = 
-\backslash
-{300
-\backslash
-} (10), max
-\backslash
-_depth = 
-\backslash
-{15
-\backslash
-} (None)                                                          
-\backslash
-
-\backslash
- 
-\backslash
-hline     XGBoost Classifier              & ~                          
-                                                                 
-\backslash
-
-\backslash
- 
-\backslash
-hline     Gradient Boosting Classifier    & 
-\end_layout
-
-\begin_layout Plain Layout
-
-loss=
-\backslash
-{exponential
-\backslash
-} (deviance), max
-\backslash
-_depth = (6
-\backslash
-} (3), 
-\backslash
-
-\backslash
- criteria=mse (friedman
-\backslash
-_mse), 
+hline     Random Forest Classifier       & estimators= 300, max.
+ depth = 15     
 \end_layout
 
 \begin_layout Plain Layout
@@ -975,76 +868,81 @@ _mse),
 \backslash
 
 \backslash
-n
+ 
 \backslash
-_estimators=(200
-\backslash
-}(100) 
+hline     XGBoost Classifier    & max.
+ depth = 5,   max.
+ delta step = 0.1   
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
 \backslash
 
 \backslash
  
+\backslash
+hline     Gradient Boosting Classifier   & loss = exponential, max.
+ depth = 6, criteria = mse, estimators = 200 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     ADABOOST Classifier            & learning rate = 0.1, no.
+ of estimators = 300    
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-hline     ADABOOST Classifier             & learning
+
 \backslash
-_rate=
+ 
 \backslash
-{0.1
-\backslash
-}(1), n
-\backslash
-_estimators=
-\backslash
-{300
-\backslash
-}(50)                                                              
+hline     Extra Trees Classifier         & max.
+ depth = 15, estimators = 100    
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
 
 \backslash
  
 \backslash
-hline     Support Vector Machine          & C=
-\backslash
-{2
-\backslash
-}(1), kernel=
-\backslash
-{linear
-\backslash
-} (rbf), gamma = 
-\backslash
-{0.1
-\backslash
-} (auto)                                                       
+hline     SVM   & C = 2, kernel = linear, gamma = 0.1  
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
 
 \backslash
  
 \backslash
-hline     Gaussian Naive Bayes Classifier & priors=None (None)         
-                                                                       
-                
+hline     Gaussian Naive Bayes           & priors = None  
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
 \backslash
 
 \backslash
  
 \backslash
-hline     K Nearest Neighbors             & n
-\backslash
-_neighbors=
-\backslash
-{29
-\backslash
-} (5), metric = 
-\backslash
-{euclidean
-\backslash
-}(minkowski)                                                        
+hline     K Nearest Neighbour Classifier & number of neighbours = 29, P
+ = 2, metric = euclidean     
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
 \backslash
 
 \backslash
@@ -1054,11 +952,15 @@ hline
 \backslash
 end{tabular}     
 \backslash
-caption {Estimators with tuned hyperparameters} 
+caption {Tuned hyperparameters for various estimators} 
 \backslash
 end{table}
 \end_layout
 
+\end_inset
+
+
+\begin_inset Newpage pagebreak
 \end_inset
 
 
@@ -1188,7 +1090,7 @@ status open
 
 
 \backslash
-begin{table}[h]   
+begin{table}[htbp]   
 \end_layout
 
 \begin_layout Plain Layout
@@ -1368,7 +1270,7 @@ status open
 
 
 \backslash
-begin{table}[h]
+begin{table}[htbp]
 \end_layout
 
 \begin_layout Plain Layout
@@ -1501,7 +1403,7 @@ textit{sad}
 
 \end_inset
 
- songs as shown in Table 3.
+ songs as shown in Table 4.
 \end_layout
 
 \begin_layout Standard
@@ -1512,7 +1414,7 @@ status open
 
 
 \backslash
-begin{table}[h]  
+begin{table}[htbp]  
 \backslash
 centering   
 \backslash
@@ -1559,7 +1461,7 @@ end{table}
 \begin_layout Standard
 It is due to this distribution that we decide that Accuracy would be the
  correct metric to use.
- Accuracy is defined in (2) where TP, TN, FP, FN stand for True Positive,
+ Accuracy is defined in (5) where TP, TN, FP, FN stand for True Positive,
  True Negative, False Positive and False Negative.
 \end_layout
 
@@ -1600,6 +1502,27 @@ Experimental Results
 \end_layout
 
 \begin_layout Standard
+We aim to evaluate three types of feature subsets.
+ 
+\end_layout
+
+\begin_layout Standard
+In Table 5, P represents Pitch, T represents Timbre and D represents Descriptive
+ features.
+ 
+\end_layout
+
+\begin_layout Standard
+Timbre and pitch features are shown in equations (1) and (2) respectively.
+ 
+\end_layout
+
+\begin_layout Standard
+Descriptive features include Danceability, Energy, Speechiness, Acousticness,
+ Instrumentalness, Beats and LoudnessSq.
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -1607,141 +1530,189 @@ status open
 
 
 \backslash
-begin{table}[h]  
+begin{table}[htbp]  
 \backslash
 centering   
 \backslash
 begin{tabular}{|l|l|l|}     
 \backslash
-hline     Estimator                     & Features & Test Accuracy 
+hline     
+\backslash
+textbf{Estimator}                       & 
+\backslash
+textbf{Features} & 
+\backslash
+textbf{Test Accuracy} 
 \backslash
 
 \backslash
  
 \backslash
-hline     Random Forest Classifier      & P, T, D  & ~             
+hline     Random Forest Classifier        & P, T, D  & 0.7456        
 \backslash
 
 \backslash
  
 \backslash
-hline     ~                             & P , T    & ~             
+hline     ~                               & P , T    & 0.7291        
 \backslash
 
 \backslash
  
 \backslash
-hline     ~                             & D        & ~             
+hline     ~                               & D        & 0.7182        
 \backslash
 
 \backslash
  
 \backslash
-hline     ADABOOST Classifier           & P.
+hline     ADABOOST Classifier             & P.
  T.
- D  & ~             
+ D  & 0.7354        
 \backslash
 
 \backslash
  
 \backslash
-hline     ~                             & P, T     & ~             
+hline     ~                               & P, T     & 0.7168        
 \backslash
 
 \backslash
  
 \backslash
-hline     ~                             & D        & ~             
+hline     ~                               & D        & 0.7119        
 \backslash
 
 \backslash
  
 \backslash
-hline     XGBoost Classifier            & P, T, D  & ~             
+hline     XGBoost Classifier              & P, T, D  & 
+\backslash
+textbf{0.7533}        
 \backslash
 
 \backslash
  
 \backslash
-hline     ~                             & P, T     & ~             
+hline     ~                               & P, T     & 0.7344        
 \backslash
 
 \backslash
  
 \backslash
-hline     ~                             & D        & ~             
+hline     ~                               & D        & 0.7165        
 \backslash
 
 \backslash
  
 \backslash
-hline     Gradient Boosting Classifier  & P, T, D  & ~             
+hline     Gradient Boosting Classifier    & P, T, D  & 
+\backslash
+textbf{0.7552}        
 \backslash
 
 \backslash
  
 \backslash
-hline     ~                             & P, T     & ~             
+hline     ~                               & P, T     & 0.7145        
 \backslash
 
 \backslash
  
 \backslash
-hline     ~                             & D        & ~             
+hline     ~                               & D        & 0.7105        
 \backslash
 
 \backslash
  
 \backslash
-hline     SVM                           & P, T, D  & ~             
+hline     SVM                             & P, T, D  & 0.7350        
 \backslash
 
 \backslash
  
 \backslash
-hline     ~                             & P, T     & ~             
+hline     ~                               & P, T     & 0.7142        
 \backslash
 
 \backslash
  
 \backslash
-hline     ~                             & D        & ~             
+hline     ~                               & D        & 0.6966        
 \backslash
 
 \backslash
  
 \backslash
-hline     K Nearest Neighbor Classifier & P, T, D  & ~             
+hline     K Nearest Neighbor Classifier   & P, T, D  & 0.6397        
 \backslash
 
 \backslash
  
 \backslash
-hline     ~                             & P, T     & ~             
+hline     ~                               & P, T     & 0.6725        
 \backslash
 
 \backslash
  
 \backslash
-hline     ~                             & D        & ~             
+hline     ~                               & D        & 0.5360        
 \backslash
 
 \backslash
  
 \backslash
-hline     Voting Classifier             & P, T, D  & ~             
+hline     Extra Trees Classifier          & P, T, D  & 0.7447        
 \backslash
 
 \backslash
  
 \backslash
-hline     ~                             & P, T     & ~             
+hline     ~                               & P, T     & 0.7245        
 \backslash
 
 \backslash
  
 \backslash
-hline     ~                             & D        & ~             
+hline     ~                               & D        & 0.7178        
+\backslash
+
+\backslash
+ 
+\backslash
+hline     Gaussian Naive Bayes Classifier & P, T, D  & 0.6821        
+\backslash
+
+\backslash
+ 
+\backslash
+hline     ~                               & P, T     & 0.6645        
+\backslash
+
+\backslash
+ 
+\backslash
+hline     ~                               & D        & 0.6417        
+\backslash
+
+\backslash
+ 
+\backslash
+hline     Voting Classifier               & P, T, D  & 
+\backslash
+textbf{0.7506}        
+\backslash
+
+\backslash
+ 
+\backslash
+hline     ~                               & P, T     & 0.7238        
+\backslash
+
+\backslash
+ 
+\backslash
+hline     ~                               & D        & 0.7132        
 \backslash
 
 \backslash
@@ -1765,8 +1736,91 @@ end{table}
 Conclusion
 \end_layout
 
+\begin_layout Standard
+We observe from our experimental results that Ensemble classifiers like
+ Random Forests, XGBoost, Gradient Boosting Classifier, ADABOOST perform
+ better on our test set than SVMs and Naive Bayes classifier.
+ Comparing our results to the work of Goel & Padial 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-11"
+
+\end_inset
+
+ we see that our highest accuracy is 75.52 % with a Gradient Boosting Classifier
+ whereas they achieved 75.76% with an SVM using an RBF kernel.
+ The difference in dataset size is significant as we compare pur 7396 to
+ their 233.
+ We feel that this is a fair result but the feature extraction process could
+ be improved.
+ To answer the questions we ask in the problem statement, yes, audio features
+ do aid in the mood classification task.
+ It can be observed that using audio features like pitch and timbre along
+ with descriptive features provides atleast a 3% increase in accuracy.
+ Additionally, pitch and timbre averages themselves are sufficient to reach
+ 72.91% accuracy with Random Forest Classifiers.
+ 
+\end_layout
+
 \begin_layout Subsection
 Directions for Future Work
+\end_layout
+
+\begin_layout Standard
+In this music mood classification task, the lack of ground truth labels
+ for a dataset as large as MSD was a significant hurdle to any further explorati
+on of genre-mood relationships or hierarchical mood classification.
+ We attempted some analysis to understand the relation between genre and
+ mood but we only had genre labels for ~2000 songs out of the 7396 we labeled.
+ Now that we are able to achieve upto 75% test accuracy, hierarchical mood
+ classification would be an interesting approach to take if only we had
+ ground truth labels for moods that fall under 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{happy}
+\end_layout
+
+\end_inset
+
+ and 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{sad}
+\end_layout
+
+\end_inset
+
+.
+ A good way to demonstrate this would be by building a recommender system
+ that allows you to enter a song title and then suggests a song similar
+ to the one you entered.
+ The metric for similarity would be emotional valence, timbre, pitch and
+ other audio features.
+ A simple framework for this would have the following steps:
+\end_layout
+
+\begin_layout Standard
+1) Enter a song title based on which you want recommendations
+\end_layout
+
+\begin_layout Standard
+2) Analyse the song to assign it to a mood based cluster
+\end_layout
+
+\begin_layout Standard
+3) Suggest a song from the cluster that is most similar to the one entered
+ by the user.
+ 
 \end_layout
 
 \begin_layout Bibliography
@@ -2152,6 +2206,29 @@ textit{Classifying Music Audio with Timbral and Chroma Features}
 , In ISMIR, 7:339–340, 2007.
  https://www.ee.columbia.edu/~dpwe/pubs/Ellis07-timbrechroma.pdf.
  
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-2"
+
+\end_inset
+
+ Juan Pablo Bello, 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+textit{Low level features and timbre}
+\end_layout
+
+\end_inset
+
+, New York University, http://www.nyu.edu/classes/bello/MIR_files/timbre.pdf
 \end_layout
 
 \end_body

@@ -1,0 +1,286 @@
+/home/bhavika/anaconda2/lib/python2.7/site-packages/sklearn/cross_validation.py:44: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.
+  "This module will be removed in 0.20.", DeprecationWarning)
+Train--------
+False    2205
+True     2171
+Name: Mood, dtype: int64
+Test----------
+True     1522
+False    1498
+Name: Mood, dtype: int64
+['pitch_0', 'pitch_1', 'pitch_2', 'pitch_3', 'pitch_4', 'pitch_5', 'pitch_6', 'pitch_7', 'pitch_8', 'pitch_9', 'pitch_10', 'pitch_11', 'timavg_0', 'timavg_1', 'timavg_2', 'timavg_3', 'timavg_4', 'timavg_5', 'timavg_6', 'timavg_7', 'timavg_8', 'timavg_9', 'timavg_10', 'timavg_11', 'Danceability', 'Speechiness', 'Instrumentalness', 'Beats', 'Energy', 'Acousticness', 'LoudnessSq']
+Training on all features
+RFC
+             precision    recall  f1-score   support
+
+      happy       0.75      0.73      0.74       670
+        sad       0.73      0.75      0.74       643
+
+avg / total       0.74      0.74      0.74      1313
+
+Accuracy:  0.741812642803
+
+
+ETC
+             precision    recall  f1-score   support
+
+      happy       0.68      0.77      0.72       670
+        sad       0.72      0.62      0.67       643
+
+avg / total       0.70      0.70      0.70      1313
+
+Accuracy:  0.697638994669
+
+
+ABC
+             precision    recall  f1-score   support
+
+      happy       0.72      0.73      0.72       670
+        sad       0.71      0.71      0.71       643
+
+avg / total       0.72      0.72      0.72      1313
+
+Accuracy:  0.71820258949
+
+
+XGB
+             precision    recall  f1-score   support
+
+      happy       0.75      0.78      0.77       670
+        sad       0.76      0.73      0.75       643
+
+avg / total       0.76      0.76      0.76      1313
+
+Accuracy:  0.75628332064
+
+
+GBC
+             precision    recall  f1-score   support
+
+      happy       0.73      0.77      0.75       670
+        sad       0.75      0.71      0.73       643
+
+avg / total       0.74      0.74      0.74      1313
+
+Accuracy:  0.740289413557
+
+
+KNN
+             precision    recall  f1-score   support
+
+      happy       0.64      0.63      0.64       670
+        sad       0.62      0.63      0.63       643
+
+avg / total       0.63      0.63      0.63      1313
+
+Accuracy:  0.631378522468
+
+
+NB
+             precision    recall  f1-score   support
+
+      happy       0.66      0.82      0.73       670
+        sad       0.74      0.55      0.64       643
+
+avg / total       0.70      0.69      0.68      1313
+
+Accuracy:  0.688499619193
+
+
+SVM
+             precision    recall  f1-score   support
+
+      happy       0.76      0.74      0.75       670
+        sad       0.73      0.76      0.74       643
+
+avg / total       0.75      0.75      0.75      1313
+
+Accuracy:  0.746382330541
+
+
+Elapsed time:  1241.85536885
+Training on audio features only
+RFC
+             precision    recall  f1-score   support
+
+      happy       0.74      0.72      0.73       670
+        sad       0.72      0.74      0.73       643
+
+avg / total       0.73      0.73      0.73      1313
+
+Accuracy:  0.730388423458
+
+
+ETC
+             precision    recall  f1-score   support
+
+      happy       0.67      0.77      0.71       670
+        sad       0.71      0.60      0.65       643
+
+avg / total       0.69      0.69      0.68      1313
+
+Accuracy:  0.685453160701
+
+
+ABC
+             precision    recall  f1-score   support
+
+      happy       0.69      0.69      0.69       670
+        sad       0.68      0.67      0.67       643
+
+avg / total       0.68      0.68      0.68      1313
+
+Accuracy:  0.681645087586
+
+
+XGB
+             precision    recall  f1-score   support
+
+      happy       0.73      0.75      0.74       670
+        sad       0.73      0.71      0.72       643
+
+avg / total       0.73      0.73      0.73      1313
+
+Accuracy:  0.729626808835
+
+
+GBC
+             precision    recall  f1-score   support
+
+      happy       0.73      0.73      0.73       670
+        sad       0.72      0.72      0.72       643
+
+avg / total       0.72      0.72      0.72      1313
+
+Accuracy:  0.724295506474
+
+
+KNN
+             precision    recall  f1-score   support
+
+      happy       0.65      0.66      0.65       670
+        sad       0.64      0.64      0.64       643
+
+avg / total       0.65      0.65      0.65      1313
+
+Accuracy:  0.647372429551
+
+
+NB
+             precision    recall  f1[Sun Dec 18 07:51:36 2016 : 227350] speechd: Speech Dispatcher 0.8 starting
+[Sun Dec 18 07:51:36 2016 : 227472] speechd: Speech Dispatcher already running.
+
+Speech Dispatcher already running.
+
+-score   support
+
+      happy       0.65      0.79      0.71       670
+        sad       0.72      0.56      0.63       643
+
+avg / total       0.68      0.68      0.67      1313
+
+Accuracy:  0.675552170602
+
+
+SVM
+             precision    recall  f1-score   support
+
+      happy       0.72      0.66      0.69       670
+        sad       0.67      0.73      0.70       643
+
+avg / total       0.69      0.69      0.69      1313
+
+Accuracy:  0.693069306931
+
+
+Elapsed time:  1421.30060887
+Training on qual features only
+RFC
+             precision    recall  f1-score   support
+
+      happy       0.70      0.72      0.71       670
+        sad       0.70      0.68      0.69       643
+
+avg / total       0.70      0.70      0.70      1313
+
+Accuracy:  0.699923838538
+
+
+ETC
+             precision    recall  f1-score   support
+
+      happy       0.66      0.75      0.70       670
+        sad       0.69      0.60      0.64       643
+
+avg / total       0.68      0.67      0.67      1313
+
+Accuracy:  0.673267326733
+
+
+ABC
+             precision    recall  f1-score   support
+
+      happy       0.71      0.72      0.71       670
+        sad       0.70      0.69      0.70       643
+
+avg / total       0.71      0.71      0.71      1313
+
+Accuracy:  0.705255140899
+
+
+XGB
+             precision    recall  f1-score   support
+
+      happy       0.73      0.76      0.74       670
+        sad       0.74      0.70      0.72       643
+
+avg / total       0.73      0.73      0.73      1313
+
+Accuracy:  0.730388423458
+
+
+GBC
+             precision    recall  f1-score   support
+
+      happy       0.72      0.74      0.73       670
+        sad       0.72      0.70      0.71       643
+
+avg / total       0.72      0.72      0.72      1313
+
+Accuracy:  0.71820258949
+
+
+KNN
+             precision    recall  f1-score   support
+
+      happy       0.57      0.62      0.60       670
+        sad       0.57      0.52      0.54       643
+
+avg / total       0.57      0.57      0.57      1313
+
+Accuracy:  0.571972581874
+
+
+NB
+             precision    recall  f1-score   support
+
+      happy       0.63      0.80      0.70       670
+        sad       0.71      0.51      0.60       643
+
+avg / total       0.67      0.66      0.65      1313
+
+Accuracy:  0.658035034273
+
+
+SVM
+             precision    recall  f1-score   support
+
+      happy       0.69      0.73      0.71       670
+        sad       0.70      0.67      0.68       643
+
+avg / total       0.70      0.70      0.70      1313
+
+Accuracy:  0.696877380046
+
+
+Elapsed time:  1699.90343094

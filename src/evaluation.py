@@ -38,7 +38,11 @@ print "Random Forest Classifier"
 print accuracy_score(test['Mood'], rfc.predict(test[features]))
 
 #update XGB params
-xgboost = xgb.XGBClassifier(max_depth=3, n_estimators=300, learning_rate=0.05)
+xgboost = xgb.XGBClassifier(base_score=0.5, colsample_bylevel=1, colsample_bytree=1,
+       gamma=0.01, learning_rate=0.1, max_delta_step=0.1, max_depth=5,
+       min_child_weight=1, missing=None, n_estimators=500, nthread=-1,
+       objective='binary:logistic', reg_alpha=0, reg_lambda=1,
+       scale_pos_weight=1, seed=0, silent=True, subsample=1)
 xgboost.fit(train[features], train['Mood'])
 print "XGBoost Classifier"
 print accuracy_score(test['Mood'], xgboost.predict(test[features]))

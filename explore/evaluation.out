@@ -1,0 +1,77 @@
+/home/bhavika/anaconda2/lib/python2.7/site-packages/sklearn/cross_validation.py:44: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.
+  "This module will be removed in 0.20.", DeprecationWarning)
+[Sun Dec 18 17:16:24 2016 : 901791] speechd: Speech Dispatcher 0.8 starting
+[Sun Dec 18 17:16:24 2016 : 904335] speechd: Speech Dispatcher already running.
+
+Speech Dispatcher already running.
+
+Train--------
+False    2205
+True     2171
+Name: Mood, dtype: int64
+Test----------
+True     1522
+False    1498
+Name: Mood, dtype: int64
+['pitch_0', 'pitch_1', 'pitch_2', 'pitch_3', 'pitch_4', 'pitch_5', 'pitch_6', 'pitch_7', 'pitch_8', 'pitch_9', 'pitch_10', 'pitch_11', 'timavg_0', 'timavg_1', 'timavg_2', 'timavg_3', 'timavg_4', 'timavg_5', 'timavg_6', 'timavg_7', 'timavg_8', 'timavg_9', 'timavg_10', 'timavg_11', 'Danceability', 'Speechiness', 'Instrumentalness', 'Beats', 'Energy', 'Acousticness', 'LoudnessSq']
+Evaluating on all features 
+---------------------------------------------------------------------------------------------------
+Random Forest Classifier
+0.745695364238
+XGBoost Classifier
+0.75
+Gradient Boosting Classifier
+0.755298013245
+Extra Trees Classifier
+0.744701986755
+Ada Boost Classifier
+0.735430463576
+KNeighbors Classifier
+0.639735099338
+Support Vector Machines
+0.735099337748
+Naive Bayes Classifier
+0.682119205298
+Voting Classifier
+0.750662251656
+Evaluating on spectral features 
+---------------------------------------------------------------------------------------------------
+Random Forest Classifier
+0.729139072848
+XGBoost Classifier
+0.730794701987
+Gradient Boosting Classifier
+0.714569536424
+Extra Trees Classifier
+0.724503311258
+Ada Boost Classifier
+0.716887417219
+KNeighbors Classifier
+0.672516556291
+Support Vector Machines
+0.714238410596
+Naive Bayes Classifier
+0.664569536424
+Voting Classifier
+0.723841059603
+
+Evaluating on descriptive features 
+---------------------------------------------------------------------------------------------------
+Random Forest Classifier
+0.71821192053
+XGBoost Classifier
+0.722847682119
+Gradient Boosting Classifier
+0.71059602649
+Extra Trees Classifier
+0.717880794702
+Ada Boost Classifier
+0.711920529801
+KNeighbors Classifier
+0.536092715232
+Support Vector Machines
+0.696688741722
+Naive Bayes Classifier
+0.641721854305
+Voting Classifier
+0.713245033113
