@@ -758,9 +758,9 @@ key "key-1"
  segment in a 12 dimensional vector.
  Here, the 12 elements of the vector represent pitch classes like C, C#,
  B and so on.
- The challenge here is - how do we find a uniform representation of timbre
- and pitches that represents a whole song? We use a technique called segment
- aggregation
+ The challenge is - to find a uniform representation of timbre and pitches
+ that represents a whole song.
+ We use a technique called segment aggregation
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-10,key-12,key-5"
@@ -780,9 +780,9 @@ key "key-10,key-12,key-5"
 
 \begin_layout Standard
 Segment aggregation involves computing several statistical moments like
- mean, minimum, maximum, standard deviation, variances and covariances across
- each segment.
- In our technique, we use two methods and compare them.
+ mean, minimum, maximum, standard deviation, kurtosis, variances and covariances
+ across each segment.
+ We try two methods.
  First, we compute a vector containing the mean and covariances of all segments
  and obtain a 90 element vector (12 averages and 78 covariances).
  We can use this approach for timbre and pitch arrays both.
@@ -793,6 +793,7 @@ Segment aggregation involves computing several statistical moments like
  been extracted through PCA on MFCC values and our segment aggregation does
  not account for temporal relations between the segments.
  This leads to some loss of information in the segments.
+ Using the 90 element vectors as they are introduces the curse of dimensionality.
  Our second approach is calculating only the elementwise mean of all segments
  in a song.
  This gives us two 12 dimensional vectors for pitches and timbre.
@@ -851,8 +852,12 @@ centering
 \backslash
 begin{tabular}{|l|l|}     
 \backslash
-hline     Estimators      & Hyperparameters                            
-                                         
+hline     
+\backslash
+textbf{Estimators}   & 
+\backslash
+textbf{Hyperparameters}                                                
+                     
 \backslash
 
 \backslash
@@ -1010,8 +1015,8 @@ textit{sad}
 \end_inset
 
 .
- This was very time consuming and the only limitation to taking mood classificat
-ion a step further and attempting hierarchical classification.
+ This was time consuming and the only hurdle to attempting hierarchical
+ classification.
  We use a naive definition of 
 \begin_inset ERT
 status open
@@ -1256,7 +1261,7 @@ end{table}
 \end_layout
 
 \begin_layout Standard
-\begin_inset VSpace 1cm
+\begin_inset Newpage pagebreak
 \end_inset
 
 
@@ -1351,8 +1356,8 @@ end{table}
 \end_layout
 
 \begin_layout Standard
-Upon downloading the dataset and inspecting it, we found that the values
- of Energy and Danceability which were supposed to be a part of the dataset
+On downloading the dataset and inspecting it, we found that the values of
+ Energy and Danceability which were supposed to be a part of the dataset
  were 0 in all the tracks.
  According to the Analyze documentation 
 \begin_inset CommandInset citation
@@ -1363,13 +1368,11 @@ key "key-1"
 
 , it means these values were not analyzed.
  However, Energy and Danceability were crucial features that we needed for
- our particular task.
+ our task.
  To solve this problem, we used the Spotify API (the Echo Nest API is now
  a part of Spotify's Web API).
  We fetched descriptive features like Energy, Acousticness, Danceability,
  Instrumentalness and Speechiness for the 7396 songs.
- Our dataset consists of the atrributes listed in Table 1.
- 
 \end_layout
 
 \begin_layout Subsection
@@ -1459,9 +1462,12 @@ end{table}
 \end_layout
 
 \begin_layout Standard
-It is due to this distribution that we decide that Accuracy would be the
- correct metric to use.
- Accuracy is defined in (5) where TP, TN, FP, FN stand for True Positive,
+Hence, we decide that Accuracy would be the correct metric to use.
+ 
+\end_layout
+
+\begin_layout Standard
+Accuracy is defined in (5) where TP, TN, FP, FN stand for True Positive,
  True Negative, False Positive and False Negative.
 \end_layout
 
@@ -1749,14 +1755,14 @@ key "key-11"
 
  we see that our highest accuracy is 75.52 % with a Gradient Boosting Classifier
  whereas they achieved 75.76% with an SVM using an RBF kernel.
- The difference in dataset size is significant as we compare pur 7396 to
+ The difference in dataset size is significant as we compare our 7396 to
  their 233.
- We feel that this is a fair result but the feature extraction process could
+ We feel that this is a fair result but the feature extraction process can
  be improved.
  To answer the questions we ask in the problem statement, yes, audio features
  do aid in the mood classification task.
- It can be observed that using audio features like pitch and timbre along
- with descriptive features provides atleast a 3% increase in accuracy.
+ Table 5 shows that using audio features like pitch and timbre along with
+ descriptive features provides atleast a 3% increase in accuracy.
  Additionally, pitch and timbre averages themselves are sufficient to reach
  72.91% accuracy with Random Forest Classifiers.
  
@@ -1769,12 +1775,14 @@ Directions for Future Work
 \begin_layout Standard
 In this music mood classification task, the lack of ground truth labels
  for a dataset as large as MSD was a significant hurdle to any further explorati
-on of genre-mood relationships or hierarchical mood classification.
+on of genre-mood relationships, canonical correlation analysis between music
+ and lyrics or hierarchical mood classification.
  We attempted some analysis to understand the relation between genre and
- mood but we only had genre labels for ~2000 songs out of the 7396 we labeled.
+ mood but we only had genre labels for approximately 2000 songs out of the
+ 7396 we labeled.
  Now that we are able to achieve upto 75% test accuracy, hierarchical mood
- classification would be an interesting approach to take if only we had
- ground truth labels for moods that fall under 
+ classification would be the next step if we had ground truth labels for
+ moods that fall under 
 \begin_inset ERT
 status open
 
@@ -1801,26 +1809,37 @@ textit{sad}
 \end_inset
 
 .
- A good way to demonstrate this would be by building a recommender system
- that allows you to enter a song title and then suggests a song similar
- to the one you entered.
- The metric for similarity would be emotional valence, timbre, pitch and
- other audio features.
- A simple framework for this would have the following steps:
+ We can demonstrate this
+\begin_inset space ~
+\end_inset
+
+by building a recommender system that allows you to enter a song title and
+ then suggests a song similar to the one you entered.
+ Similarity of songs would be based on features like emotional valence,
+ timbre, pitch and others.
+ 
 \end_layout
 
 \begin_layout Standard
-1) Enter a song title based on which you want recommendations
+
 \end_layout
 
 \begin_layout Standard
-2) Analyse the song to assign it to a mood based cluster
+A simple framework for this would have the following steps:
+\end_layout
+
+\begin_layout Standard
+1) Enter a song title based on which you want recommendations.
+\end_layout
+
+\begin_layout Standard
+2) Analyse the song to assign it to a mood based cluster.
 \end_layout
 
 \begin_layout Standard
 3) Suggest a song from the cluster that is most similar to the one entered
- by the user.
- 
+ by the user based on how close they are in terms of pitch, timbre, energy
+ and valence.
 \end_layout
 
 \begin_layout Bibliography
