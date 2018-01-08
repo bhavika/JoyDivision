@@ -720,7 +720,7 @@ textit{sad}
  Additionally, once we select the features we also examine the relative
  importance of these features for different estimators to better understand
  whether some features are better indicators of mood than others.
- We mutliplied mode and key and tempo and mode to capture the multiplicative
+ We multiplied mode and key and tempo and mode to capture the multiplicative
  relations between these features.
  Loudness is provided in decibels and is often negative, so we squared the
  value for better interpretability.

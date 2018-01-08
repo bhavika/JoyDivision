@@ -1,9 +1,17 @@
 ## Music Mood Classification Using the Million Song Dataset
 
+
+### Technical Summary 
+
+If you want to see a quick summary of the methods & results, here are the [slides](http://bit.do/joydiv). 
+
+A detailed technical report is available as a [PDF](https://github.com/bhavika/JoyDivision/blob/master/report/report.pdf)
+
+
 ### Installation
 
-1. Unzip tekwani.zip
-2. cd/tekwani
+1. Clone/download ZIP from https://github.com/bhavika/JoyDivision.git
+2. cd JoyDivision
 3. If you want to create a virtual environment, run virtualenv <the name of the environment, say 'tekwani'>
 4. To begin using the virtual environment, you must activate it.
    $ source tekwani/bin/activate
@@ -17,11 +25,12 @@
 1. Download the data from the Google Drive link here: http://bit.do/datasets
    The total download size should be about 2.8 GB. 
 2. Move the downloaded files to tekwani/data and check that it contains the following files:
+
     -fullset.pkl
     -train.pkl
     -test.pkl
 
-The folder tekwani/explore contains plots, output for different estimators' grid search results, scripts to handle h5 files and a list of getter methods 
+The folder JoyDivision/explore contains plots, output for different estimators' grid search results, scripts to handle h5 files and a list of getter methods 
 for h5 files (hdf5_getters.txt)
 
 The file `evaluation.py` is the final file that generates results as shown in the report. 
