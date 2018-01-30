@@ -22,8 +22,9 @@ A detailed technical report is available as a [PDF](https://github.com/bhavika/J
 
 ### Running the solution
 
-1. Download the data from the Google Drive link here: http://bit.do/datasets
-   The total download size should be about 2.8 GB. 
+1. Download the data from the Google Drive link [here](https://drive.google.com/drive/folders/1XEKjA3WQChkcyIDsEB1qBnW7OrbjEm0i).
+
+The total download size should be about 2.8 GB. 
 2. Move the downloaded files to tekwani/data and check that it contains the following files:
 
     -fullset.pkl
