@@ -1,6 +1,6 @@
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neighbors import DistanceMetric
-from get_train_test import train
+from .get_train_test import train
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import accuracy_score, make_scorer
 from time import time

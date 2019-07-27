@@ -1,4 +1,4 @@
-from get_train_test import train
+from .get_train_test import train
 from sklearn.model_selection import GridSearchCV
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, AdaBoostClassifier, ExtraTreesClassifier
 from sklearn.svm import SVC

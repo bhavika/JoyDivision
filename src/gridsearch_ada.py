@@ -1,13 +1,13 @@
-from get_train_test import train
+from .get_train_test import train
 from sklearn.metrics import accuracy_score, make_scorer
 from time import time
 import subprocess
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.model_selection import GridSearchCV, KFold, cross_val_score
 
+
 qual_features = ['Danceability',  'Speechiness',  'Instrumentalness', 'Beats',
             'Energy', 'Acousticness', 'LoudnessSq']
-
 
 pitches = [col for col in list(train.columns.values) if col.startswith('pitch_')]
 timbres = [col for col in list(train.columns.values) if col.startswith('timavg_')]

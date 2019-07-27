@@ -1,4 +1,4 @@
-from get_train_test import train
+from .get_train_test import train
 from sklearn.metrics import accuracy_score, make_scorer
 from time import time
 import subprocess

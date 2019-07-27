@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.ensemble import ExtraTreesClassifier
-from get_train_test import train
+from .get_train_test import train
 
 timbre_avg = [col for col in list(train.columns.values) if col.startswith('timavg_')]
 timbre = [col for col in list(train.columns.values) if col.startswith('tim_')]

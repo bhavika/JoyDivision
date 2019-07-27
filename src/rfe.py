@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import KFold
 from sklearn.feature_selection import RFECV
-from get_train_test import train
+from .get_train_test import train
 from time import time
 
 
