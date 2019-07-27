@@ -22,7 +22,7 @@ A detailed technical report is available as a [PDF](https://github.com/bhavika/J
 
 ### Running the solution
 
-1. Download the dataset - I used to host it on a Google Drive link which I'm no longer able to continue with, so please contact me for the files. 
+1. Download the dataset - http://bhavikatekwani.me/blog/joydivision.html
 
 2. Move the downloaded files to tekwani/data and check that it contains the following files:
 
